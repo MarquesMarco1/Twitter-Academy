@@ -5,8 +5,7 @@ $verif = new functions;
 $VerifBasique = $verif->creation_compte();
 $verif->login();
 include('includes/erreur.php');
-
-echo "salut " . $_SESSION['USER']['username'];
+include('includes/nav.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,7 +18,7 @@ echo "salut " . $_SESSION['USER']['username'];
 </head>
 
 <body>
-    <a href="Utilisateur/deconnexion.php">DECO</a>
+   
     <form method="post">
         <label for="username">Nom Utilisateur :</label>
         <input type="text" name="username" id="username" required>
