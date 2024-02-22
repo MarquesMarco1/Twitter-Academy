@@ -1,76 +1,21 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>login_tweet_academie</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.9/css/unicons.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 </head>
 <body>
-    <!-- manque img-->
-<div class="section">
-  <div class="container">
-    <div class="row full-height justify-content-center">
-      <div class="col-12 text-center align-self-center py-5">
-        <div class="section pb-5 pt-5 pt-sm-2 text-center">
-          <h6 class="mb-0 pb-3"><span>Log In </span><span>Sign Up</span></h6>
-                <input class="checkbox" type="checkbox" id="reg-log" name="reg-log"/>
-                <label for="reg-log"></label>
-          <div class="card-3d-wrap mx-auto">
-            <div class="card-3d-wrapper">
-              <div class="card-front">
-                <div class="center-wrap">
-                  <div class="section text-center">
-                    <h4 class="mb-4 pb-3">Log In</h4>
-                    <div class="form-group">
-                      <input type="email" class="form-style" placeholder="Email">
-                      <i class="input-icon uil uil-at"></i>
-                    </div>	
-                    <div class="form-group mt-2">
-                      <input type="password" class="form-style" placeholder="Password">
-                      <i class="input-icon uil uil-lock-alt"></i>
-                    </div>
-                    <div class="form-group mt-2">
-                        <input type="text" class="form-style" placeholder="Capcha">
-                        <i class="input-icon uil uil-lock-alt"></i>
-                    </div>
-                    <a href="https://www.web-leb.com/code" class="btn mt-4">Login</a>
-                    <p class="mb-0 mt-4 text-center"><a href="https://www.web-leb.com/code" class="link">Forgot your password?</a></p>
-                      </div>
-                    </div>
-                  </div>
-              <div class="card-back">
-                <div class="center-wrap">
-                  <div class="section text-center">
-                    <h4 class="mb-3 pb-3">Sign Up</h4>
-                    <div class="form-group">
-                      <input type="text" class="form-style" placeholder="Full Name">
-                      <i class="input-icon uil uil-user"></i>
-                    </div>	
-                    <div class="form-group mt-2">
-                      <input type="tel" class="form-style" placeholder="Phone Number">
-                      <i class="input-icon uil uil-phone"></i>
-                    </div>	
-                    <div class="form-group mt-2">
-                      <input type="email" class="form-style" placeholder="Email">
-                      <i class="input-icon uil uil-at"></i>
-                    </div>
-                    <div class="form-group mt-2">
-                      <input type="password" class="form-style" placeholder="Password">
-                      <i class="input-icon uil uil-lock-alt"></i>
-                    </div>
-                    <a href="https://www.web-leb.com/code" class="btn mt-4">Register</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-    </div>
-</div>
+    <form action="verif.php" method="post">
+        <label for="firstname">First Name :</label>
+        <input type="text" name="firstname" id="firstname">
+        <label for="lastname">Last Name :</label>
+        <input type="text" name="lastname" id="lastname">
+        <label for="email">Email :</label>
+        <input type="email" name="email" id="email">
+        <input type="hidden" name="register" id="register">
+        <input type="submit" value="étape suivante ->">
+        
+    </form>
 </body>
 </html>
