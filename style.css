@@ -1,3 +1,15 @@
 .hidden {
     display: none;
 }
+@media (prefers-color-scheme: light){
+    body {
+        background-color : #1c1c1e ;
+        color : #fefefe ;
+        }
+}
+@media (prefers-color-scheme: dark){
+    body {
+        background-color : #fefefe ;
+        color :  #1c1c1e;
+        }
+}

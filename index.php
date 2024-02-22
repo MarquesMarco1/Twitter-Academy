@@ -34,6 +34,7 @@ include('includes/erreur.php');
         <input type="hidden" name="hidden_verif" value="<?php echo $VerifBasique ?>">
         <input type="submit" value="Verifier">
     </form>
+    <script src="dark.js"> </script>
 </body>
 
 </html>
