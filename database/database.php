@@ -2,8 +2,9 @@
 class functions
 {
 
-    public function verification_utilisateur_bot()
+    public function creation_compte()
     {
+        session_start();
         if (!isset($_POST['verif_bot'])) {
             $bytes = random_bytes(2);
             $VerifBasique = bin2hex($bytes);
@@ -12,15 +13,15 @@ class functions
         if ($_POST['verif_bot'] === $_POST['hidden_verif']) {
             if (isset($_POST['verif_bot'])) {
                 $verif = new functions;
-                $verif->register();
+                $verif->creation_compte_sql();
             }
         } else {
-            echo "pas bon";
+            $_SESSION['MESSAGE_ERREUR'] = "code bot pas bon";
         }
         return $VerifBasique;
     }
 
-    public function register()
+    public function creation_compte_sql()
     {
         session_start();
         include('mysql.php');
@@ -44,29 +45,34 @@ class functions
                         "mail" => $_POST['email'],
                         "password" => $_POST['password'],
                     ]);
-
                     $_SESSION['MESSAGE_ERREUR'] = "good";
                 } else {
-       
                     $_SESSION['MESSAGE_ERREUR'] = "deja le @";
                 }
             } else {
-       
                 $_SESSION['MESSAGE_ERREUR'] = "déjà la email";
             }
         } else {
             $_SESSION['MESSAGE_ERREUR'] = "mdp check pas bon";
-       
         }
     }
-    public function register2()
+    public function login()
     {
-        echo $_POST['username'];
-        echo $_POST['email'];
-        echo $_POST['password'];
-
-
         include('mysql.php');
-     
+        session_start();
+        if (isset($_POST['login'])) {
+            $sql = $mysqlClient->prepare('SELECT * FROM user WHERE mail = :email OR at_user_name = :username');
+            $sql->execute([
+                "username" => "@" . $_POST['username'],
+                "email" => $_POST['username'],
+            ]);
+            $email_verif = $sql->fetch(PDO::FETCH_ASSOC);
+
+            if (isset($email_verif['id'])) {
+                $_SESSION['MESSAGE_ERREUR'] = " trouver";
+            } else {
+                $_SESSION['MESSAGE_ERREUR'] = "pas email trouver";
+            }
+        }
     }
 }
