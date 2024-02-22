@@ -38,11 +38,12 @@ class functions
                 ]);
                 $at_user_name_verif = $sql->fetch(PDO::FETCH_ASSOC);
                 if (!isset($at_user_name_verif['id'])) {
-                    $sql = $mysqlClient->prepare('INSERT INTO `user`(`username`, `at_user_name`, `profile_picture`, `bio`, `banner`, `mail`, `password`, `birthdate`, `private`, `creation_time`, `city`, `campus`) VALUES (:username, :at_username, "assets/img/user.jpg", null, "assets/img/banner.png", :mail, :password,null,null,NOW(),null,null);');
+                    $sql = $mysqlClient->prepare('INSERT INTO `user`(`username`, `at_user_name`, `profile_picture`, `bio`, `banner`, `mail`, `password`, `birthdate`, `private`, `creation_time`, `city`, `campus`) VALUES (:username, :at_username, "assets/img/user.jpg", null, "assets/img/banner.png", :mail, :password, :date,null,NOW(),null,null);');
                     $sql->execute([
                         "username" => $_POST['username'],
                         "at_username" => "@" . $_POST['username'],
                         "mail" => $_POST['email'],
+                        "date" => $_POST['date'],
                         "password" => hash("ripemd160", $_POST['password'], FALSE),
                     ]);
                     $_SESSION['MESSAGE_ERREUR'] = "good";

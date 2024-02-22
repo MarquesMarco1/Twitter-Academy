@@ -24,10 +24,12 @@ include('includes/nav.php');
         <input type="text" name="username" id="username" required>
         <label for="email">Email :</label>
         <input type="email" name="email" id="email" required>
+        <label for="date">Date anniv</label>
+        <input type="date" name="date" id="date" required>
         <label for="password">Mot de passe :</label>
         <input type="password" name="password" id="password" required>
         <label for="passwordcheck">Retapez votre mot de passe :</label>
-        <input type="password" name="passwordcheck" id="passwordcheck">
+        <input type="password" name="passwordcheck" id="passwordcheck" required>
         <input type="hidden" name="register" id="register">
 
         <div class="bot">
