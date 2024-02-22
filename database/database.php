@@ -66,10 +66,17 @@ class functions
                 "username" => "@" . $_POST['username'],
                 "email" => $_POST['username'],
             ]);
-            $email_verif = $sql->fetch(PDO::FETCH_ASSOC);
+            $user = $sql->fetch(PDO::FETCH_ASSOC);
 
-            if (isset($email_verif['id'])) {
-                $_SESSION['MESSAGE_ERREUR'] = " trouver";
+            if (isset($user['id'])) {
+                if ($user['password'] == $_POST['password']) {
+                    $_SESSION['USER'] = [
+                        "id" => $user['id'],
+                        "username" => $user['username'],
+                    ];
+                } else {
+                    $_SESSION['MESSAGE_ERREUR'] = "mdp pas bon";
+                }
             } else {
                 $_SESSION['MESSAGE_ERREUR'] = "pas email trouver";
             }
