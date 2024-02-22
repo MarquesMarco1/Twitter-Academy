@@ -8,7 +8,7 @@ include('includes/erreur.php');
 include('includes/nav.php');
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
@@ -18,7 +18,7 @@ include('includes/nav.php');
 </head>
 
 <body>
-   
+
     <form method="post">
         <label for="username">Nom Utilisateur :</label>
         <input type="text" name="username" id="username" required>
@@ -29,11 +29,12 @@ include('includes/nav.php');
         <label for="passwordcheck">Retapez votre mot de passe :</label>
         <input type="password" name="passwordcheck" id="passwordcheck">
         <input type="hidden" name="register" id="register">
-        <div>
-            <label for="verif_bot">Taper <?php echo $VerifBasique ?> :</label>
-            <input type="text" name="verif_bot" id="verif_bot">
-            <input type="hidden" name="hidden_verif" value="<?php echo $VerifBasique ?>">
+
+        <div class="bot">
+            <label class="verif" for="verif_bot"><p><?php echo $VerifBasique ?></p></label>
         </div>
+        <input type="text" name="verif_bot" id="verif_bot">
+        <input type="hidden" name="hidden_verif" value="<?php echo $VerifBasique ?>">
         <input type="submit" value="Crée le compte">
     </form>
     <form method="post">
