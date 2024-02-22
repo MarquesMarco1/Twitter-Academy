@@ -4,8 +4,6 @@ include('database/database.php');
 $verif = new functions;
 $VerifBasique = $verif->creation_compte();
 $verif->login();
-include('includes/erreur.php');
-include('includes/nav.php');
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -18,7 +16,10 @@ include('includes/nav.php');
 </head>
 
 <body>
-
+    <?php 
+    include('includes/erreur.php');
+    include('includes/nav.php');
+    ?>
     <form method="post">
         <label for="username">Nom Utilisateur :</label>
         <input type="text" name="username" id="username" required>
