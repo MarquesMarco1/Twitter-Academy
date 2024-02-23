@@ -2,8 +2,9 @@
 class functions
 {
 
-    public function verification_utilisateur_bot()
+    public function creation_compte()
     {
+        session_start();
         if (!isset($_POST['verif_bot'])) {
             $bytes = random_bytes(2);
             $VerifBasique = bin2hex($bytes);
@@ -12,15 +13,15 @@ class functions
         if ($_POST['verif_bot'] === $_POST['hidden_verif']) {
             if (isset($_POST['verif_bot'])) {
                 $verif = new functions;
-                $verif->register();
+                $verif->creation_compte_sql();
             }
         } else {
-            echo "pas bon";
+            $_SESSION['MESSAGE_ERREUR'] = "code bot pas bon";
         }
         return $VerifBasique;
     }
 
-    public function register()
+    public function creation_compte_sql()
     {
         session_start();
         include('mysql.php');
@@ -37,14 +38,14 @@ class functions
                 ]);
                 $at_user_name_verif = $sql->fetch(PDO::FETCH_ASSOC);
                 if (!isset($at_user_name_verif['id'])) {
-                    $sql = $mysqlClient->prepare('INSERT INTO `user`(`username`, `at_user_name`, `profile_picture`, `bio`, `banner`, `mail`, `password`, `birthdate`, `private`, `creation_time`, `city`, `campus`) VALUES (:username, :at_username, "assets/img/user.jpg", null, "assets/img/banner.jpg", :mail, :password,null,null,NOW(),null,null);');
+                    $sql = $mysqlClient->prepare('INSERT INTO `user`(`username`, `at_user_name`, `profile_picture`, `bio`, `banner`, `mail`, `password`, `birthdate`, `private`, `creation_time`, `city`, `campus`) VALUES (:username, :at_username, "assets/img/user.jpg", null, "assets/img/banner.png", :mail, :password, :date,null,NOW(),null,null);');
                     $sql->execute([
                         "username" => $_POST['username'],
                         "at_username" => "@" . $_POST['username'],
                         "mail" => $_POST['email'],
-                        "password" => $_POST['password'],
+                        "date" => $_POST['date'],
+                        "password" => hash("ripemd160", $_POST['password'], FALSE),
                     ]);
-
                     $_SESSION['MESSAGE_ERREUR'] = "good";
                 } else {
                     $_SESSION['MESSAGE_ERREUR'] = "deja le @";
@@ -56,13 +57,30 @@ class functions
             $_SESSION['MESSAGE_ERREUR'] = "mdp check pas bon";
         }
     }
-    public function register2()
+    public function login()
     {
-        echo $_POST['username'];
-        echo $_POST['email'];
-        echo $_POST['password'];
-
-
         include('mysql.php');
+        session_start();
+        if (isset($_POST['login'])) {
+            $sql = $mysqlClient->prepare('SELECT * FROM user WHERE mail = :email OR at_user_name = :username');
+            $sql->execute([
+                "username" => "@" . $_POST['username'],
+                "email" => $_POST['username'],
+            ]);
+            $user = $sql->fetch(PDO::FETCH_ASSOC);
+
+            if (isset($user['id'])) {
+                if ($user['password'] == hash("ripemd160", $_POST['password'], FALSE)) {
+                    $_SESSION['USER'] = [
+                        "id" => $user['id'],
+                        "username" => $user['username'],
+                    ];
+                } else {
+                    $_SESSION['MESSAGE_ERREUR'] = "mdp pas bon";
+                }
+            } else {
+                $_SESSION['MESSAGE_ERREUR'] = "pas email trouver";
+            }
+        }
     }
 }
