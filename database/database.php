@@ -43,7 +43,7 @@ class functions
                     $filecount = count(glob($directory . "*"));
                     move_uploaded_file($_FILES['imageToUpload']['tmp_name'], "assets/save_image_user/" . $filecount . $_FILES['imageToUpload']['name']);
 
-                    $sql = $mysqlClient->prepare('INSERT INTO `user`(`username`, `at_user_name`, `profile_picture`, `bio`, `banner`, `mail`, `password`, `birthdate`, `private`, `creation_time`, `city`, `campus`) VALUES (:username, :at_username, :pp, null, "assets/img/banner.png", :mail, :password, :date,null,NOW(),null,null);');
+                    $sql = $mysqlClient->prepare('INSERT INTO `user`(`username`, `at_user_name`, `profile_picture`, `bio`, `banner`, `mail`, `password`, `birthdate`, `private`, `creation_time`, `city`, `campus`) VALUES (:username, :at_username, :pp, null, "assets/img/banner.png", :mail, :password, :date, 0,NOW(),null,null);');
                     $sql->execute([
                         "username" => $_POST['username'],
                         "at_username" => "@" . $_POST['username'],
