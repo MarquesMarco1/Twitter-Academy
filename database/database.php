@@ -21,7 +21,7 @@ class functions
         return $VerifBasique;
     }
 
-    // Renvoye ici
+    // Renvoie ici
     public function creation_compte_sql()
     {
         include('mysql.php');
