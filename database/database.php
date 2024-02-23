@@ -22,6 +22,7 @@ class functions
 
     public function creation_compte_sql()
     {
+        include('mysql.php');
         if ($_POST['password'] === $_POST['passwordcheck']) {
             if (strlen($_POST['password']) >= 6) {
                 $sql = $mysqlClient->prepare('SELECT * FROM user WHERE mail = :email');
