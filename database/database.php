@@ -26,38 +26,42 @@ class functions
         session_start();
         include('mysql.php');
         if ($_POST['password'] === $_POST['passwordcheck']) {
-            $sql = $mysqlClient->prepare('SELECT * FROM user WHERE mail = :email');
-            $sql->execute([
-                "email" => $_POST['email'],
-            ]);
-            $email_verif = $sql->fetch(PDO::FETCH_ASSOC);
-            if (!isset($email_verif['id'])) {
-                $sql = $mysqlClient->prepare('SELECT * FROM user WHERE at_user_name = :at_user_name');
+            if (strlen($_POST['password']) >= 6) {
+                $sql = $mysqlClient->prepare('SELECT * FROM user WHERE mail = :email');
                 $sql->execute([
-                    "at_user_name" => "@" . $_POST['username'],
+                    "email" => $_POST['email'],
                 ]);
-                $at_user_name_verif = $sql->fetch(PDO::FETCH_ASSOC);
-                if (!isset($at_user_name_verif['id'])) {
-
-                    $directory = "assets/save_image_user/";
-                    $filecount = count(glob($directory . "*"));
-                    move_uploaded_file($_FILES['imageToUpload']['tmp_name'], "assets/save_image_user/" . $filecount . $_FILES['imageToUpload']['name']);
-
-                    $sql = $mysqlClient->prepare('INSERT INTO `user`(`username`, `at_user_name`, `profile_picture`, `bio`, `banner`, `mail`, `password`, `birthdate`, `private`, `creation_time`, `city`, `campus`) VALUES (:username, :at_username, :pp, null, "assets/img/banner.png", :mail, :password, :date, 0,NOW(),null,null);');
+                $email_verif = $sql->fetch(PDO::FETCH_ASSOC);
+                if (!isset($email_verif['id'])) {
+                    $sql = $mysqlClient->prepare('SELECT * FROM user WHERE at_user_name = :at_user_name');
                     $sql->execute([
-                        "username" => $_POST['username'],
-                        "at_username" => "@" . $_POST['username'],
-                        "mail" => $_POST['email'],
-                        "pp" => "assets/save_image_user/" . $filecount . $_FILES['imageToUpload']['name'],
-                        "date" => $_POST['date'],
-                        "password" => hash("ripemd160", $_POST['password'], FALSE),
+                        "at_user_name" => "@" . $_POST['username'],
                     ]);
-                    $_SESSION['MESSAGE_ERREUR'] = "good";
+                    $at_user_name_verif = $sql->fetch(PDO::FETCH_ASSOC);
+                    if (!isset($at_user_name_verif['id'])) {
+
+                        $directory = "assets/save_image_user/";
+                        $filecount = count(glob($directory . "*"));
+                        move_uploaded_file($_FILES['imageToUpload']['tmp_name'], "assets/save_image_user/" . $filecount . $_FILES['imageToUpload']['name']);
+
+                        $sql = $mysqlClient->prepare('INSERT INTO `user`(`username`, `at_user_name`, `profile_picture`, `bio`, `banner`, `mail`, `password`, `birthdate`, `private`, `creation_time`, `city`, `campus`) VALUES (:username, :at_username, :pp, null, "assets/img/banner.png", :mail, :password, :date, 0,NOW(),null,null);');
+                        $sql->execute([
+                            "username" => $_POST['username'],
+                            "at_username" => "@" . $_POST['username'],
+                            "mail" => $_POST['email'],
+                            "pp" => "assets/save_image_user/" . $filecount . $_FILES['imageToUpload']['name'],
+                            "date" => $_POST['date'],
+                            "password" => hash("ripemd160", $_POST['password'], FALSE),
+                        ]);
+                        $_SESSION['MESSAGE_ERREUR'] = "good";
+                    } else {
+                        $_SESSION['MESSAGE_ERREUR'] = "deja le @";
+                    }
                 } else {
-                    $_SESSION['MESSAGE_ERREUR'] = "deja le @";
+                    $_SESSION['MESSAGE_ERREUR'] = "déjà la email";
                 }
             } else {
-                $_SESSION['MESSAGE_ERREUR'] = "déjà la email";
+                $_SESSION['MESSAGE_ERREUR'] = "mdp trop petit";
             }
         } else {
             $_SESSION['MESSAGE_ERREUR'] = "mdp check pas bon";
