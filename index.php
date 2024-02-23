@@ -20,8 +20,8 @@ $verif->login();
     <?php
     include('includes/erreur.php');
     include('includes/nav.php');
-    include('includes/inscription.php');
-    include('includes/connexion.php');
+    include('includes/login/inscription.php');
+    include('includes/login/connexion.php');
     ?>
 </body>
 
