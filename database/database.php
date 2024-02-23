@@ -74,6 +74,7 @@ class functions
                     $_SESSION['USER'] = [
                         "id" => $user['id'],
                         "username" => $user['username'],
+                        "profile_picture" => $user['profile_picture'],
                     ];
                 } else {
                     $_SESSION['MESSAGE_ERREUR'] = "mdp pas bon";
