@@ -1,5 +1,6 @@
 <?php
 session_start();
+include('mysql.php');
 include('database/database.php');
 $verif = new functions;
 $VerifBasique = $verif->creation_compte();

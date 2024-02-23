@@ -4,7 +4,6 @@ class functions
 
     public function creation_compte()
     {
-        session_start();
         if (!isset($_POST['verif_bot'])) {
             $bytes = random_bytes(2);
             $VerifBasique = bin2hex($bytes);
@@ -23,8 +22,6 @@ class functions
 
     public function creation_compte_sql()
     {
-        session_start();
-        include('mysql.php');
         if ($_POST['password'] === $_POST['passwordcheck']) {
             if (strlen($_POST['password']) >= 6) {
                 $sql = $mysqlClient->prepare('SELECT * FROM user WHERE mail = :email');
@@ -70,7 +67,6 @@ class functions
     public function login()
     {
         include('mysql.php');
-        session_start();
         if (isset($_POST['login'])) {
             $sql = $mysqlClient->prepare('SELECT * FROM user WHERE mail = :email OR at_user_name = :username');
             $sql->execute([
