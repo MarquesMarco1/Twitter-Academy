@@ -1,5 +1,9 @@
 <?php
 session_start();
+
+if (isset($_SESSION['USER'])) {
+    header('Location: accueil.php');
+}
 include('database/database.php');
 $verif = new functions;
 $VerifBasique = $verif->creation_compte();
@@ -25,12 +29,8 @@ $verif->login();
             <button onclick="togglePopup2()" id="connect">Se connecter</button>
         </div>
     </div>
-    <?php include('includes/nav.php'); ?>
     <?php include('includes/login/inscription.php'); ?>
     <?php include('includes/login/connexion.php'); ?>
-
-
-
     <script src="script.js"></script>
 </body>
 
