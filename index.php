@@ -4,7 +4,9 @@ include('database/database.php');
 $verif = new functions;
 $VerifBasique = $verif->creation_compte();
 $verif->login();
+
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 

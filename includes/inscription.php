@@ -5,6 +5,8 @@
         <input type="email" name="email" id="email" required>
         <label for="date">Date anniv</label>
         <input type="date" name="date" id="date" required>
+        <label for="photoprofil">Photo de profil : </label>
+        <input type="file" name="photoprofil" id="photoprofil">
         <label for="password">Mot de passe :</label>
         <input type="password" name="password" id="password" required>
         <label for="passwordcheck">Retapez votre mot de passe :</label>
