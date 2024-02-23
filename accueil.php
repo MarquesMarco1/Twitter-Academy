@@ -14,7 +14,7 @@
     <a href="login.html">Login</a>
     <div class="sidebar">
       <div class="logo">
-        <img src="asset/Logo.png" alt="">
+        <img src="assets/img/logo.png" alt="">
       </div>
       <a href="#" class="active">Accueil</a>
       <a href="#">Exploré</a>
