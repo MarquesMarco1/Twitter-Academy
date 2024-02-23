@@ -1,12 +1,11 @@
-<form method="post">
+<form method="post"  enctype="multipart/form-data">
         <label for="username">Nom Utilisateur :</label>
         <input type="text" name="username" id="username" required>
         <label for="email">Email :</label>
         <input type="email" name="email" id="email" required>
         <label for="date">Date anniv</label>
         <input type="date" name="date" id="date" required>
-        <label for="photoprofil">Photo de profil : </label>
-        <input type="file" name="photoprofil" id="photoprofil">
+        <input type="file" name="imageToUpload">
         <label for="password">Mot de passe :</label>
         <input type="password" name="password" id="password" required>
         <label for="passwordcheck">Retapez votre mot de passe :</label>

@@ -41,15 +41,14 @@ class functions
 
                     $directory = "assets/save_image_user/";
                     $filecount = count(glob($directory . "*"));
-                    $pp = "id" . $filecount . "-name_image" . $_POST['photoprofil'];
-                    file_put_contents("assets/save_image_user/" . $pp, $pp);
-                    
+                    move_uploaded_file($_FILES['imageToUpload']['tmp_name'], "assets/save_image_user/" . $filecount . $_FILES['imageToUpload']['name']);
+
                     $sql = $mysqlClient->prepare('INSERT INTO `user`(`username`, `at_user_name`, `profile_picture`, `bio`, `banner`, `mail`, `password`, `birthdate`, `private`, `creation_time`, `city`, `campus`) VALUES (:username, :at_username, :pp, null, "assets/img/banner.png", :mail, :password, :date,null,NOW(),null,null);');
                     $sql->execute([
                         "username" => $_POST['username'],
                         "at_username" => "@" . $_POST['username'],
                         "mail" => $_POST['email'],
-                        "pp" => $pp,
+                        "pp" => "assets/save_image_user/" . $filecount . $_FILES['imageToUpload']['name'],
                         "date" => $_POST['date'],
                         "password" => hash("ripemd160", $_POST['password'], FALSE),
                     ]);
@@ -81,7 +80,7 @@ class functions
                     $_SESSION['USER'] = [
                         "id" => $user['id'],
                         "username" => $user['username'],
-                        "profile_picture" => $user['profile_picture'],
+                        "pp" => $user['profile_picture'],
                     ];
                 } else {
                     $_SESSION['MESSAGE_ERREUR'] = "mdp pas bon";
