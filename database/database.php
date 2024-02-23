@@ -37,21 +37,29 @@ class functions
                     ]);
                     $at_user_name_verif = $sql->fetch(PDO::FETCH_ASSOC);
                     if (!isset($at_user_name_verif['id'])) {
+                        include('includes/define.php');
+                        if ($_FILES['imageToUpload']['size'] < 5 * MB) {
+                            if ($_FILES["imageToUpload"]["type"] == "image/jpeg" || $_FILES["imageToUpload"]["type"] == "image/png") {
+                                $directory = "assets/save_image_user/";
+                                $filecount = count(glob($directory . "*"));
+                                move_uploaded_file($_FILES['imageToUpload']['tmp_name'], "assets/save_image_user/" . $filecount . $_FILES['imageToUpload']['name']);
 
-                        $directory = "assets/save_image_user/";
-                        $filecount = count(glob($directory . "*"));
-                        move_uploaded_file($_FILES['imageToUpload']['tmp_name'], "assets/save_image_user/" . $filecount . $_FILES['imageToUpload']['name']);
-
-                        $sql = $mysqlClient->prepare('INSERT INTO `user`(`username`, `at_user_name`, `profile_picture`, `bio`, `banner`, `mail`, `password`, `birthdate`, `private`, `creation_time`, `city`, `campus`) VALUES (:username, :at_username, :pp, null, "assets/img/banner.png", :mail, :password, :date, 0,NOW(),null,null);');
-                        $sql->execute([
-                            "username" => $_POST['username'],
-                            "at_username" => "@" . $_POST['username'],
-                            "mail" => $_POST['email'],
-                            "pp" => "assets/save_image_user/" . $filecount . $_FILES['imageToUpload']['name'],
-                            "date" => $_POST['date'],
-                            "password" => hash("ripemd160", $_POST['password'], FALSE),
-                        ]);
-                        $_SESSION['MESSAGE_ERREUR'] = "good";
+                                $sql = $mysqlClient->prepare('INSERT INTO `user`(`username`, `at_user_name`, `profile_picture`, `bio`, `banner`, `mail`, `password`, `birthdate`, `private`, `creation_time`, `city`, `campus`) VALUES (:username, :at_username, :pp, null, "assets/img/banner.png", :mail, :password, :date, 0,NOW(),null,null);');
+                                $sql->execute([
+                                    "username" => $_POST['username'],
+                                    "at_username" => "@" . $_POST['username'],
+                                    "mail" => $_POST['email'],
+                                    "pp" => "assets/save_image_user/" . $filecount . $_FILES['imageToUpload']['name'],
+                                    "date" => $_POST['date'],
+                                    "password" => hash("ripemd160", $_POST['password'], FALSE),
+                                ]);
+                                $_SESSION['MESSAGE_ERREUR'] = "good";
+                            }  else {
+                                $_SESSION['MESSAGE_ERREUR'] = "pas le bon type de fichier uniquement (png/jpeg)";
+                            }
+                        } else {
+                            $_SESSION['MESSAGE_ERREUR'] = "image +5mb";
+                        }
                     } else {
                         $_SESSION['MESSAGE_ERREUR'] = "deja le @";
                     }
