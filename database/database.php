@@ -96,6 +96,7 @@ class functions
                         "username" => $user['username'],
                         "pp" => $user['profile_picture'],
                     ];
+                    header("Location: accueil.html");
                 } else {
                     $_SESSION['MESSAGE_ERREUR'] = "mdp pas bon";
                 }
