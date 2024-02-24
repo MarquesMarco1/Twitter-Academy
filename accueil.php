@@ -24,7 +24,7 @@ if (!isset($_SESSION['USER'])) {
       </div>
       <a href="#" class="active">Accueil</a>
       <a href="#">Message</a>
-      <a href="Utilisateur/Profil/user_profil.php?id_user=<?php echo $_SESSION['USER']['id']?>">Profil</a>
+      <a href="Utilisateur/user_profil.php?id_user=<?php echo $_SESSION['USER']['id']?>">Profil</a>
       <a href="Utilisateur/deconnexion.php">Deconnexion</a>
     </div>
     <div class="main-content">
