@@ -101,7 +101,7 @@ class functions
                     $_SESSION['MESSAGE_ERREUR'] = "mdp pas bon";
                 }
             } else {
-                $_SESSION['MESSAGE_ERREUR'] = "pas email trouver";
+                $_SESSION['MESSAGE_ERREUR'] = " email/username pas trouver";
             }
         }
     }

@@ -1,7 +1,7 @@
 <?php 
 session_start();
 if (!isset($_SESSION['USER'])) {
-  header('Location: main.php');
+  header('Location: index.php');
 }
 ?>
 <!DOCTYPE html>
@@ -23,19 +23,18 @@ if (!isset($_SESSION['USER'])) {
         <img src="assets/img/logo.png" alt="">
       </div>
       <a href="#" class="active">Accueil</a>
-      <a href="#">Exploré</a>
-      <a href="#">Notification</a>
       <a href="#">Message</a>
-      <a href="#">Liste</a>
-      <a href="#">Signet</a>
-      <a href="#">Communauté</a>
-      <a href="#">Profil</a>
-      <a href="#">Plus</a>
-      <a href="login.html">Login</a>
-      <a href="Utilisateur/deconnexion.php">Deco</a>
+      <a href="Utilisateur/Profil/user_profil.php?id_user=<?php echo $_SESSION['USER']['id']?>">Profil</a>
+      <a href="Utilisateur/deconnexion.php">Deconnexion</a>
     </div>
     <div class="main-content">
-      <button class="recommendation-button">Faire un post</button>
+    
+        <form action="">
+          <input type="submit" class="recommendation-button" value="Faire un post">
+          <input type="text" name="tweet" id="tweet">
+        </form>
+
+      
 
 
       <div class="post">Post Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus reprehenderit inventore ex maiores eius dolor quam voluptatem aliquid ullam hic, pariatur deserunt vel, aliquam excepturi veniam facilis aperiam itaque quas.
