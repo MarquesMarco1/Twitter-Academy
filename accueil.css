@@ -1,7 +1,7 @@
 :root {
-  --premiere-color: #411158e1;
-  --deuxieme-color: #9067a3;
-  --troisieme--color:  #fbc2c2; 
+  --premiere-color: #5f008be1;
+  --deuxieme-color: rgb(237, 206, 206);
+  --troisieme--color:  #cb0b0b; 
   --blanc:  white;
   --noir:  black;
   --backgroundC: rgb(255, 249, 220);
@@ -206,7 +206,65 @@ body {
 .gifclick img {
   width: 15px;
   height: 15px;
-  margin-left: 15%;
-  margin-right: 15%;
+  margin-left: 2%;
+  margin-right: 2;
 
+}
+
+@media (max-width: 768px) {
+
+  .sidebar,
+  .right-sidebar {
+    width: 100px;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .sidebar a,
+  .right-sidebar .search-bar,
+  .right-sidebar .suggestion {
+    padding: 5px;
+  }
+
+  .main-content {
+    margin-left: 100px;
+    margin-right: 100px;
+  }
+
+  .post img {
+    width: 150px;
+    height: 150px;
+  }
+
+  .recommendation-button {
+    margin: 10px 0;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .sidebar,
+  .right-sidebar {
+    width: 60px;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .sidebar a,
+  .right-sidebar .search-bar,
+  .right-sidebar .suggestion {
+    padding: 3px;
+  }
+
+  .main-content,
+  .post,
+  .recommendation-button {
+    margin-left: 60px;
+    margin-right: 60px;
+  }
+
+  .post img {
+    width: 100px;
+    height: 100px;
+  }
 }
