@@ -1,17 +1,19 @@
 :root {
   --premiere-color: #411158e1;
   --deuxieme-color: #9067a3;
-  --troisieme--color:  #fbc2c2;
+  --troisieme--color:  #fbc2c2; 
   --blanc:  white;
   --noir:  black;
+  --backgroundC: rgb(255, 249, 220);
+
+
 }
 
 
 /* Base styles */
 * {
+  text-decoration: none;
   box-sizing: border-box;
-  margin-left: 4%;
-  margin-right: 4%;
 }
 
 body {
@@ -20,6 +22,8 @@ body {
   width:100%;
   margin: 0;
   font-family: Arial, sans-serif;
+  background-color: var(--backgroundC);
+  
 }
 
 /* ---------Sidebar styles------- */
@@ -31,6 +35,7 @@ body {
   top: 0;
   background-color: var(--deuxieme-color);
   padding: 10px;
+  
 }
 
 .sidebar a {
@@ -57,8 +62,9 @@ body {
 }
 
 .logo img {
-  width: 100px;
+  width: 90px;
   height: 100px;
+  padding-bottom: 10px;
 }
 
 /* Main Content styles */
@@ -68,6 +74,7 @@ body {
   padding: 20px;
   background-color: var(--premiere-color);
   border-radius: 5px;
+  
 }
 
 .post {
@@ -77,6 +84,7 @@ body {
   padding: 10px;
   margin-bottom: 20px;
   border-radius: 5px;
+  
 }
 
 .recommendation-button {
@@ -192,3 +200,9 @@ body {
   color: #333;
 }
 /*-----------*/
+
+.gifclick img {
+  width: 15px;
+  height: 15px;
+
+}
