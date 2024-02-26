@@ -24,7 +24,10 @@ if (!isset($_SESSION['USER'])) {
             $('#tweets').empty();
             $.each(data, function(key, tweet) {
               $('#tweets').append(`<div class="post">
-              ` + tweet.id_user + tweet.content + `
+              <div> ` + tweet.username + `</div>
+              <div> ` + tweet.at_user_name + `</div>
+              <div> ` + tweet.content + `</div>
+              <div> ` + tweet.time + `</div>
               <br>
               <a href="#">Retweet</a>
               <a href="#">Like</a>
