@@ -12,6 +12,32 @@ if (!isset($_SESSION['USER'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tweet academie</title>
   <link rel="stylesheet" href="style/accueil.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      function fetchTweets() {
+        $.ajax({
+          url: 'mysql/fetch_tweets.php',
+          type: 'GET',
+          dataType: 'json',
+          success: function(data) {
+            $('#tweets').empty();
+            $.each(data, function(key, tweet) {
+              $('#tweets').append(`<div class="post">
+              ` + tweet.id_user + tweet.content + `
+              <br>
+              <a href="#">Retweet</a>
+              <a href="#">Like</a>
+              <a href="#">Comment</a>
+              </div>`);
+            });
+          }
+        });
+      }
+      fetchTweets();
+      setInterval(fetchTweets, 5000);
+    });
+  </script>
 </head>
 
 <body>
