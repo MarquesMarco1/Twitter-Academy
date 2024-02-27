@@ -80,6 +80,6 @@ img {
 .popup-content1 form {
     display: flex;
     flex-direction: column;
-    background-color: red;
-    color: red;
+    background-color: white;
+    color: blue;
 }

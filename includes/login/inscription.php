@@ -1,6 +1,6 @@
-<div id="popup-overlay1" enctype="multipart/form-data">
+<div id="popup-overlay1">
     <div class="popup-content1">
-        <form action="" method="post">
+        <form action="" method="post" enctype="multipart/form-data">
             <h2>Créez votre compte</h2>
             <label for="username">Nom Utilisateur :</label>
             <input type="text" name="username" id="username" required>
