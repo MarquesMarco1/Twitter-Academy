@@ -26,18 +26,18 @@ if (!isset($_SESSION['USER'])) {
               let rt = "";
 
               if (tweet.id_quoted_tweet != null) {
-                $.ajax({
-                  url: 'mysql/fetch_retweets.php',
+                const rtResponse = $.ajax({
+                  url: `mysql/fetch_retweets.php?id_quoted_tweet=`+tweet.id_quoted_tweet+``,
                   type: 'GET',
-                  dataType: 'json',
-                  success: function(data) {
-                    $.each(data, function(key, tweet) {
-                      rt = "test";
-                    })
-                  }
-                })
+                  data: { id_quoted_tweet: tweet.id_quoted_tweet },
+                  dataType: 'json'
+                });
+                $.each(data, function(key, rtweet) {
+                  rt = rtweet.username + " " + rtweet.content;
+                });
               }
               
+
               let body = `
               <div class="post">
               <div class="profilpost">
