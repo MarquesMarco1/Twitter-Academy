@@ -8,7 +8,7 @@
                     <img id="headerimage" src="https://res.cloudinary.com/dowrygm9b/image/upload/v1570267399/laptop-3174729_yiprzu.jpg" alt="">
                     <img id="profilepic" src="<?php include('path.php');  echo $path . $user['profile_picture'] ?>" alt="">
                     <?php if ($user_profil === $user_logged) : ?>
-                        <div class="editprofile">Edit Profile</div>
+                        <a href="../Utilisateur/edit_profil.php?id_user=<?php echo $_SESSION['USER']['id']?>" class="editprofile">Edit Profile</a>
                     <?php endif; ?>
 
                 </div>
