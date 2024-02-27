@@ -23,13 +23,6 @@ $user = $verif->getUser($user_profil);
 </head>
 
 <body>
-    <?php if ($user_profil === $user_logged) : ?>
-        <button>modifier profil</button>
-    <?php endif; ?>
-    <img src="<?php echo "../" . $user['profile_picture'] ?>" alt="">
-    <h1><?php echo $user['username'] ?> </h1>
-    <p><?php echo $user['at_user_name'] ?> </p>
-
     <div class="marging">
         <?php include('../includes/left-sidebar.php') ?>
         <?php include('../includes/profil.php') ?>
