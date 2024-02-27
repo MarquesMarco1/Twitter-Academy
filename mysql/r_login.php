@@ -121,6 +121,7 @@ class functions
                     $_SESSION['USER'] = [
                         "id" => $user['id'],
                         "username" => $user['username'],
+                        "at_user_name" => $user['at_user_name'],
                         "pp" => $pp,
                     ];
                     header("Location: accueil.php");

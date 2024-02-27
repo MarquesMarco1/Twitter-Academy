@@ -3,7 +3,7 @@
 class profil {
     public function getUser($getIdUser) {
         include('mysql.php');
-            $sql = $mysqlClient->prepare('SELECT * FROM user WHERE id = :id'); // connexion avec login ou email
+            $sql = $mysqlClient->prepare('SELECT * FROM user WHERE at_user_name = :id'); // connexion avec login ou email
             $sql->execute([
                 "id" => $getIdUser,
             ]);

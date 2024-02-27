@@ -6,6 +6,7 @@ $user_logged = $_SESSION['USER']['id'];
 
 
 include('../mysql/r_profil.php');
+include('../includes/path.php');
 $verif = new profil;
 $user = $verif->getUser($user_profil);
 

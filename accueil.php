@@ -27,10 +27,10 @@ if (!isset($_SESSION['USER'])) {
               <div class="post">
               <div class="profilpost">
                 <div class="photodeprofil">
-                <a style="color:blue;" href="Utilisateur/user_profil.php?id_user=` + tweet.id + `">   <img src="` + tweet.profile_picture + `" alt="photodeprofil"> </a>
+                <a style="color:blue;" href="Utilisateur/user_profil.php?id_user=` + tweet.at_user_name + `">   <img src="` + tweet.profile_picture + `" alt="photodeprofil"> </a>
                 </div>
                 <div class="nomutilisateur">
-                  <a style="color:blue;" href="Utilisateur/user_profil.php?id_user=` + tweet.user_id + `">` + tweet.at_user_name + `</a>
+                  <a style="color:blue;" href="Utilisateur/user_profil.php?id_user=` + tweet.at_user_name + `">` + tweet.at_user_name + `</a>
                 </div>
                 <div class="option">
             <span class="gifclick">
@@ -42,7 +42,7 @@ if (!isset($_SESSION['USER'])) {
               </div>
               <div class="borderpostcontent">
               <div class="postcontent">
-                <p>` + tweet.content + `</p>
+                <p>` + tweet.content.replace(/@(\w+)/g, "<a href='Utilisateur/user_profil.php?id_user=@$1'>@$1</a>") + `</p>
               </div>
             </div>
             <span class="gifclick">

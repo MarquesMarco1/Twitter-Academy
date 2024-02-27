@@ -8,6 +8,6 @@ include('path.php');
     </div>
     <a href= "<?php echo $path ?>accueil.php" >Accueil</a>
     <a href="#">Message</a>
-    <a href="<?php echo $path ?>Utilisateur/user_profil.php?id_user=<?php echo $_SESSION['USER']['id'] ?>">Profil</a>
+    <a href="<?php echo $path ?>Utilisateur/user_profil.php?id_user=<?php echo $_SESSION['USER']['at_user_name'] ?>">Profil</a>
     <a href="<?php echo $path ?>Utilisateur/deconnexion.php">Déco</a>
 </div>
