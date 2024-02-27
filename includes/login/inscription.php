@@ -8,6 +8,7 @@
             <input type="email" name="email" id="email" required>
             <label for="date">Date anniv</label>
             <input type="date" name="date" id="date" required>
+            <label for="imageToUpload">Photo de profil ( pas obligatoire )</label>
             <input type="file" name="imageToUpload">
             <label for="password">Mot de passe :</label>
             <input type="password" name="password" id="password" required>

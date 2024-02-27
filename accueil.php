@@ -27,30 +27,37 @@ if (!isset($_SESSION['USER'])) {
               <div class="post">
               <div class="profilpost">
                 <div class="photodeprofil">
-                  <img src="`+ tweet.profile_picture +`" alt="photodeprofil">
+                <a style="color:blue;" href="Utilisateur/user_profil.php?id_user=` + tweet.id + `">   <img src="` + tweet.profile_picture + `" alt="photodeprofil"> </a>
                 </div>
                 <div class="nomutilisateur">
-                  <a style="color:blue;" href="Utilisateur/user_profil.php?id_user=`+ tweet.user_id +`">`+ tweet.at_user_name +`</a>
+                  <a style="color:blue;" href="Utilisateur/user_profil.php?id_user=` + tweet.user_id + `">` + tweet.at_user_name + `</a>
                 </div>
+                <div class="option">
+            <span class="gifclick">
+              <a href="Homepage.html">
+                <img src="assets/icons8-points-de-suspension-30.png" alt="Main Logo">
+              </a>
+            </span>
+          </div>
               </div>
               <div class="borderpostcontent">
               <div class="postcontent">
-                <p>`+ tweet.content +`</p>
+                <p>` + tweet.content + `</p>
               </div>
             </div>
             <span class="gifclick">
               <a href="Homepage.html">
-                <img src="asset/icons8-twitter-entouré.gif" alt="Main Logo">
+                <img src="assets/icons8-twitter-entoure.gif" alt="Main Logo">
               </a>
             </span>
             <span class="gifclick">
               <a href="Homepage.html">
-                <img src="asset/icons8-aimer.gif" alt="Main Logo">
+                <img src="assets/icons8-aimer.gif" alt="Main Logo">
               </a>
             </span>
             <span class="gifclick">
               <a href="Homepage.html">
-                <img src="asset/icons8-bulle.gif" alt="Main Logo">
+                <img src="assets/icons8-bulle.gif" alt="Main Logo">
               </a>
             </span>
           </div>
