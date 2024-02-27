@@ -1,0 +1,100 @@
+.container {
+    margin-left: 200px;
+    margin-right: 200px;
+    padding: 20px;
+    background-color: #00a1f6;
+}
+
+.headerprofileimage {
+    margin-top: 10px;
+    position: relative;
+}
+
+#headerimage {
+    width: 100%;
+    height: 300px;
+    border: 4px solid rgb(21, 32, 43);
+    margin-left: -10px;
+}
+
+#profilepic {
+    border-radius: 50%;
+    width: 160px;
+    height: 160px;
+    position: absolute;
+    top: 200px;
+    left: 10px;
+    border: 4px solid rgb(21, 32, 43);
+}
+
+.editprofile {
+    margin-top: 5px;
+    float: right;
+    border: 1px solid rgb(155, 157, 160);
+    border-radius: 20px;
+    padding: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-right: 5px;
+    background-color: #0984b4
+}
+
+.bio {
+    padding-top: 5px;
+    margin-top: 60px;
+    line-height: 30px;
+    font-size: 15px;
+}
+
+.handle {
+    line-height: 10px;
+    margin-bottom: 10px;
+}
+
+.followers {
+    margin-right: 15px;
+}
+
+.follow {
+    display: flex;
+}
+
+.heading {
+    display: flex;
+    justify-content: space-around;
+    border-bottom: 1px solid white;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.heading p {
+    display: block;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-top: 15px;
+    margin-right: 10px;
+    margin-left: 60px;
+    border: solid 1px black;
+}
+
+.tweet {
+    display: flex;
+    margin: 10px 0;
+}
+
+.tweetinfo {
+    margin-top: 10px;
+    margin-right: -10px;
+}
+
+.tweetcontent {
+    margin-top: 5px;
+    margin-right: 20px;
+}
+
