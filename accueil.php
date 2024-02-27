@@ -23,16 +23,38 @@ if (!isset($_SESSION['USER'])) {
           success: function(data) {
             $('#tweets').empty();
             $.each(data, function(key, tweet) {
-              $('#tweets').append(`<div class="post">
-              <div> ` + tweet.username + `</div>
-              <div> ` + tweet.at_user_name + `</div>
-              <div> ` + tweet.content + `</div>
-              <div> ` + tweet.time + `</div>
-              <br>
-              <a href="#">Retweet</a>
-              <a href="#">Like</a>
-              <a href="#">Comment</a>
-              </div>`);
+              $('#tweets').append(`
+              <div class="post">
+              <div class="profilpost">
+                <div class="photodeprofil">
+                  <img src="`+ tweet.profile_picture +`" alt="photodeprofil">
+                </div>
+                <div class="nomutilisateur">
+                  <a style="color:blue;" href="Utilisateur/user_profil.php?id_user=`+ tweet.user_id +`">`+ tweet.at_user_name +`</a>
+                </div>
+              </div>
+              <div class="borderpostcontent">
+              <div class="postcontent">
+                <p>`+ tweet.content +`</p>
+              </div>
+            </div>
+            <span class="gifclick">
+              <a href="Homepage.html">
+                <img src="asset/icons8-twitter-entouré.gif" alt="Main Logo">
+              </a>
+            </span>
+            <span class="gifclick">
+              <a href="Homepage.html">
+                <img src="asset/icons8-aimer.gif" alt="Main Logo">
+              </a>
+            </span>
+            <span class="gifclick">
+              <a href="Homepage.html">
+                <img src="asset/icons8-bulle.gif" alt="Main Logo">
+              </a>
+            </span>
+          </div>
+        `);
             });
           }
         });
