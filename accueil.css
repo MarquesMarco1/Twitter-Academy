@@ -1,10 +1,12 @@
 :root {
-  --premiere-color: #5f008be1;
-  --deuxieme-color: rgb(237, 206, 206);
-  --troisieme--color:  #cb0b0b; 
+  --premiere-color: #f3e9c0;
+  --deuxieme-color: #9bd4bc;
+  --troisieme--color:  #f5b562; 
+  --quatrieme--color: #ec514a;
   --blanc:  white;
   --noir:  black;
-  --backgroundC: rgb(255, 249, 220);
+  --backgroundC: #f3e9c0;
+  --grey: rgba(0, 0, 0, 0.161);
 }
 
 
@@ -72,20 +74,50 @@ body {
   margin-left: 200px;
   margin-right: 200px;
   padding: 20px;
-  background-color: var(--premiere-color);
+  background-color: var(--troisieme--color);
   margin-right: 25%;
   margin-left: 25%;
   
 }
 
+/*----POST-----*/
+
+.profilpost {
+  display: flex;
+}
+
+
+.nomutilisateur {
+  margin-left: 10px;
+  margin-top: 12px;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.photodeprofil img {
+ width: 45px;
+ height: 45px;
+ border-radius: 50%;
+}
+
 .post {
-  
   background-color: var(--blanc);
   border: 1px solid #000000;
   padding: 10px;
   margin-bottom: 20px;
   border-radius: 5px;
-  
+}
+
+.borderpostcontent {
+  border-top: solid var(--grey);
+  border-bottom: solid var(--grey);
+}
+
+.postcontent {
+  margin-bottom: px;
+  margin: 0;
+
+
 }
 
 .recommendation-button {
@@ -93,7 +125,7 @@ body {
   width: max-content;
   padding: 10px;
   margin: 20px 0;
-  background-color: var(--troisieme--color);
+  background-color: var(--quatrieme--color);
   color: var(--blanc);
   text-align: center;
   border-radius: 20px;
@@ -176,13 +208,6 @@ body {
 
 /*-------squelette-------*/
 
-.post img {
-  width: 200px;
-  height: 200px;
-}
-
-/*-----------*/
-
 /*-----dark mode------*/
 
 .button {
@@ -204,67 +229,10 @@ body {
 /*-----------*/
 
 .gifclick img {
+  margin-top: 5px;
   width: 15px;
   height: 15px;
   margin-left: 2%;
   margin-right: 2;
 
-}
-
-@media (max-width: 768px) {
-
-  .sidebar,
-  .right-sidebar {
-    width: 100px;
-    margin-left: 0;
-    margin-right: 0;
-  }
-
-  .sidebar a,
-  .right-sidebar .search-bar,
-  .right-sidebar .suggestion {
-    padding: 5px;
-  }
-
-  .main-content {
-    margin-left: 100px;
-    margin-right: 100px;
-  }
-
-  .post img {
-    width: 150px;
-    height: 150px;
-  }
-
-  .recommendation-button {
-    margin: 10px 0;
-  }
-}
-
-@media (max-width: 480px) {
-
-  .sidebar,
-  .right-sidebar {
-    width: 60px;
-    margin-left: 0;
-    margin-right: 0;
-  }
-
-  .sidebar a,
-  .right-sidebar .search-bar,
-  .right-sidebar .suggestion {
-    padding: 3px;
-  }
-
-  .main-content,
-  .post,
-  .recommendation-button {
-    margin-left: 60px;
-    margin-right: 60px;
-  }
-
-  .post img {
-    width: 100px;
-    height: 100px;
-  }
 }
