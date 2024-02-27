@@ -13,5 +13,11 @@ $UserReTweet = $sql->fetch(PDO::FETCH_ASSOC);
 if (isset($UserReTweet['id_user'])) {
     echo "trouver";
 } else {
-    echo "pas teoyuver";
+    $sql = $mysqlClient->prepare('INSERT INTO `tweet`(`id_user`, `id_response`, `time`, `content`, `id_quoted_tweet`) VALUES (:id, :response, NOW(), :content, :id_quoted_tweet)');
+    $sql->execute([
+        "id" => $_SESSION['USER']['id'],
+        "response" => NULL,
+        "content" => "",
+        "id_quoted_tweet" => $_GET['id_tweet'],
+    ]);
 }

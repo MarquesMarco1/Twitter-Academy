@@ -23,7 +23,22 @@ if (!isset($_SESSION['USER'])) {
           success: function(data) {
             $('#tweets').empty();
             $.each(data, function(key, tweet) {
-              $('#tweets').append(`
+              let rt = "";
+
+              if (tweet.id_quoted_tweet != null) {
+                $.ajax({
+                  url: 'mysql/fetch_retweets.php',
+                  type: 'GET',
+                  dataType: 'json',
+                  success: function(data) {
+                    $.each(data, function(key, tweet) {
+                      rt = "test";
+                    })
+                  }
+                })
+              }
+              
+              let body = `
               <div class="post">
               <div class="profilpost">
                 <div class="photodeprofil">
@@ -43,10 +58,11 @@ if (!isset($_SESSION['USER'])) {
               <div class="borderpostcontent">
               <div class="postcontent">
                 <p>` + tweet.content.replace(/@(\w+)/g, "<a href='Utilisateur/user_profil.php?id_user=@$1'>@$1</a>") + `</p>
+                <p>    ` + rt + ` </p>
               </div>
             </div>
             <span class="gifclick">
-              <a href="tweet/retweet.php?id_tweet=`+ tweet.tweet_id + `">
+              <a href="tweet/retweet.php?id_tweet=` + tweet.tweet_id + `">
                 <img src="assets/icons8-twitter-entoure.gif" alt="Main Logo">
               </a>
             </span>
@@ -61,7 +77,8 @@ if (!isset($_SESSION['USER'])) {
               </a>
             </span>
           </div>
-        `);
+        `;
+              $('#tweets').append(`` + body + ``);
             });
           }
         });
