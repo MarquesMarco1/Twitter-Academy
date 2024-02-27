@@ -46,7 +46,7 @@ if (!isset($_SESSION['USER'])) {
               </div>
             </div>
             <span class="gifclick">
-              <a href="Homepage.html">
+              <a href="tweet/retweet.php?id_tweet=`+ tweet.tweet_id + `">
                 <img src="assets/icons8-twitter-entoure.gif" alt="Main Logo">
               </a>
             </span>
