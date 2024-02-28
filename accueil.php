@@ -76,14 +76,24 @@ if (!isset($_SESSION['USER'])) {
         await fetchTweets(tweet);
 
         for (let index = 0; index < tweet.length; index++) {
-          //console.log("Tweet N' " + rt[index].tweet_id + ": " + rt[index].content)
+            //console.log("Tweet N' " + rt[index].tweet_id + ": " + rt[index].content)
             tweets = tweet[index];
             let body = "";
+            let retweet = "";
             if (tweets.id_quoted_tweet != null) {
-             body = "this rt id:" + tweets.id_quoted_tweet  + "<br>";
+              $.ajax({
+               url: "mysql/fetch_retweets.php",
+               type: 'GET',
+               data: {
+                 id_quoted_tweet: tweets.id_quoted_tweet
+               },
+               dataType: 'json',
+               success: function(json) {
+                retweet = json[0].username;
+               }})
+               body = "this rt id:" + retweet + "<br>";
             } else {
               body = tweets.content  + "<br>"; 
-            
             }
             $('#tweets').append(`` + body + ``);
         }
@@ -92,23 +102,6 @@ if (!isset($_SESSION['USER'])) {
       tweet = []
       setInterval(fetch, 15000, tweet);
 
-      /* function fetchRetweets() {
-         $.each(rt, function(key, rt) {
-           if (tweet.id_quoted_tweet != null) {
-             $.ajax({
-               url: "mysql/fetch_retweets.php",
-               type: 'GET',
-               data: {
-                 id_quoted_tweet: tweet.id_quoted_tweet
-               },
-               dataType: 'json',
-               success: function(json) {
-
-               },
-             });
-           }
-         });
-       }*/
 
 
       //fetchRetweets();
