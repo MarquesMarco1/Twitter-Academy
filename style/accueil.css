@@ -81,6 +81,7 @@ body {
 }
 
 .profil {
+  width: 160px;
   margin-left: 7px;
   position: absolute;
   bottom: 10px;
@@ -138,9 +139,17 @@ body {
 
 .nomutilisateur {
   margin-left: 10px;
-  margin-top: 12px;
+  font-size: 20px;
+  margin-bottom: 2px;
+}
+
+.pseudo {
+  margin-left: 10px;
   font-size: 20px;
   margin-bottom: 10px;
+  font-size: 10px;
+  color: grey;
+  margin-bottom: 3px;
 }
 
 .photodeprofil img {
@@ -177,6 +186,32 @@ body {
   text-align: center;
   border-radius: 20px;
   cursor: pointer;
+}
+
+/*---likeRTcomment-----*/
+
+.smalllink {
+  display: flex;
+  margin-left: auto;
+  flex-direction: row;
+}
+
+.smalllink a {
+  display: flex;
+  margin-right: 15px;
+}
+
+.nombredeRT, .nombredelike, .nombredecom {
+  font-size: 10px;
+  color: var(--deuxieme-color);
+}
+
+.gifclick img {
+  margin-top: 7px;
+  width: 15px;
+  height: 15px;
+  margin-left: 2%;
+  margin-right: 3px;
 }
 
 /* Right Sidebar styles */
@@ -301,12 +336,3 @@ body {
   color: #333;
 }
 /*-----------*/
-
-.gifclick img {
-  margin-top: 5px;
-  width: 15px;
-  height: 15px;
-  margin-left: 2%;
-  margin-right: 2;
-
-}
