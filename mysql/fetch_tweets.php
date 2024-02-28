@@ -6,5 +6,6 @@ $sql->execute([]);
 $tweets = $sql->fetchAll(PDO::FETCH_ASSOC);
 
 
+
 echo json_encode($tweets);
 ?>
