@@ -50,16 +50,12 @@ if (!isset($_SESSION['USER'])) {
       setInterval(fetchTweets, 5000);
     }); */
     $(document).ready(async function() {
-    
       var tweet = [];
       await fetch(tweet)
 
       async function fetch(tweet) {
         var tweet = [];
         async function fetchTweets(tweet) {
-
-          // console.log(rt)
-
           await $.ajax({
             url: 'mysql/fetch_tweets.php',
             type: 'GET',
@@ -76,36 +72,41 @@ if (!isset($_SESSION['USER'])) {
         await fetchTweets(tweet);
 
         for (let index = 0; index < tweet.length; index++) {
-            //console.log("Tweet N' " + rt[index].tweet_id + ": " + rt[index].content)
-            tweets = tweet[index];
-            let body = "";
-            let retweet = "";
-            if (tweets.id_quoted_tweet != null) {
-              $.ajax({
-               url: "mysql/fetch_retweets.php",
-               type: 'GET',
-               data: {
-                 id_quoted_tweet: tweets.id_quoted_tweet
-               },
-               dataType: 'json',
-               success: function(json) {
-                retweet = json[0].username;
-               }})
-               body = "this rt id:" + retweet + "<br>";
-            } else {
-              body = tweets.content  + "<br>"; 
+          let tweets = tweet[index];
+          let body = tweets.content + "<br>";
+          $('#tweets').append(body);
+
+          if (tweets.id_quoted_tweet != null) {
+            fetchRetweet(tweets, function(retweet) {
+              body = "this rt id:" + retweet + "<br>";
+              $('#tweets').append(body);
+            });
+          }
+        }
+
+        function fetchRetweet(tweets, callback) {
+          $.ajax({
+            url: "mysql/fetch_retweets.php",
+            type: 'GET',
+            data: {
+              id_quoted_tweet: tweets.id_quoted_tweet
+            },
+            dataType: 'json',
+            success: function(json) {
+              callback(json[0].username);
             }
-            $('#tweets').append(`` + body + ``);
+          });
         }
       }
 
       tweet = []
       setInterval(fetch, 15000, tweet);
-
-
-
-      //fetchRetweets();
     });
+
+
+
+    //fetchRetweets();
+
 
     /*  console.log(rt);
                // console.log(rt[0]);
