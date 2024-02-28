@@ -50,46 +50,65 @@ if (!isset($_SESSION['USER'])) {
       setInterval(fetchTweets, 5000);
     }); */
     $(document).ready(async function() {
-      var rt = [];
+    
+      var tweet = [];
+      await fetch(tweet)
 
-      async function fetchTweets(rt) {
-        await $.ajax({
-          url: 'mysql/fetch_tweets.php',
-          type: 'GET',
-          dataType: 'json',
-          success: function(data) {
-            $('#tweets').empty();
-            $.each(data, function(key, tweet) {
-              rt.push(tweet);
-            });
-          }
-        });
+      async function fetch(tweet) {
+        var tweet = [];
+        async function fetchTweets(tweet) {
+
+          // console.log(rt)
+
+          await $.ajax({
+            url: 'mysql/fetch_tweets.php',
+            type: 'GET',
+            dataType: 'json',
+            success: function(data) {
+              $('#tweets').empty();
+              $.each(data, function(key, tweete) {
+                tweet.push(tweete);
+              });
+            }
+          });
+        }
+
+        await fetchTweets(tweet);
+
+        for (let index = 0; index < tweet.length; index++) {
+          //console.log("Tweet N' " + rt[index].tweet_id + ": " + rt[index].content)
+            tweets = tweet[index];
+            let body = "";
+            if (tweets.id_quoted_tweet != null) {
+             body = "this rt id:" + tweets.id_quoted_tweet  + "<br>";
+            } else {
+              body = tweets.content  + "<br>"; 
+            
+            }
+            $('#tweets').append(`` + body + ``);
+        }
       }
 
-      await fetchTweets(rt);
+      tweet = []
+      setInterval(fetch, 15000, tweet);
 
-      for (let index = 0; index < rt.length; index++) {
-          console.log("Tweet : " + rt[index].content) 
-      }
-      setInterval(fetchTweets, 5000);
+      /* function fetchRetweets() {
+         $.each(rt, function(key, rt) {
+           if (tweet.id_quoted_tweet != null) {
+             $.ajax({
+               url: "mysql/fetch_retweets.php",
+               type: 'GET',
+               data: {
+                 id_quoted_tweet: tweet.id_quoted_tweet
+               },
+               dataType: 'json',
+               success: function(json) {
 
-     /* function fetchRetweets() {
-        $.each(rt, function(key, rt) {
-          if (tweet.id_quoted_tweet != null) {
-            $.ajax({
-              url: "mysql/fetch_retweets.php",
-              type: 'GET',
-              data: {
-                id_quoted_tweet: tweet.id_quoted_tweet
-              },
-              dataType: 'json',
-              success: function(json) {
-
-              },
-            });
-          }
-        });
-      }*/
+               },
+             });
+           }
+         });
+       }*/
 
 
       //fetchRetweets();
