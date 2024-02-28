@@ -49,11 +49,11 @@ if (!isset($_SESSION['USER'])) {
       fetchTweets();
       setInterval(fetchTweets, 5000);
     }); */
-    $(document).ready(function() {
+    $(document).ready(async function() {
       var rt = [];
 
-      function fetchTweets() {
-        $.ajax({
+      async function fetchTweets(rt) {
+        await $.ajax({
           url: 'mysql/fetch_tweets.php',
           type: 'GET',
           dataType: 'json',
@@ -61,28 +61,19 @@ if (!isset($_SESSION['USER'])) {
             $('#tweets').empty();
             $.each(data, function(key, tweet) {
               rt.push(tweet);
-
-            
-
             });
-            fetchRetweets();
           }
         });
       }
 
-      console.log(rt) 
-
-      console.log(rt.length) 
-
-
-
-
+      await fetchTweets(rt);
 
       for (let index = 0; index < rt.length; index++) {
-                console.log(rt[index].content) 
+          console.log("Tweet : " + rt[index].content) 
       }
+      setInterval(fetchTweets, 5000);
 
-      function fetchRetweets() {
+     /* function fetchRetweets() {
         $.each(rt, function(key, rt) {
           if (tweet.id_quoted_tweet != null) {
             $.ajax({
@@ -98,11 +89,10 @@ if (!isset($_SESSION['USER'])) {
             });
           }
         });
-      }
+      }*/
 
-      fetchTweets();
-      fetchRetweets();
-      setInterval(fetchTweets, 5000);
+
+      //fetchRetweets();
     });
 
     /*  console.log(rt);
