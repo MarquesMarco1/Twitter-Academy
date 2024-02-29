@@ -40,7 +40,7 @@
         </div>
       </div>
       <div class="sugguser">
-        <div class=" marging profilpost background">
+        <div class="profilpost background marging">
           <div class="photodeprofil">
             <img href="#" src="asset/Capture d’écran 2024-02-28 à 10.30.06.png" alt="photodeprofil">
           </div>

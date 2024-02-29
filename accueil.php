@@ -127,7 +127,7 @@ if (!isset($_SESSION['USER'])) {
           </div>
           <div class="infoprofilontwit">
             <div class="nomutilisateur">
-            <p>` + finish_tweets_at_user_name + `</p>
+            <p>` + finish_tweets_username + `</p>
             </div>
             <div class="pseudo">
             <a style="color:blue;" href="Utilisateur/user_profil.php?id_user=` + finish_tweets_at_user_name + `">` + finish_tweets_at_user_name + `</a>
@@ -149,25 +149,25 @@ if (!isset($_SESSION['USER'])) {
         <div class="smalllink">
           <span class="gifclick">
           <a href="tweet/retweet.php?id_tweet=` + finish_tweets_tweet_id + `">
-              <img src="asset/icons8-twitter-entouré.gif" alt="Main Logo">
+              <img src="assets/icons8-twitter-entoure.gif" alt="Main Logo">
               <div class="nombredeRT">
-                <p>26</p>
+                <p>0</p>
               </div>
             </a>
           </span>
           <span class="gifclick">
             <a href="Homepage.html">
-              <img src="asset/icons8-aimer.gif" alt="Main Logo">
+              <img src="assets/icons8-aimer.gif" alt="Main Logo">
               <div class="nombredelike">
-                <p>2873</p>
+                <p>0</p>
               </div>
             </a>
           </span>
           <span class="gifclick">
-            <a href="Homepage.html">
-              <img src="asset/icons8-bulle.gif" alt="Main Logo">
+          <a href="tweet/comment.php?id_tweet=` + finish_tweets_tweet_id + `">
+              <img src="assets/icons8-bulle.gif" alt="Main Logo">
               <div class="nombredecom">
-                <p>10</p>
+                <p>0</p>
               </div>
             </a>
         </div>
@@ -191,7 +191,7 @@ if (!isset($_SESSION['USER'])) {
       }
 
       tweet = []
-      setInterval(fetch, 15000, tweet);
+      setInterval(fetch, 65000, tweet);
     });
 
 
@@ -253,11 +253,11 @@ if (!isset($_SESSION['USER'])) {
 <body>
 
   <div class="marging">
-  <div class="mise-en-page">
+
     <?php include('includes/left-sidebar.php') ?>
     <?php include('includes/main.php') ?>
     <?php include('includes/right-sidebar.php') ?>
-  </div>
+
   </div>
   <script src="dark.js"></script>
 </body>

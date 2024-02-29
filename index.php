@@ -24,7 +24,7 @@ $verif->login();
 
     <div class="conteneur">
         <div class="colonne1">
-            <img src="assets/img/logo.jpg" alt="Logo">
+        <img src="<?php echo $path ?>assets/Logo2.png" alt="">
         </div>
         <div class="colonne2">
             <button onclick="togglePopup1()" id="create">Créez votre compte</button>

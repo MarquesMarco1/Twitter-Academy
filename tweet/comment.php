@@ -57,6 +57,25 @@ $tweets = '
     <link rel="stylesheet" href="../style/accueil.css">
 </head>
 <body>
-    <?php echo $tweets ?>
+<div class="marging">
+
+<?php include('../includes/left-sidebar.php') ?>
+<div class="mise-en-page">
+  <div class="main-content">
+  <?php echo $tweets ?>
+  <form action="./mysql/r_tweet.php" method="post" class="create-post">
+      <h2>Commenter</h2>
+
+      <input type="text" name="tweet" id="tweet" id="postContent" rows="4" cols="50" placeholder="Quoi de neuf ?">
+      <br>
+      <input type="hidden" name="id_user" id="id_user" value="<?php echo $_SESSION['USER']['id'] ?>">
+      <button id="publishPost">Publier</button>
+    </form>
+  </div>
+</div>
+<?php include('../includes/right-sidebar.php') ?>
+
+</div>
+   
 </body>
 </html>

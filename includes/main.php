@@ -1,4 +1,4 @@
-
+<div class="mise-en-page">
   <div class="main-content">
     <form action="./mysql/r_tweet.php" method="post" class="create-post">
       <h2>Faire un post</h2>
@@ -13,3 +13,4 @@
     </div>
   </div>
   <!-- <button class="suggestion" onclick="toggleMode()">Dark/Light</button> -->
+</div>
