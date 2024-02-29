@@ -51,6 +51,7 @@ if (!isset($_SESSION['USER'])) {
     }); */
     $(document).ready(async function() {
       var tweet = [];
+      var body;
       await fetch(tweet)
 
       async function fetch(tweet) {
@@ -73,21 +74,22 @@ if (!isset($_SESSION['USER'])) {
 
         for (let index = 0; index < tweet.length; index++) {
           let tweets = tweet[index];
-          let body = tweets.username + " | ID tweet : " + tweets.tweet_id + " | Content :" + tweets.content + "<br>";
+          body = tweets.username + " | ID tweet : " + tweets.tweet_id + " | Content :" + tweets.content + "<br>";
           $('#tweets').append(body);
 
           if (tweets.id_quoted_tweet != null) {
-            fetchRetweet(tweets, function(retweet) {
-              body =  retweet.username + " | tweet rt id:" + retweet.tweet_id + " | Content : " +  retweet.rt_content +"<br>";
+            await fetchRetweet(tweets, function(retweet) {
+              body = retweet.username + " | tweet rt id:" + retweet.tweet_id + " | Content : " +  retweet.rt_content +"<br>";
               //console.log(retweet);
               $('#tweets').append(body);
+             // console.log(body)
             });
           }
-          console.log(body)
+        
         }
 
-        function fetchRetweet(tweets, callback) {
-          $.ajax({
+        async function fetchRetweet(tweets, callback) {
+         await $.ajax({
             url: "mysql/fetch_retweets.php",
             type: 'GET',
             data: {
