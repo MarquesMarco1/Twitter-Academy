@@ -28,6 +28,8 @@ $user = $verif->getUser($user_profil);
 
 <body>
     <div class="marging">
+    <?php include('../mysql/mysql.php') ?>
+    <?php include('../includes/path.php') ?>
         <?php include('../includes/left-sidebar.php') ?>
         <?php include('../includes/profil.php') ?>
         <?php include('../includes/right-sidebar.php') ?>

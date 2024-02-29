@@ -253,7 +253,8 @@ if (!isset($_SESSION['USER'])) {
 <body>
 
   <div class="marging">
-
+    <?php include('mysql/mysql.php') ?>
+    <?php include('includes/path.php') ?>
     <?php include('includes/left-sidebar.php') ?>
     <?php include('includes/main.php') ?>
     <?php include('includes/right-sidebar.php') ?>

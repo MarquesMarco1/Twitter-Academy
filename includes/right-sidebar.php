@@ -1,3 +1,16 @@
+<?php
+$array = ["id", "username"];
+$rand = random_int(0, 1);
+
+$sql = $mysqlClient->prepare('SELECT * FROM user ORDER BY :order LIMIT 5');
+$sql->execute([
+ 'order' => $array[$rand],
+]);
+
+$usersugg = $sql->fetchAll(PDO::FETCH_ASSOC);
+
+?>
+
 <div class="right-sidebar">
       <input type="search" class="search-bar" placeholder="Search barre">
       <div class="suggestion tendance">
@@ -40,70 +53,22 @@
         </div>
       </div>
       <div class="sugguser">
+        <h1>Suggestion User</h1>
+        <?php foreach ($usersugg as $users) : ?>
         <div class="profilpost background marging">
           <div class="photodeprofil">
-            <img href="#" src="asset/Capture d’écran 2024-02-28 à 10.30.06.png" alt="photodeprofil">
+            <img href="#" src="<?php echo $path ?><?php echo $users['profile_picture'] ?>" alt="photodeprofil">
           </div>
           <div class="infoprofilontwit">
             <div class="nomutilisateur">
-              <a href="#">Jean Dupont</a>
+              <a href="#"><?php echo $users['username'] ?></a>
             </div>
             <div class="pseudo">
-              <a href="#">@JeanD</a>
+              <a style="color:blue" href="<?php echo $path ?>Utilisateur/user_profil.php?id_user=<?php echo $users['at_user_name'] ?>"><?php echo $users['at_user_name'] ?></a>
             </div>
           </div>
         </div>
-        <div class="profilpost background marging">
-          <div class="photodeprofil">
-            <img href="#" src="asset/Capture d’écran 2024-02-28 à 10.29.42.png" alt="photodeprofil">
-          </div>
-          <div class="infoprofilontwit">
-            <div class="nomutilisateur">
-              <a href="#">Jean Dupont</a>
-            </div>
-            <div class="pseudo">
-              <a href="#">@JeanD</a>
-            </div>
-          </div>
-        </div>
-        <div class="profilpost background marging">
-          <div class="photodeprofil">
-            <img href="#" src="asset/Capture d’écran 2024-02-28 à 10.30.34.png" alt="photodeprofil">
-          </div>
-          <div class="infoprofilontwit">
-            <div class="nomutilisateur">
-              <a href="#">Jean Dupont</a>
-            </div>
-            <div class="pseudo">
-              <a href="#">@JeanD</a>
-            </div>
-          </div>
-        </div>
-        <div class="profilpost background marging">
-          <div class="photodeprofil">
-            <img href="#" src="asset/Capture d’écran 2024-02-28 à 10.30.06.png" alt="photodeprofil">
-          </div>
-          <div class="infoprofilontwit">
-            <div class="nomutilisateur">
-              <a href="#">Jean Dupont</a>
-            </div>
-            <div class="pseudo">
-              <a href="#">@JeanD</a>
-            </div>
-          </div>
-        </div>
-        <div class="profilpost background marging">
-          <div class="photodeprofil">
-            <img href="#" src="asset/Capture d’écran 2024-02-28 à 10.30.19.png" alt="photodeprofil">
-          </div>
-          <div class="infoprofilontwit">
-            <div class="nomutilisateur">
-              <a href="#">Jean Dupont</a>
-            </div>
-            <div class="pseudo">
-              <a href="#">@JeanD</a>
-            </div>
-          </div>
-        </div>
+        <?php endforeach; ?>
+       
       </div>
       <div>
