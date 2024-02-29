@@ -52,6 +52,7 @@ if (!isset($_SESSION['USER'])) {
     $(document).ready(async function() {
       var tweet = [];
       var body;
+      var finish_tweets_at_user_name;
       await fetch(tweet)
 
       async function fetch(tweet) {
@@ -73,23 +74,99 @@ if (!isset($_SESSION['USER'])) {
         await fetchTweets(tweet);
 
         for (let index = 0; index < tweet.length; index++) {
+
           let tweets = tweet[index];
-        
+          var finish_tweets_username = tweets.username;
+
           if (tweets.id_quoted_tweet != null) {
             await fetchRetweet(tweets, function(retweet) {
-              body =  " | ID tweet :"  + tweets.tweet_id + " | ID rt " + tweets.id_quoted_tweet  + " | Content : " +  retweet.rt_content +"<br>";
-              //console.log(retweet);
-             
-             // console.log(body)
+              // body =  " | ID tweet :"  + tweets.tweet_id + " | ID rt " + tweets.id_quoted_tweet  + " | Content : " +  retweet.rt_content +"<br>";
+              finish_tweets_at_user_name = tweets.at_user_name;
+              finish_tweets_tweet_id = tweets.tweet_id;
+              finish_tweets_profile_picture = tweets.profile_picture
+              finish_tweets_content = "rt";
+
+
+              finish_tweets_rtcontent = `
+          <div class="post">
+                                   <div class="profilpost">
+                                     <div class="photodeprofil">
+                                     <a style="color:blue;" href="Utilisateur/user_profil.php?id_user=` + retweet.at_user_name + `"><img src="` + retweet.profile_picture + `" alt="photo de profil de ` + retweet.at_user_name + ` "> </a>
+                                     </div>
+                                     <div class="nomutilisateur">
+                                       <a style="color:blue;" href="Utilisateur/user_profil.php?id_user=` + retweet.at_user_name + `">` + retweet.at_user_name + `</a>
+                                     </div>
+                                     <div class="option">
+                                   <span class="gifclick">
+                                 
+                                 </span>
+                                   </div>
+                                   </div>
+                                   <div class="borderpostcontent">
+                                   <div class="postcontent">
+                                     <p>` + retweet.rt_content.replace(/@(\w+)/g, "<a href='Utilisateur/user_profil.php?id_user=@$1'>@$1</a>") + `</p>
+                                     
+                                   </div>
+                                 </div>
+                                
+                               </div>`;
             });
           } else {
-            body =  " | ID tweet : " + tweets.tweet_id + " | Content :" + tweets.content + "<br>";
+            //body =  " | ID tweet : " + tweets.tweet_id + " | Content :" + tweets.content + "<br>";
+            finish_tweets_at_user_name = tweets.at_user_name;
+            finish_tweets_tweet_id = tweets.tweet_id;
+            finish_tweets_profile_picture = tweets.profile_picture;
+            finish_tweets_content = tweets.content;
+            finish_tweets_rtcontent = "";
           }
-          $('#tweets').append( tweets.username + body);
+
+          body = `
+          <div class="post">
+                                   <div class="profilpost">
+                                     <div class="photodeprofil">
+                                     <a style="color:blue;" href="Utilisateur/user_profil.php?id_user=` + finish_tweets_at_user_name + `"><img src="` + finish_tweets_profile_picture + `" alt="photo de profil de ` + finish_tweets_at_user_name + ` "> </a>
+                                     </div>
+                                     <div class="nomutilisateur">
+                                       <a style="color:blue;" href="Utilisateur/user_profil.php?id_user=` + finish_tweets_at_user_name + `">` + finish_tweets_at_user_name + `</a>
+                                     </div>
+                                     <div class="option">
+                                   <span class="gifclick">
+                                   <a href="Homepage.html">
+                                     <img src="assets/icons8-points-de-suspension-30.png" alt="Main Logo">
+                                   </a>
+                                 </span>
+                                   </div>
+                                   </div>
+                                   <div class="borderpostcontent">
+                                   <div class="postcontent">
+                                     <p>` + finish_tweets_content.replace(/@(\w+)/g, "<a href='Utilisateur/user_profil.php?id_user=@$1'>@$1</a>") + `</p>
+                                      <p>` + finish_tweets_rtcontent + ` </p>
+                                   </div>
+                                 </div>
+                                 <span class="gifclick">
+                                   <a href="tweet/retweet.php?id_tweet=` + finish_tweets_tweet_id + `">
+                                     <img src="assets/icons8-twitter-entoure.gif" alt="Main Logo">
+                                   </a>
+                                 </span>
+                                 <span class="gifclick">
+                                   <a href="Homepage.html">
+                                     <img src="assets/icons8-aimer.gif" alt="Main Logo">
+                                   </a>
+                                 </span>
+                                 <span class="gifclick">
+                                   <a href="Homepage.html">
+                                     <img src="assets/icons8-bulle.gif" alt="Main Logo">
+                                   </a>
+                                 </span>
+                               </div>`;
+
+
+
+          $('#tweets').append(body);
         }
 
         async function fetchRetweet(tweets, callback) {
-         await $.ajax({
+          await $.ajax({
             url: "mysql/fetch_retweets.php",
             type: 'GET',
             data: {
