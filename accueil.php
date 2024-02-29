@@ -73,15 +73,17 @@ if (!isset($_SESSION['USER'])) {
 
         for (let index = 0; index < tweet.length; index++) {
           let tweets = tweet[index];
-          let body = tweets.content + "<br>";
+          let body = tweets.username + " | ID tweet : " + tweets.tweet_id + " | Content :" + tweets.content + "<br>";
           $('#tweets').append(body);
 
           if (tweets.id_quoted_tweet != null) {
             fetchRetweet(tweets, function(retweet) {
-              body = "this rt id:" + retweet + "<br>";
+              body =  retweet.username + " | tweet rt id:" + retweet.tweet_id + " | Content : " +  retweet.rt_content +"<br>";
+              //console.log(retweet);
               $('#tweets').append(body);
             });
           }
+          console.log(body)
         }
 
         function fetchRetweet(tweets, callback) {
@@ -93,7 +95,7 @@ if (!isset($_SESSION['USER'])) {
             },
             dataType: 'json',
             success: function(json) {
-              callback(json[0].username);
+              callback(json[0]);
             }
           });
         }

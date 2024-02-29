@@ -2,7 +2,7 @@
 include('mysql.php');
 include('../includes/path.php');
 
-$sql = $mysqlClient->prepare('SELECT u.* FROM user u JOIN tweet t ON t.id_user = u.id WHERE t.id = :id ORDER BY t.id DESC');
+$sql = $mysqlClient->prepare('SELECT u.username, t.id as tweet_id, t.content as rt_content FROM user u JOIN tweet t ON t.id_user = u.id WHERE t.id = :id ORDER BY t.id DESC');
 $sql->execute([
     "id" => $_GET['id_quoted_tweet'],
 ]);
