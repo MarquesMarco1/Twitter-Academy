@@ -120,44 +120,58 @@ if (!isset($_SESSION['USER'])) {
             finish_tweets_rtcontent = "";
           }
           body = `
-                                <div class="post">
-                                   <div class="profilpost">
-                                     <div class="photodeprofil">
-                                     <a style="color:blue;" href="Utilisateur/user_profil.php?id_user=` + finish_tweets_at_user_name + `"><img src="` + finish_tweets_profile_picture + `" alt="photo de profil de ` + finish_tweets_at_user_name + ` "> </a>
-                                     </div>
-                                     <div class="nomutilisateur">
-                                       <a style="color:blue;" href="Utilisateur/user_profil.php?id_user=` + finish_tweets_at_user_name + `">` + finish_tweets_at_user_name + `</a>
-                                     </div>
-                                     <div class="option">
-                                   <span class="gifclick">
-                                   <a href="Homepage.html">
-                                     <img src="assets/icons8-points-de-suspension-30.png" alt="Main Logo">
-                                   </a>
-                                 </span>
-                                   </div>
-                                   </div>
-                                   <div class="borderpostcontent">
-                                   <div class="postcontent">
-                                     <p>` + finish_tweets_content.replace(/@(\w+)/g, "<a href='Utilisateur/user_profil.php?id_user=@$1'>@$1</a>") + `</p>
+          <div class="post">
+        <div class="profilpost">
+          <div class="photodeprofil">
+          <a style="color:blue;" href="Utilisateur/user_profil.php?id_user=` + finish_tweets_at_user_name + `"><img src="` + finish_tweets_profile_picture + `" alt="photo de profil de ` + finish_tweets_at_user_name + ` "> </a>
+          </div>
+          <div class="infoprofilontwit">
+            <div class="nomutilisateur">
+            <p>` + finish_tweets_at_user_name + `</p>
+            </div>
+            <div class="pseudo">
+            <a style="color:blue;" href="Utilisateur/user_profil.php?id_user=` + finish_tweets_at_user_name + `">` + finish_tweets_at_user_name + `</a>
+            </div>
+          </div>
+          <div class="option">
+            <span class="gifclick">
+
+
+            </span>
+          </div>
+        </div>
+        <div class="borderpostcontent">
+          <div class="postcontent">
+          <p>` + finish_tweets_content.replace(/@(\w+)/g, "<a href='Utilisateur/user_profil.php?id_user=@$1'>@$1</a>") + `</p>
                                       <p>` + finish_tweets_rtcontent + ` </p>
-                                   </div>
-                                 </div>
-                                 <span class="gifclick">
-                                   <a href="tweet/retweet.php?id_tweet=` + finish_tweets_tweet_id + `">
-                                     <img src="assets/icons8-twitter-entoure.gif" alt="Main Logo">
-                                   </a>
-                                 </span>
-                                 <span class="gifclick">
-                                   <a href="Homepage.html">
-                                     <img src="assets/icons8-aimer.gif" alt="Main Logo">
-                                   </a>
-                                 </span>
-                                 <span class="gifclick">
-                                 <a href="tweet/comment.php?id_tweet=` + finish_tweets_tweet_id + `">
-                                     <img src="assets/icons8-bulle.gif" alt="Main Logo">
-                                   </a>
-                                 </span>
-                               </div>`;
+          </div>
+        </div>
+        <div class="smalllink">
+          <span class="gifclick">
+          <a href="tweet/retweet.php?id_tweet=` + finish_tweets_tweet_id + `">
+              <img src="asset/icons8-twitter-entouré.gif" alt="Main Logo">
+              <div class="nombredeRT">
+                <p>26</p>
+              </div>
+            </a>
+          </span>
+          <span class="gifclick">
+            <a href="Homepage.html">
+              <img src="asset/icons8-aimer.gif" alt="Main Logo">
+              <div class="nombredelike">
+                <p>2873</p>
+              </div>
+            </a>
+          </span>
+          <span class="gifclick">
+            <a href="Homepage.html">
+              <img src="asset/icons8-bulle.gif" alt="Main Logo">
+              <div class="nombredecom">
+                <p>10</p>
+              </div>
+            </a>
+        </div>
+      </div>`;
           $('#tweets').append(body);
         }
 
@@ -239,11 +253,12 @@ if (!isset($_SESSION['USER'])) {
 <body>
 
   <div class="marging">
+  <div class="mise-en-page">
     <?php include('includes/left-sidebar.php') ?>
     <?php include('includes/main.php') ?>
     <?php include('includes/right-sidebar.php') ?>
   </div>
-
+  </div>
   <script src="dark.js"></script>
 </body>
 
