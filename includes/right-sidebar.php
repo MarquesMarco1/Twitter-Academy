@@ -1,10 +1,8 @@
 <?php
-$array = ["id", "username"];
-$rand = random_int(0, 1);
 
-$sql = $mysqlClient->prepare('SELECT * FROM user ORDER BY :order LIMIT 5');
+
+$sql = $mysqlClient->prepare('SELECT * FROM user ORDER BY RAND() LIMIT 5');
 $sql->execute([
- 'order' => $array[$rand],
 ]);
 
 $usersugg = $sql->fetchAll(PDO::FETCH_ASSOC);
