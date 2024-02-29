@@ -7,7 +7,7 @@ $sql = $mysqlClient->prepare('SELECT u.at_user_name, u.profile_picture, t.id as 
 $sql->execute(["id" => $id_tweet]);
 $tweet = $sql->fetch(PDO::FETCH_ASSOC);
 
-$sql = $mysqlClient->prepare('SELECT u.at_user_name, u.profile_picture, t.id as id_tweet, t.content FROM tweet t JOIN user u ON u.id = t.id_user WHERE t.id_response = :id');
+$sql = $mysqlClient->prepare('SELECT u.at_user_name, u.profile_picture, t.id as id_tweet, t.content FROM tweet t JOIN user u ON u.id = t.id_user WHERE t.id_response = :id ORDER BY t.id DESC');
 $sql->execute(["id" => $id_tweet]);
 $comments = $sql->fetchAll(PDO::FETCH_ASSOC);
 

@@ -9,3 +9,5 @@ $sql->execute([
     "content" => $_POST['comment'],
     "id_quote_tweet" => NULL,
 ]);
+
+header('Location: ../tweet/comment.php?id_tweet=' . $_POST['id_tweet']);
