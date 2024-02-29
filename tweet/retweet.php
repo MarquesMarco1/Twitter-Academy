@@ -10,7 +10,14 @@ $sql->execute([
 ]);
 $UserReTweet = $sql->fetch(PDO::FETCH_ASSOC);
 
-if (isset($UserReTweet['id_user'])) {
+$sql = $mysqlClient->prepare('SELECT rt.id_user, rt.id_tweet, t.id_quoted_tweet FROM retweet rt JOIN tweet t ON t.id = rt.id_tweet WHERE rt.id_tweet = :id_tweet');
+$sql->execute([
+    "id_tweet" => $UserReTweet['id_tweet']
+]);
+$UserReTweetRe = $sql->fetch(PDO::FETCH_ASSOC);
+
+
+if (isset($UserReTweet['id_user']) && isset($UserReTweetRe['id_user'])) {
     echo "trouver";
 } else {
     $sql = $mysqlClient->prepare('INSERT INTO `retweet`(`id_user`, `id_tweet`, time) VALUES (:id, :id_tweet, NOW())');
@@ -26,3 +33,5 @@ if (isset($UserReTweet['id_user'])) {
         "id_quoted_tweet" => $_GET['id_tweet'],
     ]);
 }
+
+header("Location: ../accueil.php");

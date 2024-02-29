@@ -88,7 +88,7 @@ if (!isset($_SESSION['USER'])) {
 
 
               finish_tweets_rtcontent = `
-          <div class="post">
+                                  <div class="post">
                                    <div class="profilpost">
                                      <div class="photodeprofil">
                                      <a style="color:blue;" href="Utilisateur/user_profil.php?id_user=` + retweet.at_user_name + `"><img src="` + retweet.profile_picture + `" alt="photo de profil de ` + retweet.at_user_name + ` "> </a>
@@ -119,9 +119,8 @@ if (!isset($_SESSION['USER'])) {
             finish_tweets_content = tweets.content;
             finish_tweets_rtcontent = "";
           }
-
           body = `
-          <div class="post">
+                                <div class="post">
                                    <div class="profilpost">
                                      <div class="photodeprofil">
                                      <a style="color:blue;" href="Utilisateur/user_profil.php?id_user=` + finish_tweets_at_user_name + `"><img src="` + finish_tweets_profile_picture + `" alt="photo de profil de ` + finish_tweets_at_user_name + ` "> </a>
@@ -154,14 +153,11 @@ if (!isset($_SESSION['USER'])) {
                                    </a>
                                  </span>
                                  <span class="gifclick">
-                                   <a href="Homepage.html">
+                                 <a href="tweet/comment.php?id_tweet=` + finish_tweets_tweet_id + `">
                                      <img src="assets/icons8-bulle.gif" alt="Main Logo">
                                    </a>
                                  </span>
                                </div>`;
-
-
-
           $('#tweets').append(body);
         }
 
@@ -183,7 +179,6 @@ if (!isset($_SESSION['USER'])) {
       tweet = []
       setInterval(fetch, 15000, tweet);
     });
-
 
 
     //fetchRetweets();
