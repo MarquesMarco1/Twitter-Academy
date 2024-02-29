@@ -5,7 +5,5 @@ $sql = $mysqlClient->prepare('SELECT u.id as user_id, t.id as tweet_id, t.conten
 $sql->execute([]);
 $tweets = $sql->fetchAll(PDO::FETCH_ASSOC);
 
-
-
 echo json_encode($tweets);
 ?>

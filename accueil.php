@@ -74,18 +74,18 @@ if (!isset($_SESSION['USER'])) {
 
         for (let index = 0; index < tweet.length; index++) {
           let tweets = tweet[index];
-          body = tweets.username + " | ID tweet : " + tweets.tweet_id + " | Content :" + tweets.content + "<br>";
-          $('#tweets').append(body);
-
+        
           if (tweets.id_quoted_tweet != null) {
             await fetchRetweet(tweets, function(retweet) {
-              body = retweet.username + " | tweet rt id:" + retweet.tweet_id + " | Content : " +  retweet.rt_content +"<br>";
+              body =  " | ID tweet :"  + tweets.tweet_id + " | ID rt " + tweets.id_quoted_tweet  + " | Content : " +  retweet.rt_content +"<br>";
               //console.log(retweet);
-              $('#tweets').append(body);
+             
              // console.log(body)
             });
+          } else {
+            body =  " | ID tweet : " + tweets.tweet_id + " | Content :" + tweets.content + "<br>";
           }
-        
+          $('#tweets').append( tweets.username + body);
         }
 
         async function fetchRetweet(tweets, callback) {
