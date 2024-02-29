@@ -7,6 +7,10 @@ $sql = $mysqlClient->prepare('SELECT u.at_user_name, u.profile_picture, t.id as 
 $sql->execute(["id" => $id_tweet]);
 $tweet = $sql->fetch(PDO::FETCH_ASSOC);
 
+$sql = $mysqlClient->prepare('SELECT u.at_user_name, u.profile_picture, t.id as id_tweet, t.content FROM tweet t JOIN user u ON u.id = t.id_user WHERE t.id_response = :id');
+$sql->execute(["id" => $id_tweet]);
+$comments = $sql->fetchAll(PDO::FETCH_ASSOC);
+
 $tweets = '
 <div class="post">
    <div class="profilpost">
@@ -45,30 +49,7 @@ $tweets = '
      </a>
    </span>
 </div>';
-$comment = '
-<div class="post">
-   <div class="profilpost">
-     <div class="photodeprofil">
-     <a style="color:blue;" href="' . $path . 'Utilisateur/user_profil.php?id_user='  . $tweet['at_user_name'] . '"><img src="../' . $tweet['profile_picture'] . '" alt="photo de profil de ' . $tweet['username'] . '"> </a>
-     </div>
-     <div class="nomutilisateur">
-       <a style="color:blue;" href="' . $path . 'Utilisateur/user_profil.php?id_user=' . $tweet['at_user_name'] . '">' . $tweet['at_user_name'] . '</a>
-     </div>
-     <div class="option">
-       <span class="gifclick">
-         <a href="Homepage.html">
-           <img src="../assets/icons8-points-de-suspension-30.png" alt="Main Logo">
-         </a>
-       </span>
-     </div>
-   </div>
-   <div class="borderpostcontent">
-     <div class="postcontent">
-       <p>' . $tweet['content'] . '</p>
-     </div>
-   </div>
-   
-</div>';
+
 ?>
 
 <!DOCTYPE html>
@@ -97,7 +78,32 @@ $comment = '
     
       <button id="publishPost">Publier</button>
     </form>
-    <?php echo $comment ?>
+    <?php 
+    foreach ($comments as $comment) :
+    ?>
+<div class="post">
+   <div class="profilpost">
+     <div class="photodeprofil">
+     <a style="color:blue;" href="<?php echo $path ?>Utilisateur/user_profil.php?id_user=<?php echo $comment['at_user_name'] ?>"><img src="../<?php echo $comment['profile_picture'] ?>" alt="photo de profil de <?php echo $comment['username'] ?>"> </a>
+     </div>
+     <div class="nomutilisateur">
+       <a style="color:blue;" href="<?php echo $path ?>Utilisateur/user_profil.php?id_user=<?php echo $comment['at_user_name'] ?>'"><?php echo $comment['at_user_name'] ?></a>
+     </div>
+     <div class="option">
+       <span class="gifclick">
+         <a href="Homepage.html">
+           <img src="../assets/icons8-points-de-suspension-30.png" alt="Main Logo">
+         </a>
+       </span>
+     </div>
+   </div>
+   <div class="borderpostcontent">
+     <div class="postcontent">
+       <p><?php echo $comment['content'] ?></p>
+     </div>
+   </div>
+</div>
+    <?php endforeach ; ?>
   </div>
 </div>
 <?php include('../includes/right-sidebar.php') ?>
