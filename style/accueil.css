@@ -1,14 +1,13 @@
 :root {
-  --premiere-color: #f3e9c0;
-  --deuxieme-color: #9bd4bc;
-  --troisieme--color: #f5b562;
-  --quatrieme--color: #ec514a;
+  --premiere-color: #e4e4e4;
+  --deuxieme-color: #f9f9f9;
+  --troisieme--color: #f9f9f9;
+  --quatrieme--color: #7a65aa;
   --blanc: white;
   --noir: black;
-  --backgroundC: #f3e9c0;
+  --backgroundC: #ffffff;
   --grey: rgba(0, 0, 0, 0.161);
 }
-
 
 /* Base styles */
 * {
@@ -52,7 +51,7 @@ body {
   position: fixed;
   left: 0;
   top: 0;
-  background-color: var(--deuxieme-color);
+  background-color: var(--blanc);
   padding: 10px;
   margin-left: 11%;
 }
@@ -61,8 +60,7 @@ body {
   display: flex;
   color: var(--noir);
   text-decoration: none;
-
-  background-color: var(--deuxieme-color);
+  background-color: var(--blanc);
   border-radius: 50px;
   font-size: 25px;
 
@@ -155,7 +153,6 @@ body {
   padding: 20px;
   display: flex;
   flex-direction: column;
-  
   width: 40%;
 
 }
@@ -232,10 +229,14 @@ body {
 
 .post {
   background-color: var(--blanc);
-  border: 1px solid #000000;
   padding: 10px;
   margin-bottom: 20px;
   border-radius: 5px;
+}
+
+.post-button a {
+  background-color: var(--quatrieme--color);
+  justify-content: center;
 }
 
 .borderpostcontent {
@@ -272,7 +273,7 @@ body {
 .nombredelike,
 .nombredecom {
   font-size: 10px;
-  color: var(--deuxieme-color);
+  color: var(--noir);
 }
 
 .gifclick img {
@@ -329,12 +330,15 @@ body {
   color: var(--noir);
   text-decoration: none;
   margin: 7px;
-  background-color: var(--premiere-color);
-  border-radius: 50px;
+  background-color: var(--blanc);
   font-size: 17px;
   text-align: start;
   font-weight: bold;
-  box-shadow: 0 0.5px 3px
+}
+
+.tendance-list:hover {
+  background-color: var(--premiere-color);
+  transition: background-color 0.2s ease;
 }
 
 .tendance-list a {

@@ -56,63 +56,65 @@ $tweets = '
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../style/accueil.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="../style/accueil.css">
 </head>
+
 <body>
-<div class="marging">
+  <div class="marging">
 
-<?php include('../includes/left-sidebar.php') ?>
-<div class="mise-en-page">
-  <div class="main-content">
-  <?php echo $tweets ?>
-  <form action="../mysql/r_sendcomment.php" method="post" class="create-post">
-      <h2>Commenter</h2>
+    <?php include('../includes/left-sidebar.php') ?>
+    <div class="mise-en-page">
+      <div class="main-content">
+        <?php echo $tweets ?>
+        <form action="../mysql/r_sendcomment.php" method="post" class="create-post">
+          <h2>Commenter</h2>
 
-      <input type="text" name="comment" id="comment" id="postContent" rows="4" cols="50" placeholder="Quoi de neuf ?">
-      <br>
-      <input type="hidden" name="id_user" id="id_user" value="<?php echo $_SESSION['USER']['id'] ?>">
-      <input type="hidden" name="id_tweet" id="id_tweet" value="<?php echo $tweet['id_tweet'] ?>">
+          <input type="text" name="comment" id="comment" id="postContent" rows="4" cols="50" placeholder="Quoi de neuf ?">
+          <br>
+          <input type="hidden" name="id_user" id="id_user" value="<?php echo $_SESSION['USER']['id'] ?>">
+          <input type="hidden" name="id_tweet" id="id_tweet" value="<?php echo $tweet['id_tweet'] ?>">
 
-    
-      <button id="publishPost">Publier</button>
-    </form>
-    <?php 
-    foreach ($comments as $comment) :
-    ?>
-<div class="post">
-   <div class="profilpost">
-     <div class="photodeprofil">
-     <a style="color:blue;" href="<?php echo $path ?>Utilisateur/user_profil.php?id_user=<?php echo $comment['at_user_name'] ?>"><img src="../<?php echo $comment['profile_picture'] ?>" alt="photo de profil de <?php echo $comment['username'] ?>"> </a>
-     </div>
-     <div class="nomutilisateur">
-       <a style="color:blue;" href="<?php echo $path ?>Utilisateur/user_profil.php?id_user=<?php echo $comment['at_user_name'] ?>'"><?php echo $comment['at_user_name'] ?></a>
-     </div>
-     <div class="option">
-       <span class="gifclick">
-         <a href="Homepage.html">
-           <img src="../assets/icons8-points-de-suspension-30.png" alt="Main Logo">
-         </a>
-       </span>
-     </div>
-   </div>
-   <div class="borderpostcontent">
-     <div class="postcontent">
-       <p><?php echo $comment['content'] ?></p>
-     </div>
 
-   </div>
-   <p><?php echo $comment['time'] ?></p>
-</div>
-    <?php endforeach ; ?>
+          <button id="publishPost">Publier</button>
+        </form>
+        <?php
+        foreach ($comments as $comment) :
+        ?>
+          <div class="post">
+            <div class="profilpost">
+              <div class="photodeprofil">
+                <a style="color:blue;" href="<?php echo $path ?>Utilisateur/user_profil.php?id_user=<?php echo $comment['at_user_name'] ?>"><img src="../<?php echo $comment['profile_picture'] ?>" alt="photo de profil de <?php echo $comment['username'] ?>"> </a>
+              </div>
+              <div class="nomutilisateur">
+                <a style="color:blue;" href="<?php echo $path ?>Utilisateur/user_profil.php?id_user=<?php echo $comment['at_user_name'] ?>'"><?php echo $comment['at_user_name'] ?></a>
+              </div>
+              <div class="option">
+                <span class="gifclick">
+                  <a href="Homepage.html">
+                    <img src="../assets/icons8-points-de-suspension-30.png" alt="Main Logo">
+                  </a>
+                </span>
+              </div>
+            </div>
+            <div class="borderpostcontent">
+              <div class="postcontent">
+                <p><?php echo $comment['content'] ?></p>
+              </div>
+            </div>
+            <p><?php echo $comment['time'] ?></p>
+          </div>
+        <?php endforeach; ?>
+      </div>
+    </div>
+    <?php include('../includes/right-sidebar.php') ?>
+
   </div>
-</div>
-<?php include('../includes/right-sidebar.php') ?>
 
-</div>
-   
 </body>
+
 </html>

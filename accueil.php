@@ -122,10 +122,10 @@ if (!isset($_SESSION['USER'])) {
           }
           body = `
           <div class="post">
-        <div class="profilpost">
-          <div class="photodeprofil">
-          <a style="color:blue;" href="Utilisateur/user_profil.php?id_user=` + finish_tweets_at_user_name + `"><img src="` + finish_tweets_profile_picture + `" alt="photo de profil de ` + finish_tweets_at_user_name + ` "> </a>
-          </div>
+            <div class="profilpost">
+              <div class="photodeprofil">
+              <a style="color:blue;" href="Utilisateur/user_profil.php?id_user=` + finish_tweets_at_user_name + `"><img src="` + finish_tweets_profile_picture + `" alt="photo de profil de ` + finish_tweets_at_user_name + ` "> </a>
+              </div>
           <div class="infoprofilontwit">
             <div class="nomutilisateur">
             <p>` + finish_tweets_username + `</p>
@@ -136,8 +136,6 @@ if (!isset($_SESSION['USER'])) {
           </div>
           <div class="option">
             <span class="gifclick">
-
-
             </span>
           </div>
         </div>

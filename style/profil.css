@@ -1,13 +1,13 @@
 :root {
-    --premiere-color: #f3e9c0;
-    --deuxieme-color: #9bd4bc;
-    --troisieme--color: #f5b562;
-    --quatrieme--color: #ec514a;
+    --premiere-color: #e4e4e4;
+    --deuxieme-color: #f9f9f9;
+    --troisieme--color: #f9f9f9;
+    --quatrieme--color: #7a65aa;
     --blanc: white;
     --noir: black;
-    --backgroundC: #f3e9c0;
+    --backgroundC: #ffffff;
     --grey: rgba(0, 0, 0, 0.161);
-}
+  }
 
 * {
     text-decoration: none;
