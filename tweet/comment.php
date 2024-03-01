@@ -103,6 +103,7 @@ $tweets = '
             </div>
             <div class="borderpostcontent">
               <div class="postcontent">
+                
                 <p><?php echo $comment['content'] ?></p>
               </div>
             </div>

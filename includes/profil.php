@@ -74,8 +74,8 @@ $tweets = $sql->fetchAll(PDO::FETCH_ASSOC);
                     <p><?php echo $tweet['time'] ?></p>
                     <div class="smalllink">
                         <span class="gifclick">
-                            <a href="Homepage.html">
-                                <img src="asset/icons8-twitter-entouré.gif" alt="Main Logo">
+                            <a href="../tweet/retweet.php?id_tweet=<?php echo $tweet['tweet_id'] ?>">
+                                <img src="../assets/icons8-twitter-entoure.gif" alt="Main Logo">
                                 <div class="nombredeRT">
                                     <p>0</p>
                                 </div>
@@ -83,7 +83,7 @@ $tweets = $sql->fetchAll(PDO::FETCH_ASSOC);
                         </span>
                         <span class="gifclick">
                             <a href="Homepage.html">
-                                <img src="asset/icons8-aimer.gif" alt="Main Logo">
+                                <img src="../assets/icons8-aimer.gif" alt="Main Logo">
                                 <div class="nombredelike">
                                     <p>0</p>
                                 </div>
@@ -91,7 +91,7 @@ $tweets = $sql->fetchAll(PDO::FETCH_ASSOC);
                         </span>
                         <span class="gifclick">
                              <a href="../tweet/comment.php?id_tweet=<?php echo $tweet['tweet_id'] ?>">
-                                <img src="asset/icons8-bulle.gif" alt="Main Logo">
+                                <img src="../assets/icons8-bulle.gif" alt="Main Logo">
                                 <div class="nombredecom">
                                     <p>0</p>
                                 </div>
