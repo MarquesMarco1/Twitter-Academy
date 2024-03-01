@@ -85,7 +85,7 @@ if (!isset($_SESSION['USER'])) {
               finish_tweets_tweet_id = tweets.tweet_id;
               finish_tweets_profile_picture = tweets.profile_picture
               finish_tweets_content = "rt";
-
+              finish_tweets_time = tweets.time;
 
               finish_tweets_rtcontent = `
                                   <div class="post">
@@ -118,6 +118,7 @@ if (!isset($_SESSION['USER'])) {
             finish_tweets_profile_picture = tweets.profile_picture;
             finish_tweets_content = tweets.content;
             finish_tweets_rtcontent = "";
+            finish_tweets_time = tweets.time;
           }
           body = `
           <div class="post">
@@ -146,6 +147,7 @@ if (!isset($_SESSION['USER'])) {
                                       <p>` + finish_tweets_rtcontent + ` </p>
           </div>
         </div>
+        <p>` + finish_tweets_time +`</p>
         <div class="smalllink">
           <span class="gifclick">
           <a href="tweet/retweet.php?id_tweet=` + finish_tweets_tweet_id + `">

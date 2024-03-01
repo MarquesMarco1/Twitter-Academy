@@ -3,11 +3,11 @@ session_start();
 include('../mysql/mysql.php');
 include('../includes/path.php');
 $id_tweet = isset($_GET['id_tweet']) ? $_GET['id_tweet'] : null;
-$sql = $mysqlClient->prepare('SELECT u.at_user_name, u.profile_picture, t.id as id_tweet, t.content FROM tweet t JOIN user u ON u.id = t.id_user WHERE t.id = :id');
+$sql = $mysqlClient->prepare('SELECT u.at_user_name, u.profile_picture, t.id as id_tweet, t.content, t.time FROM tweet t JOIN user u ON u.id = t.id_user WHERE t.id = :id');
 $sql->execute(["id" => $id_tweet]);
 $tweet = $sql->fetch(PDO::FETCH_ASSOC);
 
-$sql = $mysqlClient->prepare('SELECT u.at_user_name, u.profile_picture, t.id as id_tweet, t.content FROM tweet t JOIN user u ON u.id = t.id_user WHERE t.id_response = :id ORDER BY t.id DESC');
+$sql = $mysqlClient->prepare('SELECT u.at_user_name, u.profile_picture, t.id as id_tweet, t.content, t.time FROM tweet t JOIN user u ON u.id = t.id_user WHERE t.id_response = :id ORDER BY t.id DESC');
 $sql->execute(["id" => $id_tweet]);
 $comments = $sql->fetchAll(PDO::FETCH_ASSOC);
 
@@ -20,6 +20,7 @@ $tweets = '
      <div class="nomutilisateur">
        <a style="color:blue;" href="' . $path . 'Utilisateur/user_profil.php?id_user=' . $tweet['at_user_name'] . '">' . $tweet['at_user_name'] . '</a>
      </div>
+   
      <div class="option">
        <span class="gifclick">
          <a href="Homepage.html">
@@ -33,6 +34,7 @@ $tweets = '
        <p>' . $tweet['content'] . '</p>
      </div>
    </div>
+   <p> ' . $tweet['time'] . ' </p>
    <span class="gifclick">
      <a href="tweet/retweet.php?id_tweet=' . $tweet['id_tweet'] . '">
        <img src="../assets/icons8-twitter-entoure.gif" alt="Main Logo">
@@ -101,7 +103,9 @@ $tweets = '
      <div class="postcontent">
        <p><?php echo $comment['content'] ?></p>
      </div>
+
    </div>
+   <p><?php echo $comment['time'] ?></p>
 </div>
     <?php endforeach ; ?>
   </div>

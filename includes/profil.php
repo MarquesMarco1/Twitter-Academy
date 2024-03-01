@@ -4,6 +4,12 @@ if (!isset($user['id'])) {
     echo "CETTE UTILISATEUR EXISTE PAS";
     return;
 }
+
+$sql = $mysqlClient->prepare('SELECT u.*, t.content, t.id as tweet_id, t.time FROM tweet t JOIN user u ON u.id = t.id_user WHERE t.id_user = :id AND t.id_quoted_tweet IS NULL AND t.id_response IS NULL ORDER BY t.id DESC');
+$sql->execute([
+    "id" => $user['id'],
+]);
+$tweets = $sql->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 
@@ -23,9 +29,9 @@ if (!isset($user['id'])) {
                         <h3><?php echo $user['username'] ?></h3>
                         <span><?php echo $user['at_user_name'] ?></span>
                     </div>
-                    <p> que la mort la mort et que la mort </p>
-                    <span> <i class="fa fa-location-arrow"></i> Porte de l'enfer <i class="fa fa-birthday-cake" aria-hidden="true"></i> 06/06/1966</span>
-                    <br> <span><i class="fa fa-calendar"></i> 02/2021</span>
+                    <p><?php echo $user['bio'] ?></p>
+                    <span> <i class="fa fa-location-arrow"></i> <?php echo $user['city'] ?> <i class="fa fa-birthday-cake" aria-hidden="true"></i> <?php echo $user['birthdate'] ?></span>
+                    <br> <span><i class="fa fa-calendar"></i> <?php echo $user['creation_time'] ?> </span> 
                     <div class="follow">
                         <div class="followers"><span>Following</span></div>
                         <div><span>Followers</span></div>
@@ -42,35 +48,36 @@ if (!isset($user['id'])) {
                 </div>
             </section>
             <section class="mytweets">
+                <?php foreach ($tweets as $tweet) : ?>
                 <div class="post">
                     <div class="profilpost">
                         <div class="photodeprofil">
-                            <img src="asset/Capture d’écran 2024-02-28 à 10.30.34.png" alt="photodeprofil">
+                            <img src="<?php echo $path . $tweet['profile_picture'] ?>" alt="photodeprofil">
                         </div>
                         <div class="infoprofilontwit">
                             <div class="nomutilisateur">
-                                <a>Jean Dupont</a>
+                                <a><?php echo $tweet['username'] ?></a>
                             </div>
                             <div class="pseudo">
-                                <a>@JeanD</a>
+                                <a><?php echo $tweet['at_user_name'] ?></a>
                             </div>
                         </div>
                     </div>
 
                     <div class="borderpostcontent">
                         <div class="postcontent">
-                            <p>Incroyable de voir comment la technologie évolue si rapidement ! Aujourd'hui, j'ai eu l'opportunité
-                                d'essayer les lunettes de réalité augmentée les plus récentes et c'était comme être propulsé dans le
-                                futur. Quelles innovations attendez-vous le plus ? #technologie #innovation.
+                            <p><?php echo $tweet['content'] ?>
                             </p>
                         </div>
+                       
                     </div>
+                    <p><?php echo $tweet['time'] ?></p>
                     <div class="smalllink">
                         <span class="gifclick">
                             <a href="Homepage.html">
                                 <img src="asset/icons8-twitter-entouré.gif" alt="Main Logo">
                                 <div class="nombredeRT">
-                                    <p>26</p>
+                                    <p>0</p>
                                 </div>
                             </a>
                         </span>
@@ -78,68 +85,20 @@ if (!isset($user['id'])) {
                             <a href="Homepage.html">
                                 <img src="asset/icons8-aimer.gif" alt="Main Logo">
                                 <div class="nombredelike">
-                                    <p>478</p>
+                                    <p>0</p>
                                 </div>
                             </a>
                         </span>
                         <span class="gifclick">
-                            <a href="Homepage.html">
+                             <a href="../tweet/comment.php?id_tweet=<?php echo $tweet['tweet_id'] ?>">
                                 <img src="asset/icons8-bulle.gif" alt="Main Logo">
                                 <div class="nombredecom">
-                                    <p>10</p>
+                                    <p>0</p>
                                 </div>
                             </a>
                     </div>
                 </div>
-                <div class="post">
-                    <div class="profilpost">
-                        <div class="photodeprofil">
-                            <img src="asset/Capture d’écran 2024-02-28 à 10.30.34.png" alt="photodeprofil">
-                        </div>
-                        <div class="infoprofilontwit">
-                            <div class="nomutilisateur">
-                                <a>Jean Dupont</a>
-                            </div>
-                            <div class="pseudo">
-                                <a>@JeanD</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="borderpostcontent">
-                        <div class="postcontent">
-                            <p>Incroyable de voir comment la technologie évolue si rapidement ! Aujourd'hui, j'ai eu l'opportunité
-                                d'essayer les lunettes de réalité augmentée les plus récentes et c'était comme être propulsé dans le
-                                futur. Quelles innovations attendez-vous le plus ? #technologie #innovation.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="smalllink">
-                        <span class="gifclick">
-                            <a href="Homepage.html">
-                                <img src="asset/icons8-twitter-entouré.gif" alt="Main Logo">
-                                <div class="nombredeRT">
-                                    <p>26</p>
-                                </div>
-                            </a>
-                        </span>
-                        <span class="gifclick">
-                            <a href="Homepage.html">
-                                <img src="asset/icons8-aimer.gif" alt="Main Logo">
-                                <div class="nombredelike">
-                                    <p>478</p>
-                                </div>
-                            </a>
-                        </span>
-                        <span class="gifclick">
-                            <a href="Homepage.html">
-                                <img src="asset/icons8-bulle.gif" alt="Main Logo">
-                                <div class="nombredecom">
-                                    <p>10</p>
-                                </div>
-                            </a>
-                    </div>
-                </div>
+                <?php endforeach; ?>
             </section>
         </div>
 
