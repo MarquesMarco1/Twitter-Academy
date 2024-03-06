@@ -60,7 +60,6 @@ body {
   display: flex;
   color: var(--noir);
   text-decoration: none;
-  background-color: var(--blanc);
   border-radius: 50px;
   font-size: 25px;
 

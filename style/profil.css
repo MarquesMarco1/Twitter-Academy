@@ -165,6 +165,11 @@ body {
 
 /*----POST-----*/
 
+.timeProfil {
+    font-size: 10px;
+    color: var(--noir);
+  }
+
 .create-post {
     margin-bottom: 20px;
 }
@@ -227,7 +232,6 @@ body {
 
 .post {
     background-color: var(--blanc);
-    border: 1px solid #000000;
     padding: 10px;
     margin-bottom: 20px;
     border-radius: 5px;
@@ -458,10 +462,6 @@ body {
 }
 
 /*------profil.css-----*/
-
-.container {
-
-}
 
 .headerprofileimage {
     margin-top: 10px;

@@ -73,7 +73,7 @@ $tweets = $sql->fetchAll(PDO::FETCH_ASSOC);
                         </div>
                        
                     </div>
-                    <p><?php echo $tweet['time'] ?></p>
+                    <p class="timeProfil"><?php echo $tweet['time'] ?></p>
                     <div class="smalllink">
                         <span class="gifclick">
                             <a href="../tweet/retweet.php?id_tweet=<?php echo $tweet['tweet_id'] ?>">
