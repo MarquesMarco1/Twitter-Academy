@@ -8,3 +8,4 @@ function toggleMode() {
         document.getElementById('mode-toggle').textContent = 'Dark Mode';
     }
 }
+

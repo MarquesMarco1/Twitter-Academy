@@ -128,7 +128,7 @@ if (!isset($_SESSION['USER'])) {
               </div>
           <div class="infoprofilontwit">
             <div class="nomutilisateur">
-            <p>` + finish_tweets_username + `</p>
+            <a>` + finish_tweets_username + `</a>
             </div>
             <div class="pseudo">
             <a style="color:blue;" href="Utilisateur/user_profil.php?id_user=` + finish_tweets_at_user_name + `">` + finish_tweets_at_user_name + `</a>
@@ -141,7 +141,7 @@ if (!isset($_SESSION['USER'])) {
         </div>
         <div class="borderpostcontent">
           <div class="postcontent">
-          <p>` + finish_tweets_content.replace(/@(\w+)/g, "<a href='Utilisateur/user_profil.php?id_user=@$1'>@$1</a>") + `</p>
+          <p>` + finish_tweets_content.replace(/@(\w+)/g, "<a style='color:blue' href='Utilisateur/user_profil.php?id_user=@$1'>@$1</a>") + `</p>
                                       <p>` + finish_tweets_rtcontent + ` </p>
           </div>
         </div>
@@ -196,7 +196,6 @@ if (!isset($_SESSION['USER'])) {
 
 
     //fetchRetweets();
-
 
     /*  console.log(rt);
                // console.log(rt[0]);
@@ -253,6 +252,7 @@ if (!isset($_SESSION['USER'])) {
 <body>
 
   <div class="marging">
+    
     <?php include('mysql/mysql.php') ?>
     <?php include('includes/path.php') ?>
     <?php include('includes/left-sidebar.php') ?>
