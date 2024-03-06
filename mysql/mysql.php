@@ -1,8 +1,8 @@
 <?php
 const MYSQL_HOST = 'localhost';
-const MYSQL_PORT = 3307;
+const MYSQL_PORT = 8989;
 const MYSQL_NAME = 'twitter';
-const MYSQL_USER = 'root';
+const MYSQL_USER = 'onlyguts';
 const MYSQL_PASSWORD = 'root';
 
 try {
