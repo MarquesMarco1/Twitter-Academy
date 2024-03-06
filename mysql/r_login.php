@@ -123,6 +123,9 @@ class functions
                         "username" => $user['username'],
                         "at_user_name" => $user['at_user_name'],
                         "pp" => $pp,
+                        "bio" => $user['bio'],
+                        "city" => $user['city'],
+                        "campus" => $user['campus'],
                     ];
                     header("Location: accueil.php");
                 } else {
