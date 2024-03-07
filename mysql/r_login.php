@@ -124,6 +124,7 @@ class functions
                         "username" => $user['username'],
                         "at_user_name" => $user['at_user_name'],
                         "pp" => $pp,
+                        "banner" => $user['banner'],
                         "bio" => $user['bio'],
                         "city" => $user['city'],
                         "campus" => $user['campus'],

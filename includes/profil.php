@@ -20,7 +20,7 @@ $tweets = $sql->fetchAll(PDO::FETCH_ASSOC);
             <section class="twitterprofile">
                 <div class="headerprofileimage">
           
-                    <img src="<?php echo $path . $user['profile_picture'] ?>" id="headerimage">
+                    <img src="<?php echo $path . $user['banner'] ?>" id="headerimage">
                     <img src="<?php echo $path . $user['profile_picture'] ?>" id="profilepic">
                     <?php if ($_SESSION['USER']['id'] == $user['id']) : ?>
                    <a href="edit_profil.php?id_user=<?php echo $user['id'] ?>"><div class="editprofile">Edit Profile</div></a>
