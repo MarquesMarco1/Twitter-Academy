@@ -1,6 +1,6 @@
-<div id="popup-overlay1" enctype="multipart/form-data">
+<div id="popup-overlay1">
     <div class="popup-content1">
-        <form action="" method="post">
+        <form action="" method="post" enctype="multipart/form-data">
             <h2>Créez votre compte</h2>
             <label for="username">Nom Utilisateur :</label>
             <input type="text" name="username" id="username" required>
@@ -8,6 +8,7 @@
             <input type="email" name="email" id="email" required>
             <label for="date">Date anniv</label>
             <input type="date" name="date" id="date" required>
+            <label for="imageToUpload">Photo de profil ( pas obligatoire )</label>
             <input type="file" name="imageToUpload">
             <label for="password">Mot de passe :</label>
             <input type="password" name="password" id="password" required>

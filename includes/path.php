@@ -1,2 +1,2 @@
 <?php 
-$path = 'http://localhost/ATweet/';
+$path = 'http://localhost:8888/twitter/';

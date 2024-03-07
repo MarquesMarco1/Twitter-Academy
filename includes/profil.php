@@ -1,55 +1,109 @@
-<!DOCTYPE html>
-<html>
+<?php
+session_start();
+if (!isset($user['id'])) {
+    echo "CETTE UTILISATEUR EXISTE PAS";
+    return;
+}
 
-<head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Twitter Profile</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='../style/profil.css'>
-    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
+$sql = $mysqlClient->prepare('SELECT u.*, t.content, t.id as tweet_id, t.time FROM tweet t JOIN user u ON u.id = t.id_user WHERE t.id_user = :id AND t.id_quoted_tweet IS NULL AND t.id_response IS NULL ORDER BY t.id DESC');
+$sql->execute([
+    "id" => $user['id'],
+]);
+$tweets = $sql->fetchAll(PDO::FETCH_ASSOC);
+?>
 
-<body>
-    <div class="container">
-        <section class="twitterprofile">
-            <div class="headerprofileimage">
-                <img src="../assets/img/user.png" id="headerimage">
-                <img src="../assets/img/user.png" id="profilepic">
-                <div class="editprofile">Edit Profile</div>
-            </div>
-            <div class="bio">
-                <div class="handle">
-                    <h3>Username</h3>
-                    <span>@</span>
+
+
+<div class="mise-en-page">
+    <div class="main-content">
+        <div class="container">
+            <section class="twitterprofile">
+                <div class="headerprofileimage">
+          
+                    <img src="<?php echo $path . $user['profile_picture'] ?>" id="headerimage">
+                    <img src="<?php echo $path . $user['profile_picture'] ?>" id="profilepic">
+                    <div class="editprofile">Edit Profile</div>
                 </div>
-                <p>Bio</p>
-                <span> <i class="fa fa-location-arrow"></i> Localisation <i class="fa fa-birthday-cake" aria-hidden="true"></i> Anniversaire</span>
-                <br> <span><i class="fa fa-calendar"></i> Date de création (mois/an)</span>
-                <div class="follow">
-                    <div class="followers"><span>Following</span></div>
-                    <div><span>Followers</span></div>
+                <div class="bio">
+                    <div class="handle">
+                        <h3><?php echo $user['username'] ?></h3>
+                        <span><?php echo $user['at_user_name'] ?></span>
+                    </div>
+                    <p><?php echo $user['bio'] ?></p>
+                    <span> <i class="fa fa-location-arrow"></i> <?php echo $user['city'] ?> <i class="fa fa-birthday-cake" aria-hidden="true"></i> <?php echo $user['birthdate'] ?></span>
+                    <br> <span><i class="fa fa-calendar"></i> <?php echo $user['creation_time'] ?> </span> 
+                    <div class="follow">
+                        <div class="followers"><span>Following</span></div>
+                        <div><span>Followers</span></div>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <section class="tweets">
-            <div class="heading">
-                <p>Tweets</p>
-                <p>Tweets and Replies</p>
-                <p>Medias</p>
-                <p>Likes</p>
-            </div>
-        </section>
-        <section class="mytweets">
-            <div class="tweet">
-                <img class="avatar">
-                <div class="tweetinfo">Username, @, date tweet</div>
-            </div>
-            <div class="tweetcontent">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad quam asperiores expedita pariatur aliquam accusantium, velit magni explicabo similique commodi. In doloremque autem sit reiciendis, illum obcaecati ipsum ut ad natus voluptates quod culpa libero ratione odit, cum architecto. Suscipit autem sunt eaque enim veritatis illum magni pariatur, excepturi laborum nesciunt nihil? Quis.</div>
-        </section>
+            <section class="tweets">
+                <div class="heading">
+                    <p>Tweets</p>
+                    <p>Tweets and Replies</p>
+                    <p>Medias</p>
+                    <p>Likes</p>
+                </div>
+            </section>
+            <section class="mytweets">
+                <?php foreach ($tweets as $tweet) : ?>
+                <div class="post">
+                    <div class="profilpost">
+                        <div class="photodeprofil">
+                            <img src="<?php echo $path . $tweet['profile_picture'] ?>" alt="photodeprofil">
+                        </div>
+                        <div class="infoprofilontwit">
+                            <div class="nomutilisateur">
+                                <a><?php echo $tweet['username'] ?></a>
+                            </div>
+                            <div class="pseudo">
+                                <a><?php echo $tweet['at_user_name'] ?></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="borderpostcontent">
+                        <div class="postcontent">
+                            <p><?php echo $tweet['content'] ?>
+                            </p>
+                        </div>
+                       
+                    </div>
+                    <p><?php echo $tweet['time'] ?></p>
+                    <div class="smalllink">
+                        <span class="gifclick">
+                            <a href="../tweet/retweet.php?id_tweet=<?php echo $tweet['tweet_id'] ?>">
+                                <img src="../assets/icons8-twitter-entoure.gif" alt="Main Logo">
+                                <div class="nombredeRT">
+                                    <p>0</p>
+                                </div>
+                            </a>
+                        </span>
+                        <span class="gifclick">
+                            <a href="Homepage.html">
+                                <img src="../assets/icons8-aimer.gif" alt="Main Logo">
+                                <div class="nombredelike">
+                                    <p>0</p>
+                                </div>
+                            </a>
+                        </span>
+                        <span class="gifclick">
+                             <a href="../tweet/comment.php?id_tweet=<?php echo $tweet['tweet_id'] ?>">
+                                <img src="../assets/icons8-bulle.gif" alt="Main Logo">
+                                <div class="nombredecom">
+                                    <p>0</p>
+                                </div>
+                            </a>
+                    </div>
+                </div>
+                <?php endforeach; ?>
+            </section>
+        </div>
+
     </div>
-</body>
 
-</html>
+
+    <!-- <button class="suggestion" onclick="toggleMode()">Dark/Light</button> -->
+</div>
