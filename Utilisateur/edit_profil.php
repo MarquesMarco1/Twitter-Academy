@@ -23,13 +23,12 @@ if ($_GET['id_user'] == $_SESSION['USER']['id']) {
         <input type="hidden" name="id" id="id" value="<?php echo $_SESSION['USER']['id'] ?>">
         <label for="username">username :</label>
         <input type="text" name="username" id="username" value="<?php echo $_SESSION['USER']['username'] ?>">
-        <label for="at_user_name">at_user_name :</label>
-        <input type="text" name="at_user_name" id="at_user_name" value="<?php echo $_SESSION['USER']['at_user_name'] ?>">
+      
         <label for="bio">bio :</label>
         <input type="text" name="bio" id="bio" value="<?php echo $_SESSION['USER']['bio'] ?>">
         <label for="city">city :</label>
         <input type="text" name="city" id="city" value="<?php echo $_SESSION['USER']['city'] ?>">
-        <label for="campus">city :</label>
+        <label for="campus">campus :</label>
         <input type="text" name="campus" id="campus" value="<?php echo $_SESSION['USER']['campus'] ?>">
         <input type="hidden" name="action" value="allchange">
 

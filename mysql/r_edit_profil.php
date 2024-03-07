@@ -9,15 +9,11 @@ $directory = "../assets/save_image_user/";
 $filecount = count(glob($directory . "*"));
 
 if ($_POST['action'] == "allchange") {
-    $sql = $mysqlClient->prepare('UPDATE `user` SET username = :username, at_user_name = :at_user_name, profile_picture = :imageToUpload, bio = :bio, banner = :banner, mail = :mail, private = :private, city = :city, campus = :campus WHERE id = :id'); // connexion avec login ou email
+    $sql = $mysqlClient->prepare('UPDATE `user` SET username = :username, bio = :bio, private = :private, city = :city, campus = :campus WHERE id = :id'); // connexion avec login ou email
     $sql->execute([
         "id" => $_POST['id'],
         "username" => $_POST['username'],
-        "at_user_name" => $_POST['at_user_name'],
-        "imageToUpload" => "assets/save_image_user/" . $filecount . $_FILES['imageToUpload']['name'],
-        "bio" => $_POST['bio'],
-        "banner" => "assets/save_image_user/" . $filecount . $_FILES['imageToUploadBanner']['name'],
-        "mail" => "test",
+        "bio" => $_POST['bio'],   
         "private" => 0,
         "city" => $_POST['city'],
         "campus" => $_POST['campus'],
@@ -66,4 +62,7 @@ if ($_POST['action'] == "ppchange") {
     } else {
         $_SESSION['MESSAGE_ERREUR'] = "image +5mb";
     }
+
+  
 }
+header('Location: ../Utilisateur/edit_profil.php?id_user=' . $_SESSION['USER']['id']);
