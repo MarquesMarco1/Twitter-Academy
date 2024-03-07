@@ -10,6 +10,18 @@ $sql->execute([
     "id" => $user['id'],
 ]);
 $tweets = $sql->fetchAll(PDO::FETCH_ASSOC);
+
+$sql = $mysqlClient->prepare('SELECT count(u.id) as count FROM user u JOIN follow f ON f.id_user = u.id WHERE u.id = :id');
+$sql->execute([
+    "id" => $user['id'],
+]);
+$follower = $sql->fetch(PDO::FETCH_ASSOC);
+
+$sql = $mysqlClient->prepare('SELECT count(u.id) as count FROM user u JOIN follow f ON f.id_follow = u.id WHERE u.id = :id');
+$sql->execute([
+    "id" => $user['id'],
+]);
+$following = $sql->fetch(PDO::FETCH_ASSOC);
 ?>
 
 
@@ -19,10 +31,14 @@ $tweets = $sql->fetchAll(PDO::FETCH_ASSOC);
         <div class="container">
             <section class="twitterprofile">
                 <div class="headerprofileimage">
-          
-                    <img src="<?php echo $path . $user['profile_picture'] ?>" id="headerimage">
+
+                    <img src="<?php echo $path . $user['banner'] ?>" id="headerimage">
                     <img src="<?php echo $path . $user['profile_picture'] ?>" id="profilepic">
-                    <div class="editprofile">Edit Profile</div>
+                    <?php if ($_SESSION['USER']['id'] == $user['id']) : ?>
+                        <a href="edit_profil.php?id_user=<?php echo $user['id'] ?>">
+                            <div class="editprofile">Edit Profile</div>
+                        </a>
+                    <?php endif; ?>
                 </div>
                 <div class="bio">
                     <div class="handle">
@@ -31,11 +47,14 @@ $tweets = $sql->fetchAll(PDO::FETCH_ASSOC);
                     </div>
                     <p><?php echo $user['bio'] ?></p>
                     <span> <i class="fa fa-location-arrow"></i> <?php echo $user['city'] ?> <i class="fa fa-birthday-cake" aria-hidden="true"></i> <?php echo $user['birthdate'] ?></span>
-                    <br> <span><i class="fa fa-calendar"></i> <?php echo $user['creation_time'] ?> </span> 
+                    <br> <span><i class="fa fa-calendar"></i> <?php echo $user['creation_time'] ?> </span>
                     <div class="follow">
-                        <div class="followers"><span>Following</span></div>
-                        <div><span>Followers</span></div>
+                        <div class="followers">
+                            <span><?php echo $follower['count'] ?> Following</span>
+                        </div>
+                        <div><span><?php echo $following['count'] ?> Followers</span></div>
                     </div>
+                    <a href="../mysql/r_follow.php?id_user=<?php echo $_SESSION['USER']['id']?>&id_follow=<?php echo $user['id']?>">+ Follow</a>
                 </div>
             </section>
 
@@ -49,55 +68,55 @@ $tweets = $sql->fetchAll(PDO::FETCH_ASSOC);
             </section>
             <section class="mytweets">
                 <?php foreach ($tweets as $tweet) : ?>
-                <div class="post">
-                    <div class="profilpost">
-                        <div class="photodeprofil">
-                            <img src="<?php echo $path . $tweet['profile_picture'] ?>" alt="photodeprofil">
-                        </div>
-                        <div class="infoprofilontwit">
-                            <div class="nomutilisateur">
-                                <a><?php echo $tweet['username'] ?></a>
+                    <div class="post">
+                        <div class="profilpost">
+                            <div class="photodeprofil">
+                                <img src="<?php echo $path . $tweet['profile_picture'] ?>" alt="photodeprofil">
                             </div>
-                            <div class="pseudo">
-                                <a><?php echo $tweet['at_user_name'] ?></a>
+                            <div class="infoprofilontwit">
+                                <div class="nomutilisateur">
+                                    <a><?php echo $tweet['username'] ?></a>
+                                </div>
+                                <div class="pseudo">
+                                    <a><?php echo $tweet['at_user_name'] ?></a>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="borderpostcontent">
-                        <div class="postcontent">
-                            <p><?php echo $tweet['content'] ?>
-                            </p>
+                        <div class="borderpostcontent">
+                            <div class="postcontent">
+                                <p><?php echo $tweet['content'] ?>
+                                </p>
+                            </div>
+
                         </div>
-                       
+                        <p><?php echo $tweet['time'] ?></p>
+                        <div class="smalllink">
+                            <span class="gifclick">
+                                <a href="../tweet/retweet.php?id_tweet=<?php echo $tweet['tweet_id'] ?>">
+                                    <img src="../assets/icons8-twitter-entoure.gif" alt="Main Logo">
+                                    <div class="nombredeRT">
+                                        <p>0</p>
+                                    </div>
+                                </a>
+                            </span>
+                            <span class="gifclick">
+                                <a href="Homepage.html">
+                                    <img src="../assets/icons8-aimer.gif" alt="Main Logo">
+                                    <div class="nombredelike">
+                                        <p>0</p>
+                                    </div>
+                                </a>
+                            </span>
+                            <span class="gifclick">
+                                <a href="../tweet/comment.php?id_tweet=<?php echo $tweet['tweet_id'] ?>">
+                                    <img src="../assets/icons8-bulle.gif" alt="Main Logo">
+                                    <div class="nombredecom">
+                                        <p>0</p>
+                                    </div>
+                                </a>
+                        </div>
                     </div>
-                    <p><?php echo $tweet['time'] ?></p>
-                    <div class="smalllink">
-                        <span class="gifclick">
-                            <a href="../tweet/retweet.php?id_tweet=<?php echo $tweet['tweet_id'] ?>">
-                                <img src="../assets/icons8-twitter-entoure.gif" alt="Main Logo">
-                                <div class="nombredeRT">
-                                    <p>0</p>
-                                </div>
-                            </a>
-                        </span>
-                        <span class="gifclick">
-                            <a href="Homepage.html">
-                                <img src="../assets/icons8-aimer.gif" alt="Main Logo">
-                                <div class="nombredelike">
-                                    <p>0</p>
-                                </div>
-                            </a>
-                        </span>
-                        <span class="gifclick">
-                             <a href="../tweet/comment.php?id_tweet=<?php echo $tweet['tweet_id'] ?>">
-                                <img src="../assets/icons8-bulle.gif" alt="Main Logo">
-                                <div class="nombredecom">
-                                    <p>0</p>
-                                </div>
-                            </a>
-                    </div>
-                </div>
                 <?php endforeach; ?>
             </section>
         </div>

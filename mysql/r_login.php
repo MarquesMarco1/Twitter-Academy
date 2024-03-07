@@ -41,9 +41,10 @@ class functions
                     if (!isset($at_user_name_verif['id'])) {  // requete pour voir si l'@ et déjà existant
                         include('includes/define.php');
                         
-                        if (isset($_POST["imageToUpload"])) {
+                        if (isset($_FILES["imageToUpload"])) {
                             if ($_FILES['imageToUpload']['size'] < 5 * MB) {  // si le photo de profil fait - 5MB
                                 if ($_FILES["imageToUpload"]["type"] == "image/jpeg" || $_FILES["imageToUpload"]["type"] == "image/png" || $_FILES["imageToUpload"]["type"] == "image/jpg") {  // si la photo de profil et en JPEG ou PNG
+                                  
                                     $directory = "assets/save_image_user/";
                                     $filecount = count(glob($directory . "*"));
                                     move_uploaded_file($_FILES['imageToUpload']['tmp_name'], "assets/save_image_user/" . $filecount . $_FILES['imageToUpload']['name']);  // ajoute la photo de profil dans un dossier
@@ -123,6 +124,10 @@ class functions
                         "username" => $user['username'],
                         "at_user_name" => $user['at_user_name'],
                         "pp" => $pp,
+                        "banner" => $user['banner'],
+                        "bio" => $user['bio'],
+                        "city" => $user['city'],
+                        "campus" => $user['campus'],
                     ];
                     header("Location: accueil.php");
                 } else {

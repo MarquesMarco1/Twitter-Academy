@@ -167,6 +167,11 @@ body {
 
 /*----POST-----*/
 
+.timeProfil {
+  font-size: 10px;
+  color: var(--noir);
+}
+
 .create-post {
   margin-bottom: 20px;
 }
@@ -234,6 +239,14 @@ body {
   border-radius: 5px;
 }
 
+.repost {
+  background-color: var(--blanc);
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  border: solid 2px var(--grey);
+}
+
 .post-button a {
   background-color: var(--quatrieme--color);
   justify-content: center;
@@ -242,7 +255,7 @@ body {
 .borderpostcontent {
   border-top: solid var(--grey);
   border-bottom: solid var(--grey);
-}
+} 
 
 .recommendation-button {
   display: block;

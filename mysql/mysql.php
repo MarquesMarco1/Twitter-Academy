@@ -2,8 +2,8 @@
 const MYSQL_HOST = 'localhost';
 const MYSQL_PORT = 3307;
 const MYSQL_NAME = 'twitter';
-const MYSQL_USER = 'louis';
-const MYSQL_PASSWORD = 'Thor1998';
+const MYSQL_USER = 'root';
+const MYSQL_PASSWORD = 'root';
 
 try {
     $mysqlClient = new PDO(
