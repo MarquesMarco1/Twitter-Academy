@@ -22,6 +22,15 @@ $sql->execute([
     "id" => $user['id'],
 ]);
 $following = $sql->fetch(PDO::FETCH_ASSOC);
+
+$sql = $mysqlClient->prepare('SELECT f.* FROM follow f WHERE f.id_user = :id_user AND f.id_follow = :id_follow');
+$sql->execute([
+    "id_user" => $_SESSION['USER']['id'],
+    "id_follow" => $user['id'],
+]);
+$uFollow = $sql->fetch(PDO::FETCH_ASSOC);
+
+
 ?>
 
 
@@ -54,7 +63,16 @@ $following = $sql->fetch(PDO::FETCH_ASSOC);
                         </div>
                         <div><span><?php echo $following['count'] ?> Followers</span></div>
                     </div>
-                    <a href="../mysql/r_follow.php?id_user=<?php echo $_SESSION['USER']['id']?>&id_follow=<?php echo $user['id']?>">+ Follow</a>
+
+                    <?php if (isset($uFollow['id_user'])) : ?>
+                        <?php if ($uFollow['id_user'] != $user['id']) : ?>
+                        <a href="../mysql/r_follow.php?id_user=<?php echo $_SESSION['USER']['id'] ?>&id_follow=<?php echo $user['id'] ?>">+ Unfollow</a>
+                        <?php endif; ?>
+                    <?php else : ?>
+                        <?php if ($uFollow['id_user'] != $user['id']) : ?>
+                            <a href="../mysql/r_follow.php?id_user=<?php echo $_SESSION['USER']['id'] ?>&id_follow=<?php echo $user['id'] ?>">+ Follow</a>
+                        <?php endif; ?>
+                    <?php endif; ?>
                 </div>
             </section>
 
