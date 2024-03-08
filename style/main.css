@@ -95,3 +95,10 @@ img {
   max-height: 10%;
   border-radius: 50%;
 }
+
+.followers, .following {
+    cursor: pointer;
+    background-color: white;
+    padding: 4px 7px;
+    border-radius: 10%;
+}

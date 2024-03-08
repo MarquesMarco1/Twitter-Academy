@@ -70,16 +70,16 @@ $uFollow = $sql->fetch(PDO::FETCH_ASSOC);
                     <div class="follow">
                         <div class="followers">
                             <span onclick="togglePopup1()"><?php echo $follower['count'] ?> Following</span>
-                        </div>
-                        <div><span onclick="togglePopup2()"><?php echo $following['count'] ?> Followers</span></div>
+                        </div >
+                        <div class="following"><span onclick="togglePopup2()"><?php echo $following['count'] ?> Followers</span></div>
                     </div>
 
                     <div id="popup-overlay1">
                         <div class="popup-content1">
                             <?php foreach ($followingUser as $followings) : ?>
                                 <div class="followingPopup">
-                                <img src="<?php echo $path . $followings['profile_picture'] ?>" alt="">
-                                <a style='color:blue' href="user_profil.php?id_user=<?php echo $followings['at_user_name'] ?>"><?php echo $followings['at_user_name'] ?></a>
+                                    <img src="<?php echo $path . $followings['profile_picture'] ?>" alt="">
+                                    <a style='color:blue' href="user_profil.php?id_user=<?php echo $followings['at_user_name'] ?>"><?php echo $followings['at_user_name'] ?></a>
                                 </div>
                             <?php endforeach; ?>
                             <a href="javascript:void(0)" onclick="togglePopup1()" class="popup-exit">Fermer</a>
@@ -90,8 +90,8 @@ $uFollow = $sql->fetch(PDO::FETCH_ASSOC);
                         <div class="popup-content2">
                             <?php foreach ($followerUser as $followings) : ?>
                                 <div class="followingPopup">
-                                <img src="<?php echo $path . $followings['profile_picture'] ?>" alt="">
-                                <a style='color:blue' href="user_profil.php?id_user=<?php echo $followings['at_user_name'] ?>"><?php echo $followings['at_user_name'] ?></a>
+                                    <img src="<?php echo $path . $followings['profile_picture'] ?>" alt="">
+                                    <a style='color:blue' href="user_profil.php?id_user=<?php echo $followings['at_user_name'] ?>"><?php echo $followings['at_user_name'] ?></a>
                                 </div>
                             <?php endforeach; ?>
                             <a href="javascript:void(0)" onclick="togglePopup2()" class="popup-exit">Fermer</a>
