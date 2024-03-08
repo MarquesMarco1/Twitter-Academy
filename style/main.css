@@ -1,7 +1,4 @@
-* {
-    margin: 0;
-    padding: 0;
-}
+
 
 .conteneur {
     display: grid;
@@ -39,6 +36,8 @@ img {
     z-index: 9;
     background-color: rgba(0, 0, 0, 0.3);
     display: none;
+    overflow-y: scroll;
+  
 }
 
 #popup-overlay1.open,
@@ -82,4 +81,17 @@ img {
     flex-direction: column;
     background-color: white;
     color: blue;
+}
+
+#popup-overlay1 .popup-content1 .followingPopup,
+#popup-overlay2 .popup-content2 .followingPopup{
+    display: flex;
+    flex-direction: row;
+}
+
+#popup-overlay1 .popup-content1 .followingPopup img,
+#popup-overlay2 .popup-content2 .followingPopup img {
+  max-width: 10%;
+  max-height: 10%;
+  border-radius: 50%;
 }
