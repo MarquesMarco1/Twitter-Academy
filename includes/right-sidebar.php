@@ -7,48 +7,28 @@ $sql->execute([
 
 $usersugg = $sql->fetchAll(PDO::FETCH_ASSOC);
 
+
+$sql = $mysqlClient->prepare("SELECT t.content  FROM tweet t JOIN hashtag_list hl WHERE t.content LIKE CONCAT('%', '#', hl.hashtag, '%')");
+$sql->execute([]);
+$hashtag = $sql->fetchAll(PDO::FETCH_ASSOC);
+
+
+$sql = $mysqlClient->prepare("SELECT hl.hashtag, COUNT(*) as count FROM tweet t  JOIN hashtag_list hl ON t.content LIKE CONCAT('%', '#', hl.hashtag, '%') GROUP BY hl.hashtag ORDER BY count DESC LIMIT 10");
+$sql->execute([]);
+$hashtag2 = $sql->fetchAll(PDO::FETCH_ASSOC);
+
+
 ?>
 
 <div class="right-sidebar">
       <input type="search" class="search-bar" placeholder="Search barre">
       <div class="suggestion tendance">
-
+        <?php foreach ($hashtag2 as $hashtag) : ?>
         <div class="tendance-list">
-          <p>1 - Bien-etre - Tendance</p>
-          <a href="#">#gratitude</a>
+          <a href="#"><?php echo "#" . $hashtag['hashtag'] ?></a>
+          <p>Tweet : <?php echo $hashtag['count'] ?></p>
         </div>
-        <div class="tendance-list">
-          <p>2 - Politique - Tendance</p>
-          <a href="#">#macron</a>
-        </div>
-        <div class="tendance-list">
-          <p>3 - Jeux-video - Tendance</p>
-          <a href="#">#fortnite</a>
-        </div>
-        <div class="tendance-list">
-          <p>4 - Bien-etre - Tendance</p>
-          <a href="#">#toujourfatigué</a>
-        </div>
-        <div class="tendance-list">
-          <p>5 - Sport - Tendance</p>
-          <a href="#">#PSG</a>
-        </div>
-        <div class="tendance-list">
-          <p>6 - Sport - Tendance</p>
-          <a href="#">#jeux-video</a>
-        </div>
-        <div class="tendance-list">
-          <p>8 - Musique - Tendance</p>
-          <a href="#">#damso</a>
-        </div>
-        <div class="tendance-list">
-          <p>9 - Bien-etre - Tendance</p>
-          <a href="#">#lamort</a>
-        </div>
-        <div class="tendance-list">
-          <p>10 - Technologie - Tendance</p>
-          <a href="#">#innovation</a>
-        </div>
+        <?php endforeach; ?>
       </div>
       <div class="sugguser">
         <h1>Suggestion User</h1>
