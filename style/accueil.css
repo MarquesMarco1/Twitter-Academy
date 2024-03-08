@@ -198,6 +198,12 @@ body {
   font-size: 16px;
 }
 
+.rtTxt {
+  font-style: italic;
+  font-size: 15px;
+  color: #333;
+}
+
 #publishPost:hover {
   background-color: #45a049;
 }

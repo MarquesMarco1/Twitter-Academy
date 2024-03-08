@@ -84,7 +84,7 @@ if (!isset($_SESSION['USER'])) {
               finish_tweets_at_user_name = tweets.at_user_name;
               finish_tweets_tweet_id = tweets.tweet_id;
               finish_tweets_profile_picture = tweets.profile_picture
-              finish_tweets_content = "rt";
+              finish_tweets_content = tweets.at_user_name + " a retweeté un tweet de " + retweet.at_user_name;
               finish_tweets_time = tweets.time;
 
               finish_tweets_rtcontent = `
@@ -141,7 +141,7 @@ if (!isset($_SESSION['USER'])) {
         </div>
         <div class="borderpostcontent">
           <div class="postcontent">
-          <p>` + finish_tweets_content.replace(/@(\w+)/g, "<a style='color:blue' href='Utilisateur/user_profil.php?id_user=@$1'>@$1</a>") + `</p>
+          <p class='rtTxt'>` + finish_tweets_content.replace(/@(\w+)/g, "<a style='color:blue' href='Utilisateur/user_profil.php?id_user=@$1'>@$1</a>") + `</p>
                                       <p>` + finish_tweets_rtcontent + ` </p>
           </div>
         </div>
