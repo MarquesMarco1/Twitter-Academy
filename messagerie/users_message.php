@@ -28,17 +28,36 @@ include('../mysql/mysql.php');
             <form action="" method="post">
                 <h2>Nouveau message</h2>
 
-                <input type="search" name="searchUserConv" id="searchUserConv"> <br>
-                <input type="text" value="Créer groupe"> <br>
+                <input type="search" name="searchUser" id="searchUser" placeholder="Cherche un membre" onkeyup="search_user()">
                 
+
+                <?php
+                $query = $mysqlClient->prepare("SELECT DISTINCT username, at_user_name, profile_picture FROM user 
+                                                WHERE id != :id_user");
+                $query->execute([
+                    'id_user' => $_SESSION['USER']['id'],
+                ]);
+                $catchUser = $query->fetchAll(PDO::FETCH_ASSOC);
+
+                if ($catchUser) :
+                    foreach ($catchUser as $Users) : ?>
+                        <div class="membres">
+                        <input type="checkbox" name="memberSearch" id="memberSearch">
+                            <label for="memberSearch"><?php echo $Users['username'] ?></label>
+                        </div>
+                    <?php endforeach ?>
+                <?php else :
+                    echo "pas d'user.";
+                endif;
+                ?>
+
                 <a href="javascript:void(0)" onclick="togglePopup()" class="popup-exit">Fermer</a>
+                <input type="submit" value="Créer un groupe">
             </form>
         </div>
     </div>
 
-
-
-    <input type="search" name="searchUser" id="searchUser" placeholder="Cherche des messages privés" onkeyup="search_user()">
+    <input type="search" name="searchUserConv" id="searchUserConv" placeholder="Cherche des messages privés" onkeyup="search_conv()">
 
     <section id="main-mess">
         <?php
