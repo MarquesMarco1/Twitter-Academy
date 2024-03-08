@@ -141,11 +141,11 @@ if (!isset($_SESSION['USER'])) {
         </div>
         <div class="borderpostcontent">
           <div class="postcontent">
-          <p class='rtTxt'>` + finish_tweets_content.replace(/@(\w+)/g, "<a style='color:blue' href='Utilisateur/user_profil.php?id_user=@$1'>@$1</a>") + `</p>
+          <p class='rtTxt'>` + finish_tweets_content.replace(/@(\w+)/g, "<a style='color:blue' href='Utilisateur/user_profil.php?id_user=$1'>@$1</a>").replace(/#(\w+)/g, "<a style='color:grey' href='tweet/hashtag.php?hashtag=$1'>#$1</a>") + `</p>
                                       <p>` + finish_tweets_rtcontent + ` </p>
           </div>
         </div>
-        <p class='timeProfil'>` + finish_tweets_time +`</p>
+        <p class='timeProfil'>` + finish_tweets_time + `</p>
         <div class="smalllink">
           <span class="gifclick">
           <a href="tweet/retweet.php?id_tweet=` + finish_tweets_tweet_id + `">
@@ -252,7 +252,7 @@ if (!isset($_SESSION['USER'])) {
 <body>
 
   <div class="marging">
-    
+
     <?php include('mysql/mysql.php') ?>
     <?php include('includes/path.php') ?>
     <?php include('includes/left-sidebar.php') ?>

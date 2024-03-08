@@ -26,7 +26,7 @@ $hashtag2 = $sql->fetchAll(PDO::FETCH_ASSOC);
         <?php foreach ($hashtag2 as $hashtag) : ?>
         <div class="tendance-list">
           <a href="#"><?php echo "#" . $hashtag['hashtag'] ?></a>
-          <p>Tweet : <?php echo $hashtag['count'] ?></p>
+          <p>Tweet(s) : <?php echo $hashtag['count'] ?></p>
         </div>
         <?php endforeach; ?>
       </div>
