@@ -119,7 +119,7 @@ $uFollow = $sql->fetch(PDO::FETCH_ASSOC);
 
             <section class="tweets">
                 <div class="heading">
-                <a href="../Utilisateur/user_profil.php?id_user=<?php echo $user['at_user_name']?>&show=tweet"><p>Tweets</p></a> 
+                <a href="../Utilisateur/user_profil.php?id_user=<?php echo $user['at_user_name']?>&show=tweet"><p>Tweets/Retweets</p></a> 
                 <a href="../Utilisateur/user_profil.php?id_user=<?php echo $user['at_user_name']?>&show=retweetandcomment"><p>Replies</p></a> 
                  
                 </div>

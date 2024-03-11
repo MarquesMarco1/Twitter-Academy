@@ -31,18 +31,18 @@ $tweets = $sql->fetchAll(PDO::FETCH_ASSOC);
 
                 <div class="postcontent">
                     <?php
-                    $sql = $mysqlClient->prepare('SELECT u.*, t.content, t.time FROM user u JOIN tweet t ON t.id = :id WHERE u.id = t.id_user');
+                    $sql = $mysqlClient->prepare('SELECT u.*, t.content, t.time, t.id as tweet_id FROM user u JOIN tweet t ON t.id = :id WHERE u.id = t.id_user');
                     $sql->execute([
                         "id" => $tweet['id_quoted_tweet'],
                     ]);
                     $retweets = $sql->fetch(PDO::FETCH_ASSOC);
                     ?>
                     <p><?php echo $tweet['content'] ?>
-                    <?php if ($tweet['id_quoted_tweet'] != null) : ?>
-                    <p><a href="" style="color:blue"> <?php echo $tweet['at_user_name'] ?> </a>a retweeté un tweet de <a href="" style="color:blue"> <?php echo $retweets['at_user_name'] ?> </a></p>
+                        <?php if ($tweet['id_quoted_tweet'] != null) : ?>
+                    <p><a href="../Utilisateur/user_profil.php?id_user=<?php echo $tweet['at_user_name'] ?>" style="color:blue"> <?php echo $tweet['at_user_name'] ?> </a>a retweeté un tweet de <a href="../Utilisateur/user_profil.php?id_user=<?php echo $retweets['at_user_name'] ?>" style="color:blue"> <?php echo $retweets['at_user_name'] ?> </a></p>
 
 
- 
+                    <a href="../tweet/comment.php?id_tweet=<?php echo $retweets['tweet_id'] ?>">
                         <div class="post">
 
                             <div class="profilpost">
@@ -69,8 +69,9 @@ $tweets = $sql->fetchAll(PDO::FETCH_ASSOC);
                             <p><?php echo $retweets['time'] ?></p>
 
                         </div>
-                    <?php endif; ?>
-                    </p>
+                    </a>
+                <?php endif; ?>
+                </p>
                 </div>
 
             </div>

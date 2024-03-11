@@ -98,10 +98,11 @@ if (!isset($_SESSION['USER'])) {
               finish_tweets_time = tweets.time;
 
               finish_tweets_rtcontent = `
+                                <a href="tweet/comment.php?id_tweet=`+retweet.tweet_id+`">
                                   <div class="repost">
                                    <div class="profilpost">
                                      <div class="photodeprofil">
-                                     <a style="color:blue;" href="Utilisateur/user_profil.php?id_user=` + retweet.at_user_name + `"><img src="` + retweet.profile_picture + `" alt="photo de profil de ` + retweet.at_user_name + ` "> </a>
+                                     <img src="` + retweet.profile_picture + `" alt="photo de profil de ` + retweet.at_user_name + ` ">
                                      </div>
                                      <div class="nomutilisateur">
                                        <a style="color:blue;" href="Utilisateur/user_profil.php?id_user=` + retweet.at_user_name + `">` + retweet.at_user_name + `</a>
@@ -118,7 +119,9 @@ if (!isset($_SESSION['USER'])) {
                                    </div>
                                  </div>
                                 
-                               </div>`;
+                               </div>
+                               </a>`
+                               ;
             });
           } else {
             //body =  " | ID tweet : " + tweets.tweet_id + " | Content :" + tweets.content + "<br>";
