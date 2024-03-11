@@ -7,7 +7,6 @@ $sql->execute([
 
 $usersugg = $sql->fetchAll(PDO::FETCH_ASSOC);
 
-
 $sql = $mysqlClient->prepare("SELECT t.content  FROM tweet t JOIN hashtag_list hl WHERE t.content LIKE CONCAT('%', '#', hl.hashtag, '%')");
 $sql->execute([]);
 $hashtag = $sql->fetchAll(PDO::FETCH_ASSOC);
@@ -25,7 +24,7 @@ $hashtag2 = $sql->fetchAll(PDO::FETCH_ASSOC);
       <div class="suggestion tendance">
         <?php foreach ($hashtag2 as $hashtag) : ?>
         <div class="tendance-list">
-          <a href="#"><?php echo "#" . $hashtag['hashtag'] ?></a>
+          <a href="<?php echo $path ?>tweet/hashtag.php?hashtag=<?php echo $hashtag['hashtag'] ?>"><?php echo "#" . $hashtag['hashtag'] ?></a>
           <p>Tweet(s) : <?php echo $hashtag['count'] ?></p>
         </div>
         <?php endforeach; ?>
