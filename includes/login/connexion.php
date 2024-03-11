@@ -9,7 +9,7 @@
             <input type="password" name="password" id="password" required>
             <input type="hidden" name="login" id="login">
             <input type="submit" value="Login">
-            <a href="javascript:void(0)" onclick="togglePopup2()" class="popup-exit">Fermer</a>
+            <a href="javascript:void(0)" onclick="togglePopup2()" class="popup-exit">X</a>
         </form>
     </div>
 </div>

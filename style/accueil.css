@@ -1,11 +1,12 @@
 :root {
+
   --premiere-color: #e4e4e4;
-  --deuxieme-color: #f9f9f9;
-  --troisieme--color: #f9f9f9;
-  --quatrieme--color: #7a65aa;
-  --blanc: white;
-  --noir: black;
-  --backgroundC: #ffffff;
+  --deuxieme-color: #00000002; /* nav bar */
+  --troisieme--color: #f9f9f9; /* main + profil */
+  --quatrieme--color: #7a65aa; /* button and input*/
+  --blanc: rgba(255, 255, 255, 0.057); /* post + tendance list */
+  --noir: black; /* font color*/
+  --backgroundC: #ffffff; /* background color*/
   --grey: rgba(0, 0, 0, 0.161);
 }
 
@@ -14,7 +15,6 @@
 
   text-decoration: none;
   box-sizing: border-box;
-
 }
 
 a {
@@ -51,7 +51,7 @@ body {
   position: fixed;
   left: 0;
   top: 0;
-  background-color: var(--blanc);
+  background-color: var(--deuxieme-color);
   padding: 10px;
   margin-left: 11%;
 }
@@ -60,7 +60,6 @@ body {
   display: flex;
   color: var(--noir);
   text-decoration: none;
-  background-color: var(--blanc);
   border-radius: 50px;
   font-size: 25px;
 

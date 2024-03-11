@@ -1,13 +1,14 @@
 :root {
+
     --premiere-color: #e4e4e4;
-    --deuxieme-color: #f9f9f9;
-    --troisieme--color: #f9f9f9;
-    --quatrieme--color: #7a65aa;
-    --blanc: white;
-    --noir: black;
-    --backgroundC: #ffffff;
+    --deuxieme-color: #00000002; /* nav bar */
+    --troisieme--color: #f9f9f9; /* main + profil */
+    --quatrieme--color: #7a65aa; /* button and input*/
+    --blanc: rgb(255, 255, 255); /* post + tendance list */
+    --noir: black; /* font color*/
+    --backgroundC: #ffffff; /* background color*/
     --grey: rgba(0, 0, 0, 0.161);
-  }
+}
 
 * {
     text-decoration: none;
@@ -49,7 +50,7 @@ body {
     position: fixed;
     left: 0;
     top: 0;
-    background-color: var(--blanc);
+    background-color: var(--deuxieme-color);
     padding: 10px;
     margin-left: 11%;
 }
@@ -150,7 +151,6 @@ body {
     padding: 20px;
     display: flex;
     flex-direction: column;
-    align-items: center;
     width: 40%;
 
 }
@@ -227,7 +227,6 @@ body {
 
 .post {
     background-color: var(--blanc);
-    border: 1px solid #000000;
     padding: 10px;
     margin-bottom: 20px;
     border-radius: 5px;
@@ -440,28 +439,8 @@ body {
 
 /*-----dark mode------*/
 
-.button {
-    padding: 10px 20px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-}
-
-.dark-mode {
-    background-color: #333;
-    color: #fff;
-}
-
-.light-mode {
-    background-color: #fff;
-    color: #333;
-}
-
 /*------profil.css-----*/
 
-.container {
-
-}
 
 .headerprofileimage {
     margin-top: 10px;

@@ -1,7 +1,33 @@
+
+:root {
+
+    --premiere-color: #e4e4e4;
+    --deuxieme-color: #00000002; /* nav bar */
+    --troisieme--color: #f9f9f9; /* main + profil */
+    --quatrieme--color: #7a65aa; /* button and input*/
+    --blanc: rgba(255, 255, 255, 0.057); /* post + tendance list */
+    --noir: black; /* font color*/
+    --backgroundC: #ffffff; /* background color*/
+    --grey: rgba(0, 0, 0, 0.161);
+  }
+
 * {
     margin: 0;
     padding: 0;
 }
+
+.button {
+    
+    bottom: 10px;
+    left: 10px;
+    padding: 6px;
+    background-color: var(--troisieme--color);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  }
 
 .conteneur {
     display: grid;
@@ -13,21 +39,13 @@ img {
     width: 200px;
 }
 
+
 .colonne1,
 .colonne2 {
     display: flex;
     margin: auto;
 }
 
-.colonne1 button,
-.colonne2 button {
-    padding: 5px 10px;
-    border-radius: 5px;
-    margin: 5px;
-    border: blue solid 1px;
-    color: blue;
-    background-color: #fff;
-}
 
 #popup-overlay1,
 #popup-overlay2 {
@@ -49,8 +67,9 @@ img {
 .popup-content1,
 .popup-content2 {
     max-width: 600px;
-    width: 100%;
+    width: 30%;
     padding: 30px;
+    border-radius: 50px;
     box-sizing: border-box;
     background-color: gray;
     position: absolute;
@@ -80,6 +99,5 @@ img {
 .popup-content1 form {
     display: flex;
     flex-direction: column;
-    background-color: white;
-    color: blue;
+    color: var(--noir);
 }
