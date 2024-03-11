@@ -72,6 +72,7 @@ if (!isset($_SESSION['USER'])) {
               $.each(data, function(key, tweete) {
                 tweet.push(tweete);
               });
+      
             }
           });
 

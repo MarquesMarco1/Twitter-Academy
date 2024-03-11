@@ -72,29 +72,23 @@ $tweets = $sql->fetchAll(PDO::FETCH_ASSOC);
             </div>
             <p><?php echo $tweet['time'] ?></p>
             <div class="smalllink">
-                <span class="gifclick">
+            <span class="gifclick">
                     <a href="../tweet/retweet.php?id_tweet=<?php echo $tweet['tweet_id'] ?>">
-                        <img src="../assets/icons8-twitter-entoure.gif" alt="Main Logo">
+                        <img src="../assets/rt.png" alt="Main Logo">
                         <div class="nombredeRT">
-                            <p>0</p>
+
                         </div>
                     </a>
                 </span>
-                <span class="gifclick">
-                    <a href="Homepage.html">
-                        <img src="../assets/icons8-aimer.gif" alt="Main Logo">
-                        <div class="nombredelike">
-                            <p>0</p>
-                        </div>
-                    </a>
-                </span>
+
                 <span class="gifclick">
                     <a href="../tweet/comment.php?id_tweet=<?php echo $tweet['tweet_id'] ?>">
-                        <img src="../assets/icons8-bulle.gif" alt="Main Logo">
+                        <img src="../assets/comment.png" alt="Main Logo">
                         <div class="nombredecom">
-                            <p>0</p>
+
                         </div>
                     </a>
+                </span>
             </div>
         </div>
     <?php endforeach; ?>
