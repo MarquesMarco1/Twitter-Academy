@@ -118,7 +118,7 @@ if (!isset($_SESSION['USER'])) {
                                    <p >` + retweet.rt_content.replace(/@(\w+)/g, "<a style='color:blue' href='Utilisateur/user_profil.php?id_user=$1'>@$1</a>").replace(/#(\w+)/g, "<a style='color:black;   font-weight: bold;' href='tweet/hashtag.php?hashtag=$1'>#$1</a>") + `</p>                   
                                    </div>
                                  </div>
-                                
+                                 <p class='timeProfil'>` + retweet.time + `</p>
                                </div>
                                </a>`
                                ;

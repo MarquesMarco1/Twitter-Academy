@@ -43,7 +43,8 @@ $tweets = $sql->fetchAll(PDO::FETCH_ASSOC);
                 </div>
 
             </div>
-            <p><?php echo $response['time'] ?></p>
+            <p ><?php echo $response['time'] ?></p>
+            
             <div class="smalllink">
 
             </div>
