@@ -153,7 +153,7 @@ if (!isset($_SESSION['USER'])) {
         </div>
         <div class="borderpostcontent">
           <div class="postcontent">
-          <p class='rtTxt'>` + finish_tweets_content.replace(/@(\w+)/g, "<a style='color:blue' href='Utilisateur/user_profil.php?id_user=$1'>@$1</a>").replace(/#(\w+)/g, "<a style='color:black;   font-weight: bold;' href='tweet/hashtag.php?hashtag=$1'>#$1</a>") + `</p>
+          <p class='rtTxt'>` + finish_tweets_content.replace(/@(\w+)/g, "<a style='color:blue' href='Utilisateur/user_profil.php?id_user=@$1'>@$1</a>").replace(/#(\w+)/g, "<a style='color:black;   font-weight: bold;' href='tweet/hashtag.php?hashtag=$1'>#$1</a>") + `</p>
                                       <p>` + finish_tweets_rtcontent + ` </p>
           </div>
         </div>
