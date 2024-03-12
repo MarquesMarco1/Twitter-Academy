@@ -13,6 +13,32 @@ include('../mysql/mysql.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Messagerie</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            function chargeConv() {
+                $.ajax({
+                    url: 'ajax/refresh_conv.php',
+                    type: 'GET',
+                    dataType: 'json',
+                    data: {
+                        id_user: <?php echo $_SESSION['USER']['id'] ?>,
+                    },
+                    success: function(reussite, statut) {
+                        $('#conv').empty()
+                        for (let index = 0; index < reussite.length; index++) {
+                            body = "<a href = 'users_messages.php?id="+ reussite[index].id_conv +"'> <div class = 'messages'><img src='<?php echo $path ?>" + reussite[index].imgConv +"'> "+ reussite[index].nameConv + "</div> </a>"
+                        $("#conv").append(body);
+                        }
+
+                    }
+                });
+            }
+            chargeConv();
+            setInterval(chargeConv, 5000);
+
+        });
+    </script>
 </head>
 
 <body>
@@ -23,7 +49,7 @@ include('../mysql/mysql.php');
     $getData = $_POST;
     if (isset($getData['memberSearch']) && !empty($getData['memberSearch'])) {
 
-        
+
         if (!empty($getData['nameConv']) && $getData['nameConv'] != " ") {
             $nameConv = $getData['nameConv'];
         } else {
@@ -55,7 +81,7 @@ include('../mysql/mysql.php');
                 "id_user" => $getMember,
             ]);
         }
-    } 
+    }
 
     ?>
 
@@ -99,29 +125,7 @@ include('../mysql/mysql.php');
 
     <input type="search" name="searchUserConv" id="searchUserConv" placeholder="Cherche des messages privés" onkeyup="search_conv()">
 
-    <section id="main-mess">
-        <?php
-        $query = $mysqlClient->prepare("SELECT DISTINCT c.* FROM convo c 
-                                        JOIN convo_users cu ON cu.id_convo = c.id 
-                                        WHERE cu.id_user = :id_user
-                                        ");
-        $query->execute([
-            'id_user' => $_SESSION['USER']['id'],
-        ]);
-        $catchConv = $query->fetchAll(PDO::FETCH_ASSOC);
-
-        if ($catchConv) :
-            foreach ($catchConv as $convo) : ?>
-                <a href="users_messages.php?id=<?php echo $convo['id'] ?>">
-                    <div class="messages"><img src="<?php echo $convo['picture'] ?>"><?php echo $convo['name'] ?></div>
-                </a>
-
-            <?php endforeach ?>
-        <?php else :
-            echo "pas de conversation.";
-        endif;
-        ?>
-    </section>
+    <div id="conv"></div>
 
 
 
