@@ -1,20 +1,21 @@
 :root {
+
   --premiere-color: #e4e4e4;
-  --deuxieme-color: #f9f9f9;
-  --troisieme--color: #f9f9f9;
-  --quatrieme--color: #7a65aa;
-  --blanc: white;
-  --noir: black;
-  --backgroundC: #ffffff;
+  --deuxieme-color: #00000002; /* nav bar */
+  --troisieme--color: #f9f9f9; /* main + profil */
+  --quatrieme--color: #7a65aa; /* button and input*/
+  --blanc: rgb(255, 255, 255); /* post + tendance list */
+  --noir: black; /* font color*/
+  --backgroundC: #ffffff; /* background color*/
   --grey: rgba(0, 0, 0, 0.161);
-}
+} 
+
 
 /* Base styles */
 * {
 
   text-decoration: none;
   box-sizing: border-box;
-
 }
 
 a {
@@ -51,7 +52,7 @@ body {
   position: fixed;
   left: 0;
   top: 0;
-  background-color: var(--blanc);
+  background-color: var(--deuxieme-color);
   padding: 10px;
   margin-left: 11%;
 }
@@ -60,7 +61,6 @@ body {
   display: flex;
   color: var(--noir);
   text-decoration: none;
-  background-color: var(--blanc);
   border-radius: 50px;
   font-size: 25px;
 
@@ -198,13 +198,11 @@ body {
   font-size: 16px;
 }
 
-.rtTxt {
-  font-style: italic;
-  font-size: 15px;
-  color: #333;
+#publishPost:hover {
+  background-color: #45a049;
 }
 
-#publishPost:hover {
+.post-button a:hover {
   background-color: #45a049;
 }
 
@@ -256,6 +254,7 @@ body {
 .post-button a {
   background-color: var(--quatrieme--color);
   justify-content: center;
+  color: white;
 }
 
 .borderpostcontent {
@@ -487,10 +486,29 @@ body {
   color: #333;
 }
 
-/*-----------*/
+/*----- EDIT PROFIL------*/
 
 
-.postTweet {
-  width: 100%;
- 
+.form-profil {
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  flex-direction: column;
+  font-size: 25px;
+  margin: 6%;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-content: center;
+}
+
+.form-profil form {
+  display: flex;
+  flex-direction: column;
+  margin: 3%;
+  
+}
+
+.form-profil form input {
+  width: 200px;
+
 }

@@ -245,13 +245,10 @@ if (!isset($_SESSION['USER'])) {
                                  </span>
                                </div>
                                `;
-                     $('#tweets').append(`` + body + ``);
+                 $('#tweets').append(`` + body + ``);
              });
-
-           }
-
-       
-       } */
+           }       
+       }*/
   </script>
 </head>
 
