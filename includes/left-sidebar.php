@@ -20,9 +20,21 @@ include('path.php');
     <a href="<?php echo $path ?>Utilisateur/user_profil.php?id_user=<?php echo $_SESSION['USER']['at_user_name'] ?>"><img src="<?php echo $path ?>assets/icons8-utilisateur-24.png" alt="">
       <p>Profil</p>
     </a>
-    <a href="<?php echo $path ?>Utilisateur/deconnexion.php"><img src="<?php echo $path ?>assets/icons8-points-de-suspension-30.png" alt="">
-      <p>Plus</p>
+
+    <a href="<?php echo $path ?>Utilisateur/deconnexion.php"><img src="<?php echo $path ?>assets/icons8-engrenage-24.png" alt="">
+      <p>Paramètre</p>
     </a>
+
+    <a href="<?php echo $path ?>Utilisateur/deconnexion.php"><img src="<?php echo $path ?>assets/icons8-déconnecté-30.png" alt="">
+      <p>Déconnexion</p>
+    </a>
+    <div class="button post-button">
+    <a href="<?php echo $path ?>Utilisateur/deconnexion.php">
+      <p>Post</p>
+    </a>
+    </div>
+
+
   </div>
   <div class="profil">
     <a href="<?php echo $path ?>Utilisateur/user_profil.php?id_user=<?php echo $_SESSION['USER']['at_user_name'] ?>">

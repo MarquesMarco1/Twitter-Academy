@@ -4,7 +4,7 @@
   --deuxieme-color: #00000002; /* nav bar */
   --troisieme--color: #f9f9f9; /* main + profil */
   --quatrieme--color: #7a65aa; /* button and input*/
-  --blanc: rgba(255, 255, 255, 0.057); /* post + tendance list */
+  --blanc: rgb(255, 255, 255); /* post + tendance list */
   --noir: black; /* font color*/
   --backgroundC: #ffffff; /* background color*/
   --grey: rgba(0, 0, 0, 0.161);
@@ -202,6 +202,10 @@ body {
   background-color: #45a049;
 }
 
+.post-button a:hover {
+  background-color: #45a049;
+}
+
 .profilpost {
   display: flex;
 }
@@ -250,6 +254,7 @@ body {
 .post-button a {
   background-color: var(--quatrieme--color);
   justify-content: center;
+  color: white;
 }
 
 .borderpostcontent {
