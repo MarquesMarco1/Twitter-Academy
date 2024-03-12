@@ -8,7 +8,8 @@
   --noir: black; /* font color*/
   --backgroundC: #ffffff; /* background color*/
   --grey: rgba(0, 0, 0, 0.161);
-}
+} 
+
 
 /* Base styles */
 * {
@@ -480,4 +481,29 @@ body {
   color: #333;
 }
 
-/*-----------*/
+/*----- EDIT PROFIL------*/
+
+
+.form-profil {
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  flex-direction: column;
+  font-size: 25px;
+  margin: 6%;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-content: center;
+}
+
+.form-profil form {
+  display: flex;
+  flex-direction: column;
+  margin: 3%;
+  
+}
+
+.form-profil form input {
+  width: 200px;
+
+}

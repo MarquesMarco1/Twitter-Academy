@@ -71,7 +71,7 @@ img {
     padding: 30px;
     border-radius: 50px;
     box-sizing: border-box;
-    background-color: gray;
+    background-color: var(--premiere-color);
     position: absolute;
     top: 50%;
     left: 50%;
@@ -80,7 +80,7 @@ img {
 
 .popup-content1 input[type=submit],
 .popup-content2 input[type=submit] {
-    color: gray;
+    color: var(--premiere-color);
     border-radius: 10px;
     padding: 5px 10px;
     width: 25%;
