@@ -108,12 +108,12 @@ include('../mysql/mysql.php');
         $query->execute([
             'id_user' => $_SESSION['USER']['id'],
         ]);
-        $catchMessage = $query->fetchAll(PDO::FETCH_ASSOC);
+        $catchConv = $query->fetchAll(PDO::FETCH_ASSOC);
 
-        if ($catchMessage) :
-            foreach ($catchMessage as $message) : ?>
-                <a href="users_messages.php?id=<?php echo $message['id'] ?>">
-                    <div class="messages"><img src="<?php echo $message['picture'] ?>"><?php echo $message['name'] ?></div>
+        if ($catchConv) :
+            foreach ($catchConv as $convo) : ?>
+                <a href="users_messages.php?id=<?php echo $convo['id'] ?>">
+                    <div class="messages"><img src="<?php echo $convo['picture'] ?>"><?php echo $convo['name'] ?></div>
                 </a>
 
             <?php endforeach ?>
