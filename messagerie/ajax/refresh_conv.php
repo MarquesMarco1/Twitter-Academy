@@ -1,12 +1,17 @@
 <?php
 
-session_start();
 include("../../mysql/mysql.php");
 
-$query = $mysqlClient->prepare("SELECT DISTINCT c.id AS id_conv, c.name AS nameConv, c.picture AS imgConv FROM convo c JOIN convo_users cu ON cu.id_convo = c.id WHERE cu.id_user = :id_user");
+$query = $mysqlClient->prepare("SELECT id FROM convo JOIN convo_users cu ON convo.id = cu.id_convo WHERE id_user = :id_user AND id > :id ORDER BY id
+DESC'");
 $query->execute([
     'id_user' => $_SESSION['USER']['id'],
 ]);
-$catchConv = $query->fetchAll(PDO::FETCH_ASSOC);
 
-echo json_encode($catchConv);
+$conv = null;
+
+while($refreshConv = $query->fetch(PDO::FETCH_ASSOC)) {
+    $conv .= "<div id=\"" . $conv['id']. "\">";
+}
+
+echo $conv;
