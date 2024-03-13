@@ -39,45 +39,7 @@ include('../mysql/mysql.php');
 
         });
 
-/*         $(document).ready(function() {
-            function getConv() {
-                $.ajax({
-                    url: 'ajax/get_conv.php',
-                    type: 'GET',
-                    dataType: 'json',
-                    data: {
-                        id_user: <?php echo $_SESSION['USER']['id'] ?>,
-                    },
-                    success: function(reussite, statut) {
-                        for (let index = 0; index < reussite.length; index++) {
-                            body = "<a href = 'users_messages.php?id=" + reussite[index].id_conv + "'> <div class = 'messages'><img src='<?php echo $path ?>" + reussite[index].imgConv + "'> " + reussite[index].nameConv + "</div> </a>"
-                            $("#conv").append(body);
-                        }
 
-                    }
-                });
-            }
-            getConv();
-
-            function ChargeConv() {
-                setTimeout(function() {
-                    var premierID = $('#conv div:first').attr('id');
-                    $.ajax({
-                        url: 'ajax/refresh_conv.php?id=' + premierID,
-                        type: 'GET',
-                        data: {
-                            id_user: <?php echo $_SESSION['USER']['id'] ?>  ,
-                        },
-                        success: function(reussite, statut) {
-                            console.log(reussite);
-                            $('#conv').prepend(reussite);
-                        }
-                    });
-                    chargeConv();
-                }, 5000);
-            } 
-
-        }); */
     </script>
 </head>
 

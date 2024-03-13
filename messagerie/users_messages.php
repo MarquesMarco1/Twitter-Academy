@@ -41,7 +41,7 @@ include('../includes/path.php');
             chargeMsg();
 
 
-            $('myForm').on('submit', function(e) {
+            $('#myForm').on('submit', function(e) {
                 e.preventDefault();
                 var message = $("#msg").val();
 
