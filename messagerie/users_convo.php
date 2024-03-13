@@ -14,8 +14,32 @@ include('../mysql/mysql.php');
     <link rel="stylesheet" href="style.css">
     <title>Messagerie</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-    <script>
+<script>
         $(document).ready(function() {
+            function chargeConv() {
+                $.ajax({
+                    url: 'ajax/get_conv.php',
+                    type: 'GET',
+                    dataType: 'json',
+                    data: {
+                        id_user: <?php echo $_SESSION['USER']['id'] ?>,
+                    },
+                    success: function(reussite, statut) {
+                        $('#conv').empty()
+                        for (let index = 0; index < reussite.length; index++) {
+                            body = "<a href = 'users_messages.php?id="+ reussite[index].id_conv +"'> <div class = 'messages'><img src='<?php echo $path ?>" + reussite[index].imgConv +"'> "+ reussite[index].nameConv + "</div> </a>"
+                        $("#conv").append(body);
+                        }
+
+                    }
+                });
+            }
+            chargeConv();
+            setInterval(chargeConv, 3000);
+
+        });
+
+/*         $(document).ready(function() {
             function getConv() {
                 $.ajax({
                     url: 'ajax/get_conv.php',
@@ -42,7 +66,7 @@ include('../mysql/mysql.php');
                         url: 'ajax/refresh_conv.php?id=' + premierID,
                         type: 'GET',
                         data: {
-                            id_user: <?php echo $_SESSION['USER']['id'] ?>,
+                            id_user: <?php echo $_SESSION['USER']['id'] ?>  ,
                         },
                         success: function(reussite, statut) {
                             console.log(reussite);
@@ -51,9 +75,9 @@ include('../mysql/mysql.php');
                     });
                     chargeConv();
                 }, 5000);
-            }
+            } 
 
-        });
+        }); */
     </script>
 </head>
 
@@ -71,7 +95,6 @@ include('../mysql/mysql.php');
         } else {
             $nameConv = "Conversation de " . $_SESSION['USER']['username'];
         }
-
 
         if (!empty($getData['imgConv'])) {
             $imgConv = $getData['imgConv'];
@@ -131,15 +154,15 @@ include('../mysql/mysql.php');
 
                 <a href="javascript:void(0)" onclick="togglePopup()" class="popup-exit">Fermer</a>
                 <label for="nameConv">Nom du groupe :</label>
-                <input type="text" name="nameConv" id="nameConv">
+                <input type="text" name="nameConv" id="nameConv"><br>
                 <label for="imgConv">Photo de groupe :</label>
-                <input type="url" name="imgConv" id="imgConv">
+                <input type="file" name="imgConv" id="imgConv"><br>
                 <input type="submit" value="Créer un groupe">
             </form>
         </div>
     </div>
 
-    <input type="search" name="searchUserConv" id="searchUserConv" placeholder="Cherche des messages privés" onkeyup="search_conv()">
+    <input type="search" name="searchUserConv" id="searchUserConv" placeholder="Chercher des conversations" onkeyup="search_conv()">
 
     <div id="conv"></div>
 
