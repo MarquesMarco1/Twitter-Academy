@@ -27,8 +27,8 @@ $verif->login();
         <img src="<?php echo $path ?>assets/Logo2.png" alt="">
         </div>
         <div class="colonne2">
-            <button class="button" onclick="togglePopup1()" id="create">Créez votre compte</button>
-            <button class="button" onclick="togglePopup2()" id="connect">Se connecter</button>
+            <button onclick="togglePopup1()" id="create">Créez votre compte</button>
+            <button onclick="togglePopup2()" id="connect">Se connecter</button>
             <?php include('./includes/erreur.php') ?>
         </div>
 

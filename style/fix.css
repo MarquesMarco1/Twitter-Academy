@@ -10,16 +10,3 @@
     margin: 10px auto;
     color: black;
 }
-
-
-:root {
-
-    --premiere-color: #e4e4e4;
-    --deuxieme-color: #00000002; /* nav bar */
-    --troisieme--color: #f9f9f9; /* main + profil */
-    --quatrieme--color: #7a65aa; /* button and input*/
-    --blanc: rgba(255, 255, 255, 0.057); /* post + tendance list */
-    --noir: black; /* font color*/
-    --backgroundC: #ffffff; /* background color*/
-    --grey: rgba(0, 0, 0, 0.161);
-  }

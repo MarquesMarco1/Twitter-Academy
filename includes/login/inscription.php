@@ -1,6 +1,6 @@
 <div id="popup-overlay1">
     <div class="popup-content1">
-        <form class="form-inscription" action="" method="post" enctype="multipart/form-data">
+        <form action="" method="post" enctype="multipart/form-data">
             <h2>Créez votre compte</h2>
             <label for="username">Nom Utilisateur :</label>
             <input type="text" name="username" id="username" required>
@@ -23,7 +23,7 @@
             <input type="text" name="verif_bot" id="verif_bot">
             <input type="hidden" name="hidden_verif" value="<?php echo $VerifBasique ?>">
             <input type="submit" value="Crée le compte">
-            <a href="javascript:void(0)" onclick="togglePopup1()" class="popup-exit">X</a>
+            <a href="javascript:void(0)" onclick="togglePopup1()" class="popup-exit">Fermer</a>
         </form>
     </div>
 </div>

@@ -5,23 +5,37 @@ if (!isset($user['id'])) {
     return;
 }
 
-$sql = $mysqlClient->prepare('SELECT u.*, t.content, t.id as tweet_id, t.time FROM tweet t JOIN user u ON u.id = t.id_user WHERE t.id_user = :id AND t.id_quoted_tweet IS NULL AND t.id_response IS NULL ORDER BY t.id DESC');
-$sql->execute([
-    "id" => $user['id'],
-]);
-$tweets = $sql->fetchAll(PDO::FETCH_ASSOC);
 
-$sql = $mysqlClient->prepare('SELECT count(u.id) as count FROM user u JOIN follow f ON f.id_user = u.id WHERE u.id = :id');
+$sql = $mysqlClient->prepare('SELECT count(u.id) as count, u.username FROM user u JOIN follow f ON f.id_user = u.id WHERE u.id = :id');
 $sql->execute([
     "id" => $user['id'],
 ]);
 $follower = $sql->fetch(PDO::FETCH_ASSOC);
 
-$sql = $mysqlClient->prepare('SELECT count(u.id) as count FROM user u JOIN follow f ON f.id_follow = u.id WHERE u.id = :id');
+$sql = $mysqlClient->prepare('SELECT count(u.id) as count, u.username FROM user u JOIN follow f ON f.id_follow = u.id WHERE u.id = :id');
 $sql->execute([
     "id" => $user['id'],
 ]);
 $following = $sql->fetch(PDO::FETCH_ASSOC);
+
+$sql = $mysqlClient->prepare('SELECT u.* FROM user u JOIN follow f ON f.id_user = :id WHERE f.id_follow = u.id');
+$sql->execute([
+    "id" => $user['id'],
+]);
+$followingUser = $sql->fetchAll(PDO::FETCH_ASSOC);
+$sql = $mysqlClient->prepare('SELECT u.* FROM user u JOIN follow f ON f.id_follow = :id WHERE f.id_user = u.id');
+$sql->execute([
+    "id" => $user['id'],
+]);
+$followerUser = $sql->fetchAll(PDO::FETCH_ASSOC);
+$sql = $mysqlClient->prepare('SELECT f.* FROM follow f WHERE f.id_user = :id_user AND f.id_follow = :id_follow');
+$sql->execute([
+    "id_user" => $_SESSION['USER']['id'],
+    "id_follow" => $user['id'],
+]);
+$uFollow = $sql->fetch(PDO::FETCH_ASSOC);
+
+
 ?>
 
 
@@ -50,75 +64,77 @@ $following = $sql->fetch(PDO::FETCH_ASSOC);
                     <br> <span><i class="fa fa-calendar"></i> <?php echo $user['creation_time'] ?> </span>
                     <div class="follow">
                         <div class="followers">
-                            <span><?php echo $follower['count'] ?> Following</span>
-                        </div>
-                        <div><span><?php echo $following['count'] ?> Followers</span></div>
+                            <span onclick="togglePopup1()"><?php echo $follower['count'] ?> Following</span>
+                        </div >
+                        <div class="following"><span onclick="togglePopup2()"><?php echo $following['count'] ?> Followers</span></div>
                     </div>
-                    <a href="../mysql/r_follow.php?id_user=<?php echo $_SESSION['USER']['id']?>&id_follow=<?php echo $user['id']?>">+ Follow</a>
+
+                    <div id="popup-overlay1">
+                        <div class="popup-content1">
+                            <?php foreach ($followingUser as $followings) : ?>
+                                <div class="followingPopup">
+                                    <img src="<?php echo $path . $followings['profile_picture'] ?>" alt="">
+                                    <a style='color:blue' href="user_profil.php?id_user=<?php echo $followings['at_user_name'] ?>"><?php echo $followings['at_user_name'] ?></a>
+                                </div>
+                            <?php endforeach; ?>
+                            <a href="javascript:void(0)" onclick="togglePopup1()" class="popup-exit">Fermer</a>
+                        </div>
+                    </div>
+
+                    <div id="popup-overlay2">
+                        <div class="popup-content2">
+                            <?php foreach ($followerUser as $followings) : ?>
+                                <div class="followingPopup">
+                                    <img src="<?php echo $path . $followings['profile_picture'] ?>" alt="">
+                                    <a style='color:blue' href="user_profil.php?id_user=<?php echo $followings['at_user_name'] ?>"><?php echo $followings['at_user_name'] ?></a>
+                                </div>
+                            <?php endforeach; ?>
+                            <a href="javascript:void(0)" onclick="togglePopup2()" class="popup-exit">Fermer</a>
+                        </div>
+                    </div>
+
+                    <script>
+                        function togglePopup1() {
+                            let popup = document.querySelector('#popup-overlay1');
+                            popup.classList.toggle("open");
+                        }
+
+                        function togglePopup2() {
+                            let popup = document.querySelector('#popup-overlay2');
+                            popup.classList.toggle("open");
+                        }
+                    </script>
+
+                    <?php if (isset($uFollow['id_user'])) : ?>
+                        <?php if ($uFollow['id_user'] != $user['id']) : ?>
+                            <a href="../mysql/r_follow.php?id_user=<?php echo $_SESSION['USER']['id'] ?>&id_follow=<?php echo $user['id'] ?>">+ Unfollow</a>
+                        <?php endif; ?>
+                    <?php else : ?>
+                        <?php if ($uFollow['id_user'] != $user['id']) : ?>
+                            <a href="../mysql/r_follow.php?id_user=<?php echo $_SESSION['USER']['id'] ?>&id_follow=<?php echo $user['id'] ?>">+ Follow</a>
+                        <?php endif; ?>
+                    <?php endif; ?>
                 </div>
             </section>
 
             <section class="tweets">
                 <div class="heading">
-                    <p>Tweets</p>
-                    <p>Tweets and Replies</p>
-                    <p>Medias</p>
-                    <p>Likes</p>
+                <a href="../Utilisateur/user_profil.php?id_user=<?php echo $user['at_user_name']?>&show=tweet"><p>Tweets/Retweets</p></a> 
+                <a href="../Utilisateur/user_profil.php?id_user=<?php echo $user['at_user_name']?>&show=retweetandcomment"><p>Replies</p></a> 
+                 
                 </div>
             </section>
-            <section class="mytweets">
-                <?php foreach ($tweets as $tweet) : ?>
-                    <div class="post">
-                        <div class="profilpost">
-                            <div class="photodeprofil">
-                                <img src="<?php echo $path . $tweet['profile_picture'] ?>" alt="photodeprofil">
-                            </div>
-                            <div class="infoprofilontwit">
-                                <div class="nomutilisateur">
-                                    <a><?php echo $tweet['username'] ?></a>
-                                </div>
-                                <div class="pseudo">
-                                    <a><?php echo $tweet['at_user_name'] ?></a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="borderpostcontent">
-                            <div class="postcontent">
-                                <p><?php echo $tweet['content'] ?>
-                                </p>
-                            </div>
-
-                        </div>
-                        <p><?php echo $tweet['time'] ?></p>
-                        <div class="smalllink">
-                            <span class="gifclick">
-                                <a href="../tweet/retweet.php?id_tweet=<?php echo $tweet['tweet_id'] ?>">
-                                    <img src="../assets/icons8-twitter-entoure.gif" alt="Main Logo">
-                                    <div class="nombredeRT">
-                                        <p>0</p>
-                                    </div>
-                                </a>
-                            </span>
-                            <span class="gifclick">
-                                <a href="Homepage.html">
-                                    <img src="../assets/icons8-aimer.gif" alt="Main Logo">
-                                    <div class="nombredelike">
-                                        <p>0</p>
-                                    </div>
-                                </a>
-                            </span>
-                            <span class="gifclick">
-                                <a href="../tweet/comment.php?id_tweet=<?php echo $tweet['tweet_id'] ?>">
-                                    <img src="../assets/icons8-bulle.gif" alt="Main Logo">
-                                    <div class="nombredecom">
-                                        <p>0</p>
-                                    </div>
-                                </a>
-                        </div>
-                    </div>
-                <?php endforeach; ?>
-            </section>
+           
+            <?php 
+            if ($_GET['show'] == "tweet") {
+                include('../Utilisateur/tweet_user.php');
+            } else if ($_GET['show'] == "retweetandcomment") {
+                include('../Utilisateur/comment_user.php');
+            } else {
+                include('../Utilisateur/tweet_user.php');
+            }
+           
+            ?>
         </div>
 
     </div>

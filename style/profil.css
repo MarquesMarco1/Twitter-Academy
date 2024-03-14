@@ -229,6 +229,7 @@ body {
     background-color: var(--blanc);
     padding: 10px;
     margin-bottom: 20px;
+    border: solid black 1px;
     border-radius: 5px;
 }
 
