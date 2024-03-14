@@ -512,3 +512,81 @@ body {
   width: 200px;
 
 }
+
+/*------MESSAGERIE-----*/
+
+.right-sidebar {
+  width: 290px;
+  position: fixed;
+  right: 0;
+  top: 0;
+  padding: 10px;
+  background-color: var(--deuxieme-color);
+  height: 100vh;
+  margin-right: 9%;
+}
+
+.search-bar {
+  padding: 10px;
+  margin-bottom: 20px;
+  width: calc(100% - 20px);
+  background-color: #fff;
+  border: none;
+  border-radius: 5px;
+}
+
+.suggestion p {
+  font-size: 9px;
+  margin: 0;
+  padding-left: 4px;
+}
+
+.background {
+  background-color: var();
+  border-radius: 50px;
+  padding: 3%;
+}
+
+.conversation {
+  display: block;
+  padding: 5px;
+  color: var(--noir);
+  text-decoration: none;
+  margin: 7px;
+  background-color: var(--blanc);
+  font-size: 17px;
+  text-align: start;
+  font-weight: bold;
+}
+
+.utilisateur-dans-conversation {
+  font-size: 10px;
+}
+
+.conversation:hover {
+  background-color: var(--premiere-color);
+  transition: background-color 0.2s ease;
+}
+
+.conversation a {
+  margin-left: 10px;
+}
+
+.conversation p {
+  margin-left: 2px;
+}
+
+.tendance {
+  height: auto
+}
+
+.all-sugestion {
+  margin-bottom: 10px;
+  background-color: red;
+}
+
+.sugguser {
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}

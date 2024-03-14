@@ -13,7 +13,7 @@ include('path.php');
       <p>Accueil</p>
     </a>
 
-    <a href="#"><img src="<?php echo $path ?>assets/icons8-message-50.png" alt="">
+    <a href="<?php echo $path ?>Utilisateur/messagerie.php"><img src="<?php echo $path ?>assets/icons8-message-50.png" alt="">
       <p>Message</p>
     </a>
 
