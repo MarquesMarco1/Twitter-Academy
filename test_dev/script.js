@@ -1,12 +1,19 @@
-const input = document.getElementById("myInput")
-input.onkeydown = myFunction
-function myFunction(e) {
-if (e.key == "#") {
-console.log("hastag");
+let availableKeywords = [
+    'html',
+    'css',
+    'easy'
+];
 
-} else if (e.key == "@") {
-console.log("arobase");
-} else {
-console.log("rien");
-}
+const resultBox = document.querySelector(".result-box");
+const inputBox = document.getElementById("input-box");
+
+inputBox.onkeyup = function () {
+    let result = [];
+    let input = inputBox.value;
+    if (input.length) {
+        result = availableKeywords.filter((keyword) => {
+            return keyword.toLowerCase().includes(input.toLowerCase());
+        });
+        console.log(result)
+    }
 }
