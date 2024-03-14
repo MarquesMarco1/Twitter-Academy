@@ -589,7 +589,7 @@ body {
   display: flex;
   flex-direction: column-reverse; 
   width: 50em;
-  height: 500px;
+  height: 860px;
   overflow: auto;
 }
 

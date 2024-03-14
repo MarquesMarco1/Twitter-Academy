@@ -69,6 +69,13 @@ include('../includes/path.php');
         'id' => $_GET['id'],
     ]);
     $convInfo = $query->fetch(PDO::FETCH_ASSOC);
+
+
+    $query = $mysqlClient->prepare("SELECT u.* FROM convo_users cu JOIN user u ON u.id = cu.id_user WHERE cu.id_convo = :id ");
+    $query->execute([
+        'id' => $_GET['id'],
+    ]);
+    $convUser = $query->fetchAll(PDO::FETCH_ASSOC);
     ?>
 </head>
 
@@ -76,14 +83,11 @@ include('../includes/path.php');
     <div class="marging">
 
         <?php include('../includes/path.php') ?>
-
+        <?php include('../includes/left-sidebar.php') ?>
         <div class="mise-en-page">
             <div>
-                <h1> <img src="<?php echo $path, $convInfo['picture'] ?>">
-                    <?php echo $convInfo['name'] ?>
-                </h1>
-                <a href="users_convo.php">Retour</a>
-                <button onclick="togglePopup()" id="editGroup">Editer le groupe</button>
+        
+        
 
                 <?php
                 $getEdit = $_POST;
@@ -142,7 +146,7 @@ include('../includes/path.php');
                 </script>
             </div>
         </div>
-        <?php include('../includes/left-sidebar.php') ?>
+        <?php include('../includes/right-sidebar-message.php') ?>
     </div>
 
 </body>
