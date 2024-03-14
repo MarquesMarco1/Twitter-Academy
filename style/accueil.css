@@ -512,3 +512,125 @@ body {
   width: 200px;
 
 }
+
+/*------MESSAGERIE-----*/
+
+
+
+.suggestion p {
+  font-size: 9px;
+  margin: 0;
+  padding-left: 4px;
+}
+
+.background {
+  background-color: var();
+  border-radius: 50px;
+  padding: 3%;
+}
+
+.conversations {
+  display: block;
+  padding: 5px;
+  color: var(--noir);
+  text-decoration: none;
+  margin: 7px;
+  background-color: var(--blanc);
+  font-size: 17px;
+  text-align: start;
+  font-weight: bold;
+}
+
+.utilisateur-dans-conversation {
+  font-size: 10px;
+}
+
+.conversations:hover {
+  background-color: var(--premiere-color);
+  transition: background-color 0.2s ease;
+}
+
+.conversations a {
+  margin-left: 10px;
+}
+
+.conversations p {
+  margin-left: 2px;
+}
+
+.tendance {
+  height: auto
+}
+
+.all-sugestion {
+  margin-bottom: 10px;
+  background-color: red;
+}
+
+.sugguser {
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.talk {
+  margin: 20px 0;
+  color: #f1f1f1;
+  display: flex;
+  align-items: center;
+  
+  font-size: 18px;
+  width: 50%;
+
+
+}
+
+.jetest {
+  display: flex;
+  flex-direction: column-reverse; 
+  width: 50em;
+  height: 500px;
+  overflow: auto;
+}
+
+.talk img {
+  width: 50px;
+  border-radius: 50%;
+  margin-bottom: auto;
+}
+
+.talk p {
+  padding: 15px;
+  line-height: 25px;
+  border-radius: 20px;
+}
+.right {
+  margin-left: 20em;
+}
+.right p {
+  margin-right: 10px;
+  background:#1c1c1c;
+}
+.left p {
+  margin-left: 10px;
+  background: rgb(216,216,216);
+  color: #000;
+}
+
+.chat {
+  flex-shrink: 0;
+  width: 100%;
+  height: 90px;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.submit-btn {
+  background: #322828;
+  justify-content: center;
+  align-items: center;
+  color: var(--blanc);
+}
