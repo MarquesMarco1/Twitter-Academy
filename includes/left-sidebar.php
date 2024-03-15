@@ -33,8 +33,6 @@ include('path.php');
       <p>Post</p>
     </a>
     </div>
-
-
   </div>
   <div class="profil">
     <a href="<?php echo $path ?>Utilisateur/user_profil.php?id_user=<?php echo $_SESSION['USER']['at_user_name'] ?>">
