@@ -1,10 +1,11 @@
-function toggleMode() {
-    console.log("toggle mode");
-    const body = document.body;
+const darkModeToggle = document.getElementById('darkModeToggle');
+const body = document.body;
+
+darkModeToggle.addEventListener('click', () => {
     body.classList.toggle('dark-mode');
     if (body.classList.contains('dark-mode')) {
-        document.getElementById('mode-toggle').textContent = 'Light Mode';
+        darkModeToggle.textContent = 'Light Mode';
     } else {
-        document.getElementById('mode-toggle').textContent = 'Dark Mode';
+        darkModeToggle.textContent = 'Dark Mode';
     }
-}
+});

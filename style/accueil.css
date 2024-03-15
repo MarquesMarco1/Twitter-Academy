@@ -185,6 +185,11 @@ body {
   border: 1px solid #ccc;
   font-size: 16px;
   resize: vertical; 
+ 
+}
+
+.postcontent {
+  color: var(--noir);
 }
 
 #publishPost {
@@ -469,21 +474,30 @@ body {
 
 /*-----dark mode------*/
 
-.button {
+#darkModeToggle button {
   padding: 10px 20px;
-  font-size: 16px;
+  background-color: #007bff;
+  color: #fff;
   border: none;
+  border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#darkModeToggle button:hover {
+  background-color: #65686b;
 }
 
 .dark-mode {
-  background-color: #333;
-  color: #fff;
-}
+  --premiere-color: #1e1e1e;
+  --deuxieme-color: #1e1e1e;
+  --troisieme--color: #1e1e1e;
+  --quatrieme--color: #7a65aa;
+  --blanc: #2b2a2a;
+  --noir: white;
+  --backgroundC: #1e1e1e;
+  --grey: white;
 
-.light-mode {
-  background-color: #fff;
-  color: #333;
 }
 
 /*----- EDIT PROFIL------*/

@@ -264,15 +264,9 @@ if (!isset($_SESSION['USER'])) {
 
   </div>
 
-  <div class="dark-light">
-        <div class="container">
-            <label class="switch" for="theme-bt">
-                <input type="checkbox" id="theme-bt" onclick="toggleMode()">
-                <span class="slider round"></span>
-            </label>
-            <button id="mode-toggle">Dark Mode</button>
-        </div>
-    </div>
+  <div>
+    <button id="darkModeToggle">Dark Mode</button>
+  </div>
   <script src="dark.js"></script>
 
   
