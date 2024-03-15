@@ -1,7 +1,7 @@
 <?php
 include('../mysql/mysql.php');
 
-$sql = $mysqlClient->prepare("SELECT u.*, t.content, t.id as tweet_id, t.time, t.id_quoted_tweet  FROM tweet t JOIN user u ON u.id = t.id_user WHERE t.content LIKE CONCAT('%', '#', :hashtag, '%')");
+$sql = $mysqlClient->prepare("SELECT u.*, t.content, t.id as tweet_id, t.time, t.id_quoted_tweet  FROM tweet t JOIN user u ON u.id = t.id_user WHERE t.content LIKE CONCAT('%', '#', :hashtag, '%') ORDER BY t.time DESC");
 $sql->execute([
     'hashtag' => $_GET['hashtag'],
 ]);
