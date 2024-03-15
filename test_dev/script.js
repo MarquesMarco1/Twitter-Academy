@@ -1,22 +1,28 @@
-let result = []
+let userName = []
 
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            const response = JSON.parse(xhttp.responseText);
-           console.log(response);
-        }
-    };
-    xhttp.open("GET", "users.php", true);
-    xhttp.send();
+var xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+        const response = JSON.parse(xhttp.responseText);
+        userName = response.map(user => user.at_user_name);
+        console.log(userName);
+    }
+};
+xhttp.open("GET", "users.php", true);
+xhttp.send();
 
-    const resultBox = document.querySelector(".result-box");
-    const inputBox = document.getElementById("input-box");
+
+const resultBox = document.querySelector(".result-box");
+const inputBox = document.getElementById("input-box");
 
 inputBox.onkeyup = function () {
     let input = inputBox.value;
     if (input.length) {
+result = userName.filter((keyword) => {
+return keyword.toLowerCase().includes(input.toLowerCase())
+});
+console.log(result);
 
 
-
-    }}
+    }
+}
