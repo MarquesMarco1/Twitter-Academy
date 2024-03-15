@@ -22,7 +22,14 @@ result = userName.filter((keyword) => {
 return keyword.toLowerCase().includes(input.toLowerCase())
 });
 console.log(result);
-
-
     }
+    display(result);
+}
+
+function display(result) {
+    const content = result.map((list) => {
+        return "<li>" + list + "</li>";
+    });
+
+    resultBox.innerHTML = "<ul>" + content + "</ul>";
 }
