@@ -29,6 +29,7 @@ $hashtag2 = $sql->fetchAll(PDO::FETCH_ASSOC);
         </div>
         <?php endforeach; ?>
       </div>
+      
       <div class="sugguser">
         <h1>Suggestion User</h1>
         <?php foreach ($usersugg as $users) : ?>

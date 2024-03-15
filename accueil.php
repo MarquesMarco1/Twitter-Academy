@@ -263,7 +263,19 @@ if (!isset($_SESSION['USER'])) {
     <?php include('includes/right-sidebar.php') ?>
 
   </div>
+
+  <div class="dark-light">
+        <div class="container">
+            <label class="switch" for="theme-bt">
+                <input type="checkbox" id="theme-bt" onclick="toggleMode()">
+                <span class="slider round"></span>
+            </label>
+            <button id="mode-toggle">Dark Mode</button>
+        </div>
+    </div>
   <script src="dark.js"></script>
+
+  
 </body>
 
 </html>

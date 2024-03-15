@@ -25,7 +25,7 @@ foreach ($hashtag_list as $hashtag_lists) {
     <div>
       <form action="./mysql/r_tweet.php" method="post" class="create-post">
         <h2>Faire un post</h2>
-        <input name="tweet" id="tweet" placeholder="Quoi de neuf ?">
+        <input name="tweet" id="tweet" placeholder="...">
         <div id="txtCountTweet" class="counter">0</div>
         <br>
         <input type="hidden" name="id_user" id="id_user" value="<?php echo $_SESSION['USER']['id'] ?>">
