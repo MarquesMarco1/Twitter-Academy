@@ -17,13 +17,21 @@ const inputBox = document.getElementById("input-box");
 
 inputBox.onkeyup = function () {
     let input = inputBox.value;
-    if (input.length) {
-result = userName.filter((keyword) => {
-return keyword.toLowerCase().includes(input.toLowerCase())
-});
-console.log(result);
-    }
-    display(result);
+    if (input.startsWith('@') || input.includes('@')) {
+        let search = input.indexOf('@');
+        let arobase = input.substring(search);
+        console.log(arobase);
+        if (arobase.startsWith('@')) {
+            console.log('oui')
+        let result = [];
+        if (arobase.length) {
+            result = userName.filter((keyword) => {
+                return keyword.toLowerCase().includes(arobase.toLowerCase())
+            });
+            console.log(result);
+        }
+        display(result);
+    }}
 }
 
 function display(result) {
