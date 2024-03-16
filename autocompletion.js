@@ -1,29 +1,28 @@
+let userName = [];
 
-let userName = []
-
-var xhttp = new XMLHttpRequest();
-xhttp.onreadystatechange = function () {
+var xhttpUser = new XMLHttpRequest();
+xhttpUser.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
-        const response = JSON.parse(xhttp.responseText);
+        const response = JSON.parse(xhttpUser.responseText);
         userName = response.map(user => user.at_user_name);
         console.log(userName);
     }
 };
-xhttp.open("GET", "mysql/r_users.php", true);
-xhttp.send();
+xhttpUser.open("GET", "mysql/r_users.php", true);
+xhttpUser.send();
 
 
 const resultBox = document.querySelector(".result-box");
 const inputBox = document.getElementById("txtTweet");
 
 inputBox.onkeyup = function () {
-    let input = inputBox.value;
-    if (input.startsWith('@') ) {
-        let search = input.indexOf('@');
-        let arobase = input.substring(search);
+    let inputText = inputBox.value;
+    if (inputText.startsWith('@')) {
+        let searchArobase = inputText.indexOf('@');
+        let arobase = inputText.substring(searchArobase);
         console.log(arobase);
         if (arobase.startsWith('@')) {
-            console.log('oui')
+            console.log('oui3')
             let result = [];
             if (arobase.length) {
                 result = userName.filter((keyword) => {
@@ -32,17 +31,17 @@ inputBox.onkeyup = function () {
                 console.log(result);
 
             }
-            display(result);
+            displayUser(result);
 
-        
-        } 
+
+        }
     }
-   else if(input.includes('@')){
-        let search = input.indexOf('@');
-        let arobase = input.substring(search);
+    else if (inputText.includes('@')) {
+        let searchArobase = inputText.indexOf('@');
+        let arobase = inputText.substring(searchArobase);
         console.log(arobase);
         if (arobase.startsWith('@')) {
-            console.log('oui')
+            console.log('oui4')
             let result = [];
             if (arobase.length) {
                 result = userName.filter((keyword) => {
@@ -51,26 +50,27 @@ inputBox.onkeyup = function () {
                 console.log(result);
 
             }
-            display(result);
-        } 
-    }  
+            displayUser(result);
+        }
+    }
     else {
         resultBox.innerHTML = "";
     }
 }
 
-function display(result) {
-    let input = inputBox.value;
-    if (input.startsWith('@') || input.includes('@')) {
+function displayUser(result) {
+    let inputText = inputBox.value;
+    if (inputText.startsWith('@') || inputText.includes('@')) {
         const content = result.map((list) => {
-            return "<li onclick=complete(this)>" + list + "</li>";
+            return "<li onclick=completeUser(this)>" + list + "</li>";
         }).join('');
 
         resultBox.innerHTML = "<ul>" + content + "</ul>";
     }
 }
 
-function complete(list) {
+
+function completeUser(list) {
     inputBox.value = inputBox.value.replace("@", "") + list.innerHTML;
     resultBox.innerHTML = '';
 }
