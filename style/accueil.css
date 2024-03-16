@@ -1,20 +1,21 @@
 :root {
+
   --premiere-color: #e4e4e4;
-  --deuxieme-color: #f9f9f9;
-  --troisieme--color: #f9f9f9;
-  --quatrieme--color: #7a65aa;
-  --blanc: white;
-  --noir: black;
-  --backgroundC: #ffffff;
+  --deuxieme-color: #00000002; /* nav bar */
+  --troisieme--color: #f9f9f9; /* main + profil */
+  --quatrieme--color: #7a65aa; /* button and input*/
+  --blanc: rgb(255, 255, 255); /* post + tendance list */
+  --noir: black; /* font color*/
+  --backgroundC: #ffffff; /* background color*/
   --grey: rgba(0, 0, 0, 0.161);
-}
+} 
+
 
 /* Base styles */
 * {
 
   text-decoration: none;
   box-sizing: border-box;
-
 }
 
 a {
@@ -51,7 +52,7 @@ body {
   position: fixed;
   left: 0;
   top: 0;
-  background-color: var(--blanc);
+  background-color: var(--deuxieme-color);
   padding: 10px;
   margin-left: 11%;
 }
@@ -60,7 +61,6 @@ body {
   display: flex;
   color: var(--noir);
   text-decoration: none;
-  background-color: var(--blanc);
   border-radius: 50px;
   font-size: 25px;
 
@@ -167,6 +167,11 @@ body {
 
 /*----POST-----*/
 
+.timeProfil {
+  font-size: 10px;
+  color: var(--noir);
+}
+
 .create-post {
   margin-bottom: 20px;
 }
@@ -180,6 +185,52 @@ body {
   border: 1px solid #ccc;
   font-size: 16px;
   resize: vertical; 
+ 
+}
+
+.create-post {
+  width: 100%;
+  margin: 0 auto; 
+}
+
+.tweet-input {
+  position: relative;
+}
+
+.create-post textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  border-radius: 10px;
+  resize: none; 
+}
+
+#txtCountTweet {
+  position: absolute;
+  bottom: 5px;
+  right: 10px;
+  font-size: 12px;
+  color: #999;
+}
+
+.create-post button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #1da1f2;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  outline: none;
+}
+
+.create-post button:hover {
+  background-color: #0d8ecf;
+}
+
+.postcontent {
+  color: var(--noir);
 }
 
 #publishPost {
@@ -194,6 +245,10 @@ body {
 }
 
 #publishPost:hover {
+  background-color: #45a049;
+}
+
+.post-button a:hover {
   background-color: #45a049;
 }
 
@@ -234,15 +289,24 @@ body {
   border-radius: 5px;
 }
 
+.repost {
+  background-color: var(--blanc);
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  border: solid 2px var(--grey);
+}
+
 .post-button a {
   background-color: var(--quatrieme--color);
   justify-content: center;
+  color: white;
 }
 
 .borderpostcontent {
   border-top: solid var(--grey);
   border-bottom: solid var(--grey);
-}
+} 
 
 .recommendation-button {
   display: block;
@@ -451,21 +515,176 @@ body {
 
 /*-----dark mode------*/
 
-.button {
+#darkModeToggle button {
   padding: 10px 20px;
-  font-size: 16px;
+  background-color: #007bff;
+  color: #fff;
   border: none;
+  border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#darkModeToggle button:hover {
+  background-color: #65686b;
 }
 
 .dark-mode {
-  background-color: #333;
-  color: #fff;
+  --premiere-color: #1e1e1e;
+  --deuxieme-color: #1e1e1e;
+  --troisieme--color: #1e1e1e;
+  --quatrieme--color: #7a65aa;
+  --blanc: #2b2a2a;
+  --noir: white;
+  --backgroundC: #1e1e1e;
+  --grey: white;
+
 }
 
-.light-mode {
-  background-color: #fff;
-  color: #333;
+/*----- EDIT PROFIL------*/
+
+
+.form-profil {
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  flex-direction: column;
+  font-size: 25px;
+  margin: 6%;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-content: center;
 }
 
-/*-----------*/
+.form-profil form {
+  display: flex;
+  flex-direction: column;
+  margin: 3%;
+  
+}
+
+.form-profil form input {
+  width: 200px;
+
+}
+
+/*------MESSAGERIE-----*/
+
+
+
+.suggestion p {
+  font-size: 9px;
+  margin: 0;
+  padding-left: 4px;
+}
+
+.background {
+  background-color: var();
+  border-radius: 50px;
+  padding: 3%;
+}
+
+.conversations {
+  display: block;
+  padding: 5px;
+  color: var(--noir);
+  text-decoration: none;
+  margin: 7px;
+  background-color: var(--blanc);
+  font-size: 17px;
+  text-align: start;
+  font-weight: bold;
+}
+
+.utilisateur-dans-conversation {
+  font-size: 10px;
+}
+
+.conversations:hover {
+  background-color: var(--premiere-color);
+  transition: background-color 0.2s ease;
+}
+
+.conversations a {
+  margin-left: 10px;
+}
+
+.conversations p {
+  margin-left: 2px;
+}
+
+.tendance {
+  height: auto
+}
+
+.all-sugestion {
+  margin-bottom: 10px;
+  background-color: red;
+}
+
+.sugguser {
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.talk {
+  margin: 20px 0;
+  color: grey;
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  width: 50%;
+}
+
+.jetest {
+  display: flex;
+  flex-direction: column-reverse; 
+  width: 50em;
+  height: 860px;
+  overflow: auto;
+}
+
+.talk img {
+  width: 50px;
+  border-radius: 50%;
+  margin-bottom: auto;
+}
+
+.talk p {
+  padding: 15px;
+  line-height: 25px;
+  border-radius: 20px;
+}
+.right {
+  margin-left: 20em;
+ 
+}
+.right p {
+  margin-right: 10px;
+  color: #f1f1f1;
+  background:var(--quatrieme--color);
+}
+.left p {
+  margin-left: 10px;
+  background: rgb(216,216,216);
+  color: #000;
+}
+
+.chat {
+  flex-shrink: 0;
+  width: 100%;
+  height: 90px;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.submit-btn {
+  background: #322828;
+  justify-content: center;
+  align-items: center;
+  color: var(--blanc);
+}
