@@ -11,65 +11,68 @@ xhttpHashtag.onreadystatechange = function () {
 xhttpHashtag.open("GET", "mysql/fetch_hashtag.php", true);
 xhttpHashtag.send();
 
+const resultBoxHashtag = document.querySelector(".box-result");
+const inputBoxHashtag = document.getElementById("SearchHashtag");
 
-const boxResult = document.querySelector(".box-result");
-const boxInput = document.getElementById("SearchBar");
+inputBoxHashtag.onkeyup = function () {
+    let inputSearch = inputBoxHashtag.value;
 
-boxInput.onkeyup = function () {
-    let inputSearch = boxInput.value;
     if (inputSearch.startsWith('#')) {
         let searchHashtag = inputSearch.indexOf('#');
         let hashtag = inputSearch.substring(searchHashtag);
         console.log(hashtag);
+
         if (hashtag.startsWith('#')) {
             console.log('oui1')
             let result = [];
+
             if (hashtag.length) {
                 result = hashtagName.filter((keyword) => {
                     return keyword.toLowerCase().includes(hashtag.toLowerCase())
                 });
                 console.log(result);
-
             }
             displayHashtag(result);
-
-
         }
-    }
-    else if (inputSearch.includes('#')) {
+
+    } else if (inputSearch.includes('#')) {
         let searchHashtag = inputSearch.indexOf('#');
         let hashtag = inputSearch.substring(searchHashtag);
         console.log(hashtag);
+
         if (hashtag.startsWith('#')) {
             console.log('oui2')
             let result = [];
+
             if (hashtag.length) {
                 result = hashtagName.filter((keyword) => {
                     return keyword.toLowerCase().includes(hashtag.toLowerCase())
                 });
                 console.log(result);
-
             }
             displayHashtag(result);
         }
-    }
-    else {
-        boxResult.innerHTML = "";
+
+    } else {
+        resultBoxHashtag.innerHTML = "";
     }
 }
 
 function displayHashtag(result) {
-    let inputSearch = boxInput.value;
+    let inputSearch = inputBoxHashtag.value;
+
     if (inputSearch.startsWith('#') || inputSearch.includes('#')) {
         const content = result.map((list) => {
-            return "<li onclick=completeHashtag(this)>" + list + "</li>";
+            return "<li onclick=headerHashtag(this)>" + list + "</li>";
         }).join('');
 
-        boxResult.innerHTML = "<ul>" + content + "</ul>";
+        resultBoxHashtag.innerHTML = "<ul>" + content + "</ul>";
+    } else {
+        resultBoxHashtag.innerHTML = "";
     }
 }
 
-function completeHashtag(list) {
-    boxInput.value = boxInput.value.replace("#", "") + list.innerHTML;
-    boxResult.innerHTML = '';
+function headerHashtag(list) {
+    var hashtag = list.innerHTML.substring(1);
+    window.location.href = "tweet/hashtag.php?hashtag=" + encodeURIComponent(hashtag);
 }

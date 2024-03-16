@@ -20,8 +20,10 @@ $hashtag2 = $sql->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <div class="right-sidebar">
-      <input type="text" class="search-bar" id="SearchBar" placeholder="Search barre">
+      <input type="text" class="search-bar" id="SearchHashtag" placeholder="Recherche #">
       <div class="box-result"></div>
+      <input type="text" class="search-bar" id="SearchUser" placeholder="Recherche @">
+      <div class="boxResult"></div>
    
       <div class="suggestion tendance">
         <?php foreach ($hashtag2 as $hashtag) : ?>
@@ -53,5 +55,6 @@ $hashtag2 = $sql->fetchAll(PDO::FETCH_ASSOC);
       </div>
       <div>
 
-      <script src="autocomplete.js"></script>
+      <script src="searchHashtag.js"></script>
+      <script src="searchUsers.js"></script>
     
