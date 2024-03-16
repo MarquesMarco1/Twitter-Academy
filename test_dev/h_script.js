@@ -60,14 +60,14 @@ function display(result) {
     let input = inputBox.value;
     if (input.startsWith('#') || input.includes('#')) {
         const content = result.map((list) => {
-            return "<li onclick=complete(this)>" + list + "</li>";
+            return "<li onclick=header(this)>" + list + "</li>";
         }).join('');
 
         resultBox.innerHTML = "<ul>" + content + "</ul>";
     }
 }
 
-function complete(list) {
-    inputBox.value = inputBox.value.replace("#", "") + list.innerHTML;
-    resultBox.innerHTML = '';
+function header(list) {
+var hashtag = list.innerHTML.substring(1);
+window.location.href = "tweet/hashtag.php?hashtag=" + encodeURIComponent(hashtag);
 } 
