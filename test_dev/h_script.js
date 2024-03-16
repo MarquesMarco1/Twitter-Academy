@@ -29,11 +29,8 @@ inputBox.onkeyup = function () {
                     return keyword.toLowerCase().includes(arobase.toLowerCase())
                 });
                 console.log(result);
-
             }
             display(result);
-
-
         }
     } else if (input.includes('#')) {
         let search = input.indexOf('#');
@@ -47,7 +44,6 @@ inputBox.onkeyup = function () {
                     return keyword.toLowerCase().includes(arobase.toLowerCase())
                 });
                 console.log(result);
-
             }
             display(result);
         }
