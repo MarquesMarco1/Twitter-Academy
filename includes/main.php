@@ -6,7 +6,7 @@
         <div class="tweet-input">
           <textarea name="txtTweet" id="txtTweet" placeholder="" maxlength="140"></textarea>
           <div class="result-box">
-            
+
           </div>
 
           <div id="txtCountTweet">0 / 140</div>
@@ -22,4 +22,5 @@
   </div>
   <script src="tweet/tweet.js"></script>
   <script src="autocompletion.js"></script>
+
 </div>

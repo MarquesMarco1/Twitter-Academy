@@ -16,7 +16,7 @@ include('../includes/path.php');
     <link rel="stylesheet" href="../style/accueil.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             function chargeMsg() {
                 $.ajax({
                     url: 'ajax/old_messages.php',
@@ -25,13 +25,31 @@ include('../includes/path.php');
                     data: {
                         id: <?php echo $_GET['id'] ?>,
                     },
-                    success: function (reussite, statut) {
+                    success: function(reussite, statut) {
                         $('#messages').empty();
                         for (let index = 0; index < reussite.length; index++) {
                             if (reussite[index].user_id == <?php echo $_SESSION['USER']['id'] ?>) {
-                                body = "<div class='talk right'> <p>" + reussite[index].content + " </p> <img src='<?php echo $path ?>" + reussite[index].pp + "'></div>"
+                                body = `
+                                <div class='talk right'> 
+                             
+                                <div> 
+                              
+                        
+                              
+                                <p>` + reussite[index].content + ` </p>
+                                  ` + reussite[index].time + `
+                                  </div>
+                                  <img src='<?php echo $path ?>` + reussite[index].pp + `'>
+                                  </div>`
                             } else {
-                                body = "<div class='talk left'> <img src='<?php echo $path ?>" + reussite[index].pp + "'><p> " + reussite[index].content + " </p></div>"
+                                body = `
+                                <div class='talk left'>
+                                 <img src='<?php echo $path ?>` + reussite[index].pp + `'>
+                                    <div> 
+                                    <p> ` + reussite[index].content + `</p>
+                                     ` + reussite[index].time + ` 
+                                    </div>
+                                </div>`
                             }
 
                             $("#messages").append(body);
@@ -42,7 +60,7 @@ include('../includes/path.php');
             chargeMsg();
 
 
-            $('#myForm').on('submit', function (e) {
+            $('#myForm').on('submit', function(e) {
                 e.preventDefault();
                 var message = $("#msg").val();
 
@@ -53,13 +71,13 @@ include('../includes/path.php');
                         id: <?php echo $_GET['id'] ?>,
                         message: message,
                     },
-                    success: function (reussi, statut) {
+                    success: function(reussi, statut) {
                         console.log(reussi);
                     }
                 });
             })
 
-            setInterval(chargeMsg, 5000);
+            setInterval(chargeMsg, 500);
         })
     </script>
 
@@ -86,8 +104,8 @@ include('../includes/path.php');
         <?php include('../includes/left-sidebar.php') ?>
         <div class="mise-en-page">
             <div>
-        
-        
+
+
 
                 <?php
                 $getEdit = $_POST;
@@ -115,7 +133,7 @@ include('../includes/path.php');
                             <a href="javascript:void(0)" onclick="togglePopup()" class="popup-exit">Fermer</a>
                             <label for="changeName">Changer le nom du groupe :</label>
                             <input type="text" name="changeName" id="changeName"> <br>
-                 
+
 
                             <button type="submit">Editer</button>
                         </form>
@@ -123,9 +141,9 @@ include('../includes/path.php');
                 </div>
 
                 <div class="jetest">
-                <div id="messages">
+                    <div id="messages">
 
-                </div>
+                    </div>
                 </div>
 
                 <form method="POST" id="myForm">
@@ -137,12 +155,11 @@ include('../includes/path.php');
                     lamort = document.getElementById('submitDelete');
                     msg = document.getElementById('msg');
 
-                    lamort.addEventListener('click', function () {
-                        setTimeout(function () {
+                    lamort.addEventListener('click', function() {
+                        setTimeout(function() {
                             msg.value = "";
-                        }, 100);
+                        }, 10);
                     })
-                    
                 </script>
             </div>
         </div>

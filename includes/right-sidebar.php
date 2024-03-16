@@ -20,7 +20,8 @@ $hashtag2 = $sql->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <div class="right-sidebar">
-      <input type="search" class="search-bar" placeholder="Search barre">
+      <input type="search" class="search-bar" id='search-bar' placeholder="Search barre">
+   
       <div class="suggestion tendance">
         <?php foreach ($hashtag2 as $hashtag) : ?>
         <div class="tendance-list">
@@ -50,3 +51,4 @@ $hashtag2 = $sql->fetchAll(PDO::FETCH_ASSOC);
        
       </div>
       <div>
+    

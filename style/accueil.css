@@ -630,14 +630,11 @@ body {
 
 .talk {
   margin: 20px 0;
-  color: #f1f1f1;
+  color: grey;
   display: flex;
   align-items: center;
-  
   font-size: 18px;
   width: 50%;
-
-
 }
 
 .jetest {
@@ -661,10 +658,12 @@ body {
 }
 .right {
   margin-left: 20em;
+ 
 }
 .right p {
   margin-right: 10px;
-  background:#1c1c1c;
+  color: #f1f1f1;
+  background:var(--quatrieme--color);
 }
 .left p {
   margin-left: 10px;

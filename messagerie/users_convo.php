@@ -122,8 +122,7 @@ include('../mysql/mysql.php');
                             <a href="javascript:void(0)" onclick="togglePopup()" class="popup-exit">Fermer</a>
                             <label for="nameConv">Nom du groupe :</label>
                             <input type="text" name="nameConv" id="nameConv"><br>
-                            <label for="imgConv">Photo de groupe :</label>
-                            <input type="file" name="imgConv" id="imgConv"><br>
+                          
                             <input type="submit" value="Créer un groupe">
                         </form>
                     </div>

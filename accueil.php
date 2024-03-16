@@ -262,7 +262,7 @@ if (!isset($_SESSION['USER'])) {
     <?php include('includes/left-sidebar.php') ?>
     <?php include('includes/main.php') ?>
     <?php include('includes/right-sidebar.php') ?>
-
+ 
   </div>
 
   <div>
@@ -270,7 +270,6 @@ if (!isset($_SESSION['USER'])) {
   </div>
   <script src="dark.js"></script>
 
-  
 </body>
 
 </html>

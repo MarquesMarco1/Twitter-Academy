@@ -40,8 +40,8 @@ class functions
                     $at_user_name_verif = $sql->fetch(PDO::FETCH_ASSOC);
                     if (!isset($at_user_name_verif['id'])) {  // requete pour voir si l'@ et déjà existant
                         include('includes/define.php');
-                        
-                        if (isset($_FILES["imageToUpload"])) {
+                      
+                        if ($_FILES["imageToUpload"]['name'] != "") {
                             if ($_FILES['imageToUpload']['size'] < 5 * MB) {  // si le photo de profil fait - 5MB
                                 if ($_FILES["imageToUpload"]["type"] == "image/jpeg" || $_FILES["imageToUpload"]["type"] == "image/png" || $_FILES["imageToUpload"]["type"] == "image/jpg") {  // si la photo de profil et en JPEG ou PNG
                                   

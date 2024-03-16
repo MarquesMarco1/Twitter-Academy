@@ -1,9 +1,6 @@
 <?php
 session_start();
-if (!isset($user['id'])) {
-    echo "CETTE UTILISATEUR EXISTE PAS";
-    return;
-}
+
 
 
 $sql = $mysqlClient->prepare('SELECT count(u.id) as count, u.username FROM user u JOIN follow f ON f.id_user = u.id WHERE u.id = :id');
@@ -45,7 +42,11 @@ $uFollow = $sql->fetch(PDO::FETCH_ASSOC);
         <div class="container">
             <section class="twitterprofile">
                 <div class="headerprofileimage">
-
+                    <?php if (!isset($user['id'])) {
+                        echo "CET UTILISATEUR N'EXISTE PAS !";
+                        return;
+                    }
+                    ?>
                     <img src="<?php echo $path . $user['banner'] ?>" id="headerimage">
                     <img src="<?php echo $path . $user['profile_picture'] ?>" id="profilepic">
                     <?php if ($_SESSION['USER']['id'] == $user['id']) : ?>
@@ -65,7 +66,7 @@ $uFollow = $sql->fetch(PDO::FETCH_ASSOC);
                     <div class="follow">
                         <div class="followers">
                             <span onclick="togglePopup1()"><?php echo $follower['count'] ?> Following</span>
-                        </div >
+                        </div>
                         <div class="following"><span onclick="togglePopup2()"><?php echo $following['count'] ?> Followers</span></div>
                     </div>
 
@@ -119,13 +120,17 @@ $uFollow = $sql->fetch(PDO::FETCH_ASSOC);
 
             <section class="tweets">
                 <div class="heading">
-                <a href="../Utilisateur/user_profil.php?id_user=<?php echo $user['at_user_name']?>&show=tweet"><p>Tweets/Retweets</p></a> 
-                <a href="../Utilisateur/user_profil.php?id_user=<?php echo $user['at_user_name']?>&show=retweetandcomment"><p>Replies</p></a> 
-                 
+                    <a href="../Utilisateur/user_profil.php?id_user=<?php echo $user['at_user_name'] ?>&show=tweet">
+                        <p>Tweets/Retweets</p>
+                    </a>
+                    <a href="../Utilisateur/user_profil.php?id_user=<?php echo $user['at_user_name'] ?>&show=retweetandcomment">
+                        <p>Replies</p>
+                    </a>
+
                 </div>
             </section>
-           
-            <?php 
+
+            <?php
             if ($_GET['show'] == "tweet") {
                 include('../Utilisateur/tweet_user.php');
             } else if ($_GET['show'] == "retweetandcomment") {
@@ -133,7 +138,7 @@ $uFollow = $sql->fetch(PDO::FETCH_ASSOC);
             } else {
                 include('../Utilisateur/tweet_user.php');
             }
-           
+
             ?>
         </div>
 

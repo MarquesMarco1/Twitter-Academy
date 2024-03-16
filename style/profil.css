@@ -473,6 +473,7 @@ body {
     cursor: pointer;
     font-weight: bold;
     margin-right: 5px;
+    color: white;
     background-color: var(--quatrieme--color);
 }
 
