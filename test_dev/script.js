@@ -70,6 +70,6 @@ function display(result) {
 }
 
 function complete(list) {
-    inputBox.value = list.innerHTML;
+    inputBox.value = inputBox.value.replace("@", "") + list.innerHTML;
     resultBox.innerHTML = '';
 }
