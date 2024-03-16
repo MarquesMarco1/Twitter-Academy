@@ -115,8 +115,8 @@ include('../includes/path.php');
                             <a href="javascript:void(0)" onclick="togglePopup()" class="popup-exit">Fermer</a>
                             <label for="changeName">Changer le nom du groupe :</label>
                             <input type="text" name="changeName" id="changeName"> <br>
-                            <label for="changeImg">Changer la photo du groupe :</label>
-                            <input type="file" name="changeImg" id="changeImg"> <br>
+                 
+
                             <button type="submit">Editer</button>
                         </form>
                     </div>

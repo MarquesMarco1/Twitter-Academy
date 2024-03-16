@@ -4,7 +4,7 @@
 
         <div class="conversation">
             <a href="#">
-                <img src="<?php echo $path, $convInfo['picture'] ?>">
+            
                 <?php echo $convInfo['name'] ?>
             </a> <!-- nom de la convo qui amene sur la convo limite 10 dans la db  -->
 

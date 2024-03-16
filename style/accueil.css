@@ -188,6 +188,47 @@ body {
  
 }
 
+.create-post {
+  width: 100%;
+  margin: 0 auto; 
+}
+
+.tweet-input {
+  position: relative;
+}
+
+.create-post textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  border-radius: 10px;
+  resize: none; 
+}
+
+#txtCountTweet {
+  position: absolute;
+  bottom: 5px;
+  right: 10px;
+  font-size: 12px;
+  color: #999;
+}
+
+.create-post button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #1da1f2;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  outline: none;
+}
+
+.create-post button:hover {
+  background-color: #0d8ecf;
+}
+
 .postcontent {
   color: var(--noir);
 }

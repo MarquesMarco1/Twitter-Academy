@@ -28,7 +28,7 @@ include('../mysql/mysql.php');
                     success: function(reussite, statut) {
                         $('#conv').empty()
                         for (let index = 0; index < reussite.length; index++) {
-                            body = "<a href = 'users_messages.php?id=" + reussite[index].id_conv + "'> <div class = 'messages'><img src='<?php echo $path ?>" + reussite[index].imgConv + "'> " + reussite[index].nameConv + "</div> </a>"
+                            body = " <a href = 'users_messages.php?id=" + reussite[index].id_conv + "'> <div class = 'messages'> " + index + " - " + reussite[index].nameConv + "</div> </a>"
                             $("#conv").append(body);
                         }
 

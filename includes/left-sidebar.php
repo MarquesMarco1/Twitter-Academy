@@ -21,18 +21,12 @@ include('path.php');
       <p>Profil</p>
     </a>
 
-    <a href="<?php echo $path ?>Utilisateur/deconnexion.php"><img src="<?php echo $path ?>assets/icons8-engrenage-24.png" alt="">
-      <p>Paramètre</p>
-    </a>
 
-    <a href="<?php echo $path ?>Utilisateur/deconnexion.php"><img src="<?php echo $path ?>assets/icons8-déconnecté-30.png" alt="">
+
+    <a href="<?php echo $path ?>Utilisateur/deconnexion.php"><img src="<?php echo $path ?>assets/icons8-logout-60.png" alt="">
       <p>Déconnexion</p>
     </a>
-    <div class="button post-button">
-    <a href="<?php echo $path ?>Utilisateur/deconnexion.php">
-      <p>Post</p>
-    </a>
-    </div>
+
 
 
   </div>

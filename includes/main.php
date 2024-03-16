@@ -3,17 +3,13 @@
 
     <div>
       <form action="mysql/r_tweet.php" method="post" class="create-post">
-        <h2>Faire un post</h2>
-        <input name="txtTweet" id="txtTweet" placeholder="Quoi de neuf ?" >
-        <div class="result-box">
-
+        <div class="tweet-input">
+          <textarea name="txtTweet" id="txtTweet" placeholder="" maxlength="140"></textarea>
+          <div id="txtCountTweet">0 / 140</div>
         </div>
-        <div id="txtCountTweet" class="counter">0</div>
-        <br>
         <input type="hidden" name="id_user" id="id_user" value="<?php echo $_SESSION['USER']['id'] ?>">
-        <button id="publishPost">Publier</button>
+        <button type="submit" id="publishPost">Publier</button>
       </form>
-
     </div>
 
     <div id="tweets">
