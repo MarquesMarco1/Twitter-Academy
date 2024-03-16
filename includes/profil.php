@@ -107,11 +107,11 @@ $uFollow = $sql->fetch(PDO::FETCH_ASSOC);
 
                     <?php if (isset($uFollow['id_user'])) : ?>
                         <?php if ($uFollow['id_user'] != $user['id']) : ?>
-                            <a href="../mysql/r_follow.php?id_user=<?php echo $_SESSION['USER']['id'] ?>&id_follow=<?php echo $user['id'] ?>">+ Unfollow</a>
+                            <a href="../mysql/r_follow.php?id_user=<?php echo $_SESSION['USER']['id'] ?>&id_follow=<?php echo $user['id'] ?>&at_user_name=<?php echo $user['at_user_name'] ?>">+ Unfollow</a>
                         <?php endif; ?>
                     <?php else : ?>
                         <?php if ($uFollow['id_user'] != $user['id']) : ?>
-                            <a href="../mysql/r_follow.php?id_user=<?php echo $_SESSION['USER']['id'] ?>&id_follow=<?php echo $user['id'] ?>">+ Follow</a>
+                            <a href="../mysql/r_follow.php?id_user=<?php echo $_SESSION['USER']['id'] ?>&id_follow=<?php echo $user['id'] ?>&at_user_name=<?php echo $user['at_user_name'] ?>">+ Follow</a>
                         <?php endif; ?>
                     <?php endif; ?>
                 </div>

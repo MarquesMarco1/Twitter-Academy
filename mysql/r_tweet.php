@@ -2,14 +2,14 @@
 session_start();
 include('mysql.php');
 
-$cl = strlen($_POST['tweet']);
+$cl = strlen($_POST['txtTweet']);
 
-$ma_varaible_string = $_POST['tweet'];
+$ma_varaible_string = $_POST['txtTweet'];
 $trouver = '#';
 $position = strrchr($ma_varaible_string, $trouver);
 $resultat = explode(' ',  substr($position, 1));
 
-
+echo $cl;
 if ($cl <= 140) {
     if ($cl > 0) {
         if ($resultat[0] != '') {
@@ -30,7 +30,7 @@ if ($cl <= 140) {
         $sql->execute([
             "id" => $_POST['id_user'],
             "response" => NULL,
-            "content" => $_POST['tweet'],
+            "content" => $_POST['txtTweet'],
             "id_quote_tweet" => NULL,
         ]);
     }

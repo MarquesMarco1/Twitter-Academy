@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 $user_profil = $_GET['id_user'];
 $user_logged = $_SESSION['USER']['id'];
 
