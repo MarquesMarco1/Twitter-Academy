@@ -76,5 +76,6 @@ function displayHashtag(result) {
 
 function headerHashtag(list) {
     var hashtag = list.innerHTML.substring(1);
-    window.location.href = "tweet/hashtag.php?hashtag=" + encodeURIComponent(hashtag);
+    hashtag = hashtag.replace("#", '');
+    window.location.href = "tweet/hashtag.php?hashtag=" + hashtag;
 }
