@@ -72,6 +72,6 @@ function displayUser(result) {
 }
 
 function headerUser(list) {
-        var user = list.innerHTML.substring(1);
+        var user = list.innerHTML;
         window.location.href = "Utilisateur/user_profil.php?id_user=" + encodeURIComponent(user);
 }
