@@ -25,6 +25,7 @@ inputBoxHashtag.onkeyup = function () {
         if (hashtag.startsWith('#')) {
             console.log('oui1')
             let result = [];
+            hashtag = hashtag.replace("#", "")
 
             if (hashtag.length) {
                 result = hashtagName.filter((keyword) => {
@@ -43,6 +44,7 @@ inputBoxHashtag.onkeyup = function () {
         if (hashtag.startsWith('#')) {
             console.log('oui2')
             let result = [];
+            hashtag = hashtag.replace("#", "")
 
             if (hashtag.length) {
                 result = hashtagName.filter((keyword) => {
@@ -63,7 +65,7 @@ function displayHashtag(result) {
 
     if (inputSearch.startsWith('#') || inputSearch.includes('#')) {
         const content = result.map((list) => {
-            return "<li onclick=headerHashtag(this)>" + list + "</li>";
+            return "<li onclick=headerHashtag(this)> #" + list + "</li>";
         }).join('');
 
         resultBoxHashtag.innerHTML = "<ul>" + content + "</ul>";
